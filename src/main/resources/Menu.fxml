@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1315.0" style="-fx-background-color: #e7d2f7;" stylesheets="@css/nord-light.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <left>
+      <Pane prefHeight="768.0" prefWidth="180.0" style="-fx-background-color: #e4c5fc;" BorderPane.alignment="CENTER">
+         <children>
+            <Group layoutY="132.0">
+               <children>
+                  <Button layoutY="453.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="180.0" style="-fx-background-color: #66baff; -fx-border-radius: 1 px; -fx-border-color: white;" text="Formations" textFill="WHITE">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <font>
+                        <Font name="Roboto Regular" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button layoutY="363.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="180.0" style="-fx-background-color: #66baff; -fx-border-radius: 1 px; -fx-border-color: white;" text="Productions" textFill="WHITE">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <font>
+                        <Font name="Roboto Regular" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button layoutY="273.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="180.0" style="-fx-background-color: #66baff; -fx-border-radius: 1 px; -fx-border-color: white;" text="Contenus" textFill="WHITE">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <font>
+                        <Font name="Roboto Regular" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button layoutY="183.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="180.0" style="-fx-background-color: #66baff; -fx-border-radius: 1 px; -fx-border-color: white;" text="Marché" textFill="WHITE">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <font>
+                        <Font name="Roboto Regular" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button layoutY="94.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="180.0" style="-fx-background-color: #66baff; -fx-border-radius: 1 px; -fx-border-color: white;" text="Evenements" textFill="WHITE">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <font>
+                        <Font name="Roboto Regular" size="20.0" />
+                     </font>
+                  </Button>
+                  <Button layoutY="4.0" mnemonicParsing="false" prefHeight="91.0" prefWidth="180.0" style="-fx-background-color: #66baff; -fx-border-radius: 1 px; -fx-border-color: white;" text="Utilisateurs" textFill="WHITE">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <font>
+                        <Font name="Roboto Regular" size="20.0" />
+                     </font>
+                  </Button>
+                  <Label alignment="CENTER" layoutX="1.0" layoutY="-40.0" prefHeight="42.0" prefWidth="179.0" text="Les gestions :">
+                     <font>
+                        <Font name="Roboto Regular" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Group>
+         </children>
+      </Pane>
+   </left>
+</BorderPane>
