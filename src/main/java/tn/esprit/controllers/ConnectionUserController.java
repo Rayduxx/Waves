@@ -22,6 +22,7 @@ import tn.esprit.models.Utilisateur;
 import tn.esprit.services.ServiceUtilisateur;
 import tn.esprit.utils.MyDataBase;
 
+import javax.naming.spi.StateFactory;
 import java.io.IOException;
 
 public class ConnectionUserController implements Initializable {
@@ -55,41 +56,38 @@ public class ConnectionUserController implements Initializable {
             stm.setString(2, password_login.getText());
             ResultSet rs = stm.executeQuery();
             Utilisateur user;
-            Stage stage;
-            Parent root;
 
             if (rs.next()) {
                 String role = rs.getString("role");
                 if (role.equals("Admin")) {
                     try {
-                        stage = (Stage) connecter.getScene().getWindow();
-                        root = FXMLLoader.load(getClass().getResource("UserAdmin.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminUser.fxml"));
+                        Parent root = loader.load();
+                        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                         Scene scene = new Scene(root);
                         stage.setScene(scene);
                         stage.show();
-
                     } catch (IOException e) {
-                        throw new RuntimeException(e);
+                        e.printStackTrace();
                     }
-
                 }
-                /*if(role.equals("User")){
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/UserAdmin.fxml"));
-                    Parent root = loader.load();
-                    MenuAdminController MenuAdmin = loader.getController();
-                    Scene scene;
-                    scene = new Scene(root);
-                    Stage stage = new Stage();
-                    stage.initStyle(StageStyle.TRANSPARENT);
-                    stage.setScene(scene);
-                    stage.show();
-                }*/
+                if (role.equals("User")) {
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Menu.fxml"));
+                        Parent root = loader.load();
+                        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
     }
-
     @FXML
     public void inscription(ActionEvent actionEvent) {
 
