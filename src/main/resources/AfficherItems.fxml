@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.TilePane?>
+
+<AnchorPane prefHeight="418.0" prefWidth="786.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherItems">
+   <children>
+      <TilePane fx:id="item" alignment="CENTER" layoutX="14.0" layoutY="14.0" orientation="VERTICAL" prefHeight="364.0" prefWidth="290.0" style="-fx-background-color: lightgray; -fx-border-color: black;" />
+      <Button fx:id="addButton" layoutX="345.0" layoutY="312.0" mnemonicParsing="false" onAction="#addbtn" text="Add Item" />
+      <TableView fx:id="table" layoutX="345.0" layoutY="14.0" prefHeight="285.0" prefWidth="379.0">
+        <columns>
+          <TableColumn fx:id="tableTitle" prefWidth="88.7999267578125" text="Titre" />
+            <TableColumn fx:id="tableDesc" prefWidth="140.800048828125" text="Description" />
+            <TableColumn fx:id="tableAuth" prefWidth="85.59991455078125" text="Auteur" />
+            <TableColumn fx:id="tablePrix" prefWidth="63.99993896484375" text="Prix" />
+        </columns>
+      </TableView>
+      <Button layoutX="431.0" layoutY="312.0" mnemonicParsing="false" onAction="#deleteItem" text="Supprimer" />
+      <Button layoutX="523.0" layoutY="312.0" mnemonicParsing="false" text="Modifier" />
+   </children>
+</AnchorPane>

@@ -22,6 +22,7 @@ public class MyDataBase {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
             System.out.println("DATABASE: Failed");
+
         }
 
     }
