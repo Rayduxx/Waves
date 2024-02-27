@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AfficherPersonneController">
+   <children>
+      <Label layoutX="57.0" layoutY="50.0" text="name" />
+      <TextField fx:id="lbname" layoutX="151.0" layoutY="38.0" />
+   </children>
+</AnchorPane>
