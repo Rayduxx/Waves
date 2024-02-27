@@ -56,19 +56,19 @@
                   <Font name="Roboto Bold" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="prenomreg" prefHeight="40.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="nomreg" prefHeight="40.0" prefWidth="150.0" GridPane.columnIndex="1" />
             <Label prefHeight="31.0" prefWidth="106.0" text="Prenom :" GridPane.rowIndex="1">
                <font>
                   <Font name="Roboto Bold" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="nomreg" prefHeight="40.0" prefWidth="150.0" GridPane.columnIndex="1" />
-            <TextField fx:id="emailreg" prefHeight="40.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <TextField fx:id="prenomreg" prefHeight="40.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label prefHeight="31.0" prefWidth="106.0" text="Email :" GridPane.rowIndex="2">
                <font>
                   <Font name="Roboto Bold" size="14.0" />
                </font>
             </Label>
+            <TextField fx:id="emailreg" prefHeight="40.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Label prefHeight="31.0" prefWidth="106.0" text="Password :" GridPane.rowIndex="3">
                <font>
                   <Font name="Roboto Bold" size="14.0" />
@@ -90,5 +90,10 @@
          </children>
       </GridPane>
       <Button fx:id="imagebtn" layoutX="1041.0" layoutY="521.0" mnemonicParsing="false" onAction="#uploadImage" prefHeight="25.0" prefWidth="125.0" style="-fx-background-color: EF2FC1;" text="Sélectionnez Image" textFill="WHITE" />
+      <Label fx:id="reginfo" alignment="CENTER" layoutX="722.0" layoutY="180.0" prefHeight="45.0" prefWidth="535.0" textAlignment="CENTER" textFill="#a63554">
+         <font>
+            <Font name="Roboto Bold" size="14.0" />
+         </font>
+      </Label>
     </children>
 </AnchorPane>

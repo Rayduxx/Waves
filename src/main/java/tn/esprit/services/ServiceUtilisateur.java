@@ -8,6 +8,7 @@ import tn.esprit.utils.MyDataBase;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
     private Connection cnx;
@@ -34,10 +35,9 @@ public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
     }
 
     @Override
-    public ObservableList<Utilisateur> afficher() {
-        // List<Equipement> Equipement = new ArrayList<>();
-        ObservableList<Utilisateur> Equipement = FXCollections.observableArrayList();
-        String sql = "SELECT `id`, `nom`, `prenom`, `email`, `password`, `numtel`, `role` FROM `user`";
+    public List<Utilisateur> afficher() {
+        List<Utilisateur> users = new ArrayList<>();
+        String sql = "SELECT `id`, `nom`, `prenom`, `email`, `password`, `numtel`, `role`, `image` FROM `user`";
         try {
             Statement ste = cnx.createStatement();
             ResultSet rs = ste.executeQuery(sql);
@@ -50,16 +50,16 @@ public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
                 user.setPassword(rs.getString("password"));
                 user.setNumtel(rs.getInt("numtel"));
                 user.setRole(rs.getString("role"));
-                Equipement.add(user);
+                user.setImage(rs.getString("image"));
+                users.add(user);
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        return Equipement;
-
+        return users;
     }
 
-    @Override
+    @Override //manich nestaamel fiha
     public ArrayList<Utilisateur> getAll() {
         ArrayList<Utilisateur> users = new ArrayList();
         String qry = "SELECT * FROM `user`";

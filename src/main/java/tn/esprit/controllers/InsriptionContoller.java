@@ -1,6 +1,5 @@
 package tn.esprit.controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
@@ -9,12 +8,18 @@ import tn.esprit.models.Utilisateur;
 import tn.esprit.services.ServiceUtilisateur;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import tn.esprit.utils.MyDataBase;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.UUID;
 
 public class InsriptionContoller {
@@ -31,20 +36,24 @@ public class InsriptionContoller {
     @FXML
     private TextField imagereg;
     @FXML
+    private Label reginfo;
+    @FXML
     private Button imagebtn;
 
     private final ServiceUtilisateur UserS = new ServiceUtilisateur();
-    @FXML
-    public void inscription(javafx.event.ActionEvent actionEvent) {
 
+    @FXML
+    public void inscription(javafx.event.ActionEvent actionEvent) throws SQLException {
         String NOM = nomreg.getText();
         String PRENOM = prenomreg.getText();
         String EMAIL = emailreg.getText();
         String MDP = mdpreg.getText();
         int NUMTEL = Integer.parseInt(numtelreg.getText());
         String IMAGE = imagereg.getText();
+
         UserS.Add(new Utilisateur(0, NOM, PRENOM, EMAIL, MDP, NUMTEL, "User", IMAGE));
     }
+
     @FXML
     private void uploadImage(javafx.event.ActionEvent actionEvent) {
         String imagePath = null;
@@ -70,6 +79,7 @@ public class InsriptionContoller {
             }
         }
     }
+
     @FXML
     public void cnscene(javafx.event.ActionEvent actionEvent) {
         try {
@@ -83,4 +93,5 @@ public class InsriptionContoller {
             e.printStackTrace();
         }
     }
+
 }

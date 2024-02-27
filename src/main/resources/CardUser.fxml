@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" />
+<HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="162.0" prefWidth="332.0" spacing="10.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="tn.esprit.controllers.CardUserController">
+   <children>
+      <ImageView fx:id="cardimage" fitHeight="120.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
+      <VBox fx:id="cardBox" prefHeight="162.0" prefWidth="175.0">
+         <children>
+            <Label fx:id="cardnameprename" prefHeight="40.0" prefWidth="177.0" text="Name Prename">
+               <font>
+                  <Font name="Roboto Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="cardemail" prefHeight="40.0" prefWidth="177.0" text="Email">
+               <font>
+                  <Font name="Roboto Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="cardnumtel" prefHeight="40.0" prefWidth="177.0" text="Numtel">
+               <font>
+                  <Font name="Roboto Bold" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="cardrole" prefHeight="40.0" prefWidth="177.0" text="Role">
+               <font>
+                  <Font name="Roboto Bold" size="14.0" />
+               </font>
+            </Label>
+         </children></VBox>
+   </children>
+</HBox>
