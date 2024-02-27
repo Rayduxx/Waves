@@ -12,7 +12,6 @@ import java.util.List;
 
 public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
     private Connection cnx;
-
     public ServiceUtilisateur() {
         cnx = MyDataBase.getInstance().getCnx();
     }

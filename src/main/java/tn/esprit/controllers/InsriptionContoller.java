@@ -41,7 +41,25 @@ public class InsriptionContoller {
     private Button imagebtn;
 
     private final ServiceUtilisateur UserS = new ServiceUtilisateur();
+    private Connection cnx;
+    public void ServiceUtilisateur() {
+        cnx = MyDataBase.getInstance().getCnx();
+    }
 
+    public boolean emailExists(String email) throws SQLException {
+        boolean exists = false;
+        String query = "SELECT COUNT(*) AS count FROM users WHERE email = ?";
+        try (PreparedStatement preparedStatement = cnx.prepareStatement(query)) {
+            preparedStatement.setString(1, email);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    int count = resultSet.getInt("count");
+                    exists = count > 0;
+                }
+            }
+        }
+        return exists;
+    }
     @FXML
     public void inscription(javafx.event.ActionEvent actionEvent) throws SQLException {
         String NOM = nomreg.getText();
@@ -50,8 +68,19 @@ public class InsriptionContoller {
         String MDP = mdpreg.getText();
         int NUMTEL = Integer.parseInt(numtelreg.getText());
         String IMAGE = imagereg.getText();
-
-        UserS.Add(new Utilisateur(0, NOM, PRENOM, EMAIL, MDP, NUMTEL, "User", IMAGE));
+        if (NOM.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@(esprit\\.tn|gmail\\.com)$")) {
+            if (numtelreg.getText().matches("^\\d{8}$")) {
+                if (!emailExists(EMAIL)) {
+                    UserS.Add(new Utilisateur(0, NOM, PRENOM, EMAIL, MDP, NUMTEL, "User", IMAGE));
+                } else {
+                    reginfo.setText("Email email déjà");
+                }
+            } else {
+                reginfo.setText("N° Telephone est invalide");
+            }
+        } else {
+            reginfo.setText("Email est invalide");
+        }
     }
 
     @FXML
