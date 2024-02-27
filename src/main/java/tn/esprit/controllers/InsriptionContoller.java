@@ -88,6 +88,7 @@ public class InsriptionContoller {
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.setTitle("Waves - Connection");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

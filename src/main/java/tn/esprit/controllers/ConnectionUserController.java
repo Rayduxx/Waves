@@ -66,6 +66,7 @@ public class ConnectionUserController implements Initializable {
                         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                         Scene scene = new Scene(root);
                         stage.setScene(scene);
+                        stage.setTitle("Waves - Admin Dashboard");
                         stage.show();
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -78,6 +79,7 @@ public class ConnectionUserController implements Initializable {
                         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                         Scene scene = new Scene(root);
                         stage.setScene(scene);
+                        stage.setTitle("Waves - Menu");
                         stage.show();
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -96,6 +98,7 @@ public class ConnectionUserController implements Initializable {
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.setTitle("Waves - Inscription");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

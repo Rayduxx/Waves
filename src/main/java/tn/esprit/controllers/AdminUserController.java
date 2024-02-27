@@ -55,7 +55,7 @@ public class AdminUserController implements Initializable {
                 HBox userBox = fxmlLoader.load();
                 CardUserController cardC = fxmlLoader.getController();
                 cardC.setData(user);
-                if (column == 7) {
+                if (column == 3) {
                     column = 0;
                     ++row;
                 }
