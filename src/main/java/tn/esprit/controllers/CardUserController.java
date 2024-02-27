@@ -1,7 +1,9 @@
 package tn.esprit.controllers;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -9,6 +11,7 @@ import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import tn.esprit.models.Utilisateur;
+import tn.esprit.services.ServiceUtilisateur;
 
 import java.awt.*;
 import java.io.File;
@@ -30,6 +33,7 @@ public class CardUserController {
     private Label cardrole;
     @FXML
     private HBox CardBox;
+    private final ServiceUtilisateur UserS = new ServiceUtilisateur();
 
     private String [] colors = {"#FFB5E8", "#FF9CEE", "#FFCCF9", "#FCC2FF", "#F6A6FF", "#B28DFF", "#C5A3FF", "#D5AAFF", "#ECD4FF", "#FBE4FF", "#DCD3FF", "#A79AFF", "#B5B9FF", "#97A2FF",
             "#AFCBFF", "#AFF8DB", "C4FAF8", "#85E3FF", "#ACE7FF", "#6EB5FF", "#BFFCC6", "#DBFFD6", "#F3FFE3", "#E7FFAC", "#FFFFD1", "#FFC9DE", "#FFABAB", "#FFBEBC", "#FFCBC1", "#FFF5BA"};
@@ -53,5 +57,9 @@ public class CardUserController {
         cardrole.setText(user.getRole());
         cardnumtel.setText(String.valueOf(user.getNumtel()));
         CardBox.setBackground(Background.fill(Color.web(colors[(int)(Math.random()* colors.length)])));
+    }
+
+    public void suppuser(ActionEvent actionEvent) {
+
     }
 }

@@ -40,12 +40,29 @@ public class AdminUserController implements Initializable {
     @FXML
     private GridPane userContainer;
 
-    ObservableList<Utilisateur> platList = FXCollections.observableArrayList();
     ObservableList<String> RoleList = FXCollections.observableArrayList("User", "Admin");
     private final ServiceUtilisateur UserS = new ServiceUtilisateur();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        load();
+        rolecb.setValue("User");
+        rolecb.setItems(RoleList);
+    }
+
+    @FXML
+    public void AjouterUser(javafx.event.ActionEvent actionEvent) {
+        String NOM = nomtf.getText();
+        String PRENOM = prenomtf.getText();
+        String EMAIL = emailtf.getText();
+        String MDP = mdptf.getText();
+        int NUMTEL = Integer.parseInt(numteltf.getText());
+        String ROLE = (String) rolecb.getValue();
+        String IMAGE = "Empty for now";
+        UserS.Add(new Utilisateur(0, NOM, PRENOM, EMAIL, MDP, NUMTEL, ROLE, IMAGE));
+    }
+
+    private void load() {
         int column = 0;
         int row = 1;
         try {
@@ -65,19 +82,5 @@ public class AdminUserController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        rolecb.setValue("User");
-        rolecb.setItems(RoleList);
-    }
-
-    @FXML
-    public void AjouterUser(javafx.event.ActionEvent actionEvent) {
-        String NOM = nomtf.getText();
-        String PRENOM = prenomtf.getText();
-        String EMAIL = emailtf.getText();
-        String MDP = mdptf.getText();
-        int NUMTEL = Integer.parseInt(numteltf.getText());
-        String ROLE = (String) rolecb.getValue();
-        String IMAGE = "Empty for now";
-        UserS.Add(new Utilisateur(0, NOM, PRENOM, EMAIL, MDP, NUMTEL, ROLE, IMAGE));
     }
 }
