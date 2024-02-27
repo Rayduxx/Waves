@@ -45,7 +45,7 @@ public class ConnectionUserController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
     }
-
+    public Utilisateur connecteruser = new Utilisateur();
     @FXML
     public void connecter(ActionEvent actionEvent) throws IOException {
         String qry = "SELECT * FROM `user` WHERE email=? AND password=?";

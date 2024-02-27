@@ -31,7 +31,8 @@ public class CardUserController {
     @FXML
     private HBox CardBox;
 
-    private String [] colors = {"#FBE7FF","FFE7F7","FFE7EB","E7FFFB","#EBFFE7" };
+    private String [] colors = {"#FFB5E8", "#FF9CEE", "#FFCCF9", "#FCC2FF", "#F6A6FF", "#B28DFF", "#C5A3FF", "#D5AAFF", "#ECD4FF", "#FBE4FF", "#DCD3FF", "#A79AFF", "#B5B9FF", "#97A2FF",
+            "#AFCBFF", "#AFF8DB", "C4FAF8", "#85E3FF", "#ACE7FF", "#6EB5FF", "#BFFCC6", "#DBFFD6", "#F3FFE3", "#E7FFAC", "#FFFFD1", "#FFC9DE", "#FFABAB", "#FFBEBC", "#FFCBC1", "#FFF5BA"};
 
     public void setData(Utilisateur user) {
         String imagePath = user.getImage();

@@ -65,7 +65,6 @@ public class AdminUserController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         rolecb.setValue("User");
         rolecb.setItems(RoleList);
     }
