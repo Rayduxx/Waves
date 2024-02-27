@@ -3,11 +3,11 @@ package tn.esprit.models;
 public class Utilisateur {
 
     private int id , numtel ;
-    private String nom , prenom, email, password, role;
+    private String nom , prenom, email, password, role, image;
 
     public Utilisateur() {}
 
-    public Utilisateur(int id, String nom, String prenom, String email, String password,int numtel, String role) {
+    public Utilisateur(int id, String nom, String prenom, String email, String password,int numtel, String role, String image) {
         this.id = id;
         this.numtel = numtel;
         this.nom = nom;
@@ -15,6 +15,7 @@ public class Utilisateur {
         this.email = email;
         this.password = password;
         this.role = role;
+        this.image = image;
     }
 
     public int getId() {return id;}
@@ -38,6 +39,9 @@ public class Utilisateur {
     public String getRole() {return role;}
     public void setRole(String role) {this.role = role;}
 
+    public String getImage() {return image;}
+    public void setImage(String image) {this.image = image;}
+
     @Override
     public String toString() {
         return "Utilisateur{" +
@@ -48,6 +52,7 @@ public class Utilisateur {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
+                ", image='" + image + '\'' +
                 '}';
     }
 }

@@ -48,6 +48,7 @@ public class AdminUserController  implements Initializable {
         String MDP = mdptf.getText();
         int NUMTEL = Integer.parseInt(numteltf.getText());
         String ROLE = (String) rolecb.getValue();
-        UserS.Add(new Utilisateur(0, NOM, PRENOM, EMAIL, MDP, NUMTEL, ROLE));
+        String IMAGE = "Empty for now";
+        UserS.Add(new Utilisateur(0, NOM, PRENOM, EMAIL, MDP, NUMTEL, ROLE, IMAGE));
     }
 }

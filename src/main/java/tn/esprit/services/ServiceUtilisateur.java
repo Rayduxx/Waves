@@ -18,7 +18,7 @@ public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
 
     @Override
     public void Add(Utilisateur user) {
-        String qry = "INSERT INTO `user`(`nom`, `prenom`, `email`,`password`, `numtel`) VALUES (?,?,?,?,?)";
+        String qry = "INSERT INTO `user`(`nom`, `prenom`, `email`,`password`, `numtel`, `image`) VALUES (?,?,?,?,?,?)";
         try {
             PreparedStatement stm = cnx.prepareStatement(qry);
             stm.setString(1, user.getNom());
@@ -26,6 +26,7 @@ public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
             stm.setString(3, user.getEmail());
             stm.setString(4, user.getPassword());
             stm.setInt(5, user.getNumtel());
+            stm.setString(6, user.getImage());
             stm.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -75,7 +76,6 @@ public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
                 user.setNumtel(rs.getInt("numtel"));
                 user.setRole(rs.getString("role"));
                 users.add(user);
-                System.out.println("Ajout effectué");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
