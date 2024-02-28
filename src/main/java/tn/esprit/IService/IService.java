@@ -1,14 +1,13 @@
 package tn.esprit.IService;
 
 import tn.esprit.models.Poste;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public interface IService<T> {
 
-    void add (T t)throws SQLException;
+
     ArrayList<T> getAll();
     void update(T t);
     void delete(T t);
