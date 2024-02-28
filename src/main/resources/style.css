@@ -1,0 +1,16 @@
+.primary_color{
+    -fx-background-color: #696969		;
+}
+.secondary-color {
+    -fx-background-color: #D3D3D3	;
+}
+.selected{
+    -fx-border-color: #FF1493 ;
+    -fx-border-width: 0 0 0 5 ;
+}
+
+.upgrade-button {
+    -fx-background-color: rgba(0,0,0,0);
+    -fx-border-color: #FFF;
+    -fx-border-radius:50 ;
+}

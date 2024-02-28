@@ -15,18 +15,15 @@ public class MainFX extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("/AjouterPersonnes.fxml"));
-        try {
-            Parent root = loader.load();
-            Scene scene =new Scene(root);
-            primaryStage.setTitle("gestion personne");
-            primaryStage.setScene(scene);
-            primaryStage.show();
-
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
+    public void start(Stage primaryStage) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterPoste.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("ajouter Poste");
+        primaryStage.show();
 
     }
+
+
 }

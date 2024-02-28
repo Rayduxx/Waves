@@ -21,29 +21,28 @@
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>21.0.2</version>
+            <artifactId>javafx-fxml</artifactId>
+            <version>17.0.6</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
-            <version>21.0.2</version>
+            <artifactId>javafx-controls</artifactId>
+            <version>17.0.6</version>
         </dependency>
 
+
     </dependencies>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.openjfx</groupId>
-                <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.8</version>
-
-                <configuration>
-                    <mainClass>tn.esprit.test.MainFX</mainClass>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-maven-plugin</artifactId>
+            <version>0.0.8</version>
+            <configuration>
+                <mainClass>tn.esprit.MainFX</mainClass>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
 
 </project>

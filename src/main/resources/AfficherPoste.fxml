@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.ColorAdjust?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="502.0" prefWidth="758.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AfficherPosteController">
+   <children>
+      <TableView fx:id="Ctable" layoutX="264.0" layoutY="23.0" onMouseClicked="#selection" prefHeight="277.0" prefWidth="453.0">
+        <columns>
+          <TableColumn fx:id="Ctitre" prefWidth="75.0" text="Titre" />
+          <TableColumn fx:id="Cartiste" prefWidth="75.0" text="Artiste" />
+            <TableColumn fx:id="Cgenre" prefWidth="75.0" text="Genre" />
+            <TableColumn fx:id="Cimage" prefWidth="75.0" text="Image" />
+            <TableColumn fx:id="Cduree" prefWidth="75.0" text="Duree" />
+            <TableColumn fx:id="Cdescription" prefWidth="75.0" text="Description" />
+        </columns>
+      </TableView>
+      <Button fx:id="Csupp" layoutX="285.0" layoutY="317.0" mnemonicParsing="false" onAction="#supprimer" onMouseClicked="#selection" text="Supprimer" />
+      <Button fx:id="Cmodif" layoutX="400.0" layoutY="317.0" mnemonicParsing="false" onAction="#modifier" text="Modifier" />
+      <TextField fx:id="titreT" layoutX="135.0" layoutY="372.0" />
+      <TextField fx:id="artisteT" layoutX="312.0" layoutY="372.0" />
+      <TextField fx:id="imageT" layoutX="135.0" layoutY="434.0" />
+      <TextField fx:id="dureeT" layoutX="312.0" layoutY="434.0" />
+      <TextField fx:id="descriptionT" layoutX="491.0" layoutY="434.0" />
+      <Label layoutX="196.0" layoutY="355.0" text="TITRE" />
+      <Label layoutX="365.0" layoutY="355.0" text="ARTISTE" />
+      <Label layoutX="553.0" layoutY="355.0" text="GENRE" />
+      <Label layoutX="192.0" layoutY="416.0" text="IMAGE" />
+      <Label layoutX="369.0" layoutY="416.0" text="DUREE" />
+      <Label layoutX="529.0" layoutY="416.0" text="DESCRIPTION" />
+      <Button fx:id="Ctrier" layoutX="504.0" layoutY="317.0" mnemonicParsing="false" onAction="#trier" text="Trier" />
+      <TextField fx:id="recherche" layoutX="46.0" layoutY="55.0" promptText="Recherche par artiste" />
+      <Button fx:id="Crecherche" layoutX="77.0" layoutY="95.0" mnemonicParsing="false" onAction="#recherche" text="Recherche" textAlignment="CENTER" />
+      <ChoiceBox fx:id="genreT" layoutX="504.0" layoutY="372.0" prefWidth="150.0" />
+   </children>
+   <effect>
+      <ColorAdjust />
+   </effect>
+</AnchorPane>
