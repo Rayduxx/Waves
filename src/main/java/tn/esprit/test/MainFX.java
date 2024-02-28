@@ -16,14 +16,13 @@ public class MainFX extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("/AjouterPersonnes.fxml"));
+        FXMLLoader loader=new FXMLLoader(getClass().getResource("/Create.fxml"));
         try {
             Parent root = loader.load();
             Scene scene =new Scene(root);
-            primaryStage.setTitle("gestion personne");
+            primaryStage.setTitle("Waves - Production");
             primaryStage.setScene(scene);
             primaryStage.show();
-
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
