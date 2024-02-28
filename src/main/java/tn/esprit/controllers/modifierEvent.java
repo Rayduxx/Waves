@@ -2,9 +2,13 @@ package tn.esprit.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 import tn.esprit.models.Event;
 import tn.esprit.services.ServiceEvent;
+
+import java.io.IOException;
 
 public class modifierEvent {
 
@@ -75,6 +79,19 @@ public class modifierEvent {
         date.setText(Date);
         adresse.setText(ADR);
         desc.setText(DESC);
+    }
+
+    @FXML
+    void afficherEvent(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEvent.fxml"));
+            Parent root = loader.load();
+            afficherEvent controller = loader.getController();
+            controller.initData(date.getText());
+            adresse.getScene().setRoot(root);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
