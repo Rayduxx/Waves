@@ -20,7 +20,7 @@ public class MainFX extends Application {
         try {
             Parent root = loader.load();
             Scene scene =new Scene(root);
-            primaryStage.setTitle("gestion Event");
+            primaryStage.setTitle("Waves - Evenement");
             primaryStage.setScene(scene);
             primaryStage.show();
 
