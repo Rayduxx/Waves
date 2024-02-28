@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="511.0" prefWidth="510.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AjouterFormationController">
+   <children>
+      <ImageView fitHeight="511.0" fitWidth="615.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@pic/ajouter%20une%20formation.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="titreTf" layoutX="130.0" layoutY="142.0" prefHeight="25.0" prefWidth="264.0" promptText="Titre" />
+      <TextField fx:id="descriptionTf" layoutX="130.0" layoutY="196.0" prefHeight="25.0" prefWidth="264.0" promptText="Description" />
+      <TextField fx:id="afficheTf" layoutX="130.0" layoutY="249.0" prefHeight="25.0" prefWidth="264.0" promptText="Affiche" />
+      <Button fx:id="Ajouter" layoutX="121.0" layoutY="359.0" mnemonicParsing="false" onAction="#add" prefHeight="19.0" prefWidth="111.0" style="-fx-background-color: #b5a5b8;" styleClass="hover-button" stylesheets="@styles.css" text="Ajouter" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="Afficher" layoutX="285.0" layoutY="359.0" mnemonicParsing="false" onAction="#Afficher" prefHeight="17.0" prefWidth="111.0" style="-fx-background-color: #b5a5b8;" text="Afficher" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Button>
+      <TextField fx:id="videoTf" layoutX="130.0" layoutY="299.0" prefHeight="25.0" prefWidth="264.0" promptText="Video" />
+      <Button fx:id="upload" layoutX="396.0" layoutY="249.0" mnemonicParsing="false" onAction="#uploader" prefHeight="25.0" prefWidth="24.0" text="..." />
+   </children>
+</AnchorPane>

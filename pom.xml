@@ -4,8 +4,8 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>tn.esprit</groupId>
-    <artifactId>workshopjdbc3a25</artifactId>
+    <groupId>org.example</groupId>
+    <artifactId>ConnexionBD3A16</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -21,15 +21,14 @@
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
-            <artifactId>javafx-controls</artifactId>
-            <version>21.0.2</version>
+            <artifactId>javafx-fxml</artifactId>
+            <version>17.0.2</version>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
-            <artifactId>javafx-fxml</artifactId>
+            <artifactId>javafx-controls</artifactId>
             <version>21.0.2</version>
         </dependency>
-
     </dependencies>
     <build>
         <plugins>
@@ -37,9 +36,8 @@
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
-
                 <configuration>
-                    <mainClass>tn.esprit.test.MainFX</mainClass>
+                    <mainClass>org.example.MainFX</mainClass>
                 </configuration>
             </plugin>
         </plugins>

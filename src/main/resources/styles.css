@@ -1,0 +1,21 @@
+/*.my-button {
+    -fx-background-color: #007bff; /* blue color */
+
+
+.hover-button:hover {
+    -fx-background-color: #a96de0; /* Blue color */
+    -fx-text-fill: white; /* Text color */
+}
+
+.gradient {
+    -fx-background-color: linear-gradient(to bottom, #8181e6, #000000);}
+
+
+.search-box{
+    -fx-background-color: #9d5c8c;
+    -fx-background-radius: 100;
+}
+
+.shadow{
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0, 0.0 , 0.0, 10.0);
+}
