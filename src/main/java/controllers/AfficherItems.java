@@ -5,9 +5,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -18,12 +18,14 @@ import tn.esprit.services.ServiceItem;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import controllers.AjouterItem;
 
 public class AfficherItems {
 
     @FXML
-    private TilePane item;
+    private TilePane MainTile;
+
+    @FXML
+    private TilePane TilePane;
 
     @FXML
     private TableView<Item> table;
@@ -54,23 +56,36 @@ public class AfficherItems {
         tableAuth.setCellValueFactory(new PropertyValueFactory<>("Auteur"));
         tablePrix.setCellValueFactory(new PropertyValueFactory<>("Prix"));
 
+        
+
         for (Item item : items) {
-            TilePane elementTilePane = createTilePaneForElement(item);
-            this.item.getChildren().add(elementTilePane);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/CustomTilePane.fxml"));
+            try {
+                Parent root = loader.load();
+                CTP controller = loader.getController();
+                controller.initData(item);
+                TilePane customTilePane = controller.getCustomTilePane();
+                MainTile.setHgap(15);
+                MainTile.setVgap(10);
+                MainTile.setPadding(new Insets(15));
+                MainTile.getChildren().add(customTilePane);
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
         }
-    }
-    private TilePane createTilePaneForElement(Item item) {
-        TilePane tilePane = new TilePane();
-        tilePane.setPrefColumns(1);
 
-        Label nom = new Label("Title: " + item.getTitre());
-        Label description = new Label("Description: " + item.getDescription());
-        Label auteur = new Label("Author: " + item.getAuteur());
-        Label prix = new Label("Price: " + item.getPrix());
-
-        tilePane.getChildren().addAll(nom, description, auteur, prix);
-
-        return tilePane;
+        for (Item item : items) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/CustomTilePane.fxml"));
+            try {
+                Parent root = loader.load();
+                CTP controller = loader.getController();
+                controller.initData(item);
+                TilePane customTilePane = controller.getCustomTilePane();
+                MainTile.getChildren().add(customTilePane);
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     @FXML
@@ -79,9 +94,10 @@ public class AfficherItems {
         try {
             Parent root = loader.load();
             Scene scene = new Scene(root);
-            Stage stage = (Stage) item.getScene().getWindow();
+            Stage stage = (Stage) table.getScene().getWindow();
             stage.setScene(scene);
-        } catch (Exception e) {
+            stage.show();
+        } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -101,8 +117,27 @@ public class AfficherItems {
             try {
                 Parent root = loader.load();
                 Scene scene = new Scene(root);
-                Stage stage = (Stage) item.getScene().getWindow();
+                Stage stage = (Stage) TilePane.getScene().getWindow();
                 stage.setScene(scene);
+            } catch (IOException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+    }
+
+    @FXML
+    void modifyItem(ActionEvent event) {
+        Item selectedItem = table.getSelectionModel().getSelectedItem();
+        if(selectedItem != null) {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierItem.fxml"));
+            try {
+                Parent root = loader.load();
+                ModifierItem controller = loader.getController();
+                controller.initData(selectedItem);
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) table.getScene().getWindow();
+                stage.setScene(scene);
+
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
