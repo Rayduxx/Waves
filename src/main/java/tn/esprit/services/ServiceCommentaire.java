@@ -24,7 +24,7 @@ public  class ServiceCommentaire implements IService<Commentaire> {
     try {
 
         PreparedStatement stm = cnx.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-        stm.setInt(1, poste.getIdPoste());
+        stm.setInt(1, poste.getId());
         stm.setInt(2, commentaire.getIdComm());
         stm.setString(3, commentaire.getComment());
         stm.executeUpdate();
@@ -48,7 +48,7 @@ public  class ServiceCommentaire implements IService<Commentaire> {
                 Commentaire c = new Commentaire();
                 c.setIdComm(rs.getInt(2));
                 Poste p = new Poste();
-                p.setIdPoste(rs.getInt(1));
+                p.setId(rs.getInt(1));
                 p.setTitre(rs.getString("titre"));
                 c.setPoste(p);
                 c.setComment(rs.getString(3));
