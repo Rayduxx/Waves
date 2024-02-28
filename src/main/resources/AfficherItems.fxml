@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane prefHeight="768.0" prefWidth="1315.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AfficherItems">
    <children>
@@ -26,15 +28,17 @@
       <Button fx:id="addButton" layoutX="794.0" layoutY="620.0" mnemonicParsing="false" onAction="#addbtn" style="-fx-background-color: #b469ff;" text="Add Item" textFill="WHITE" />
       <Button layoutX="880.0" layoutY="620.0" mnemonicParsing="false" onAction="#deleteItem" style="-fx-background-color: #b469ff;" text="Supprimer" textFill="WHITE" />
       <Button layoutX="972.0" layoutY="620.0" mnemonicParsing="false" onAction="#modifyItem" style="-fx-background-color: #b469ff;" text="Modifier" textFill="WHITE" />
-      <TilePane layoutX="49.0" layoutY="45.0" prefHeight="244.0" prefWidth="708.0" style="-fx-background-color: #202020; -fx-background-radius: 18;">
-         <children>
-            <ImageView fitHeight="129.0" fitWidth="147.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@assets/waveslogo.png" />
-               </image>
-            </ImageView>
-         </children>
-      </TilePane>
+      <TilePane layoutX="49.0" layoutY="45.0" prefHeight="244.0" prefWidth="708.0" style="-fx-background-color: #202020; -fx-background-radius: 18;" />
+      <ImageView fitHeight="129.0" fitWidth="147.0" layoutX="63.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/waveslogo.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="217.0" layoutY="75.0" text="MARKETPLACE" textFill="WHITE">
+         <font>
+            <Font name="Arial Black" size="44.0" />
+         </font>
+      </Label>
       <TilePane fx:id="MainTile" alignment="TOP_CENTER" layoutX="49.0" layoutY="163.2" prefHeight="573.0" prefWidth="708.0" style="-fx-background-color: #151515; -fx-background-radius: 18;" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="49.0" AnchorPane.rightAnchor="558.0" AnchorPane.topAnchor="163.0" />
    </children>
 </AnchorPane>

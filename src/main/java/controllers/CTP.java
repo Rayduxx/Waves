@@ -35,7 +35,7 @@ public class CTP {
     }
 
     public void setPrix(double prix) {
-        Tile_Prix.setText(String.valueOf(prix));
+        Tile_Prix.setText(String.valueOf(prix) + " DT");
     }
 
     public void initData(Item item) {

@@ -18,9 +18,15 @@
                     <Font name="System Bold" size="18.0" />
                 </font>
             </Label>
+            <Label fx:id="Tile_Auteur" text="Label">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
             <Label fx:id="Tile_Description" text="Label" />
-            <Label fx:id="Tile_Prix" text="Label" />
-            <Label fx:id="Tile_Auteur" text="Label" />
+            <Label fx:id="Tile_Prix" text="Label">
+               <font>
+                  <Font name="System Italic" size="12.0" />
+               </font></Label>
         </children></TilePane>
     </children>
 </AnchorPane>

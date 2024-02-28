@@ -68,7 +68,6 @@ public class AfficherItems {
                 MainTile.setHgap(15);
                 MainTile.setVgap(10);
                 MainTile.setPadding(new Insets(15));
-                MainTile.getChildren().add(customTilePane);
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
