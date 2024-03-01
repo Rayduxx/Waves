@@ -11,5 +11,4 @@ public interface IUtilisateur<T> {
     void Update(T t);
     void Delete(T t);
     void DeleteByID(int id);
-    String[] Connection(String email, String mdp);
 }

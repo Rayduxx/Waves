@@ -126,23 +126,5 @@ public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
         }
     }
 
-    @Override
-    public String[] Connection(String email, String mdp) {
-        try {
-            String query = "SELECT id,password,role FROM user WHERE email = ? AND password = ?";
-            PreparedStatement smt = cnx.prepareStatement(query);
-            smt.setString(1, email);
-            smt.setString(2, mdp);
-            ResultSet rs = smt.executeQuery();
-            while (rs.next()) {
-                String[] r = new String[2];
-                r[0] = Integer.toString(rs.getInt("id"));
-                r[1] = rs.getString("role");
-                return r;
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return null;
-    }
+
 }

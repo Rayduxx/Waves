@@ -1,0 +1,118 @@
+.text-field {
+    -fx-border-color: #a5a5a5; /* Set your desired border color */
+    -fx-border-width: 1px; /* Set your desired border width */
+}
+
+/* CSS for focused state */
+.text-field:focused {
+    -fx-border-width: 0 0 1 0; /* Set border width for bottom only */
+    -fx-border-color: #a5a5a5;/* Set your desired border color */
+    -fx-border-radius: 0; /* Optional: set border radius */
+    -fx-background-color: transparent; /* Remove background color */
+}
+
+/* Date picker style */
+.date-picker {
+    -fx-font-family: "Arial", sans-serif;
+    -fx-font-size: 14px;
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #333333;
+    -fx-border-color: #999999;
+    -fx-border-radius: 4px;
+    -fx-padding: 3px;
+}
+
+.date-picker:focused {
+    -fx-border-color: #88bce8;
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+}
+
+.date-picker .arrow-button:hover {
+    -fx-background-color: #f0f0f0;
+}
+
+.date-picker .text-field {
+    -fx-background-color: transparent;
+}
+
+.date-picker .date-picker-popup > .popup-content {
+    -fx-background-color: #ffffff;
+    -fx-background-insets: 0;
+}
+
+.date-picker .date-picker-popup > .popup-content > .month-year-pane > .month-year-label {
+    -fx-font-size: 16px;
+}
+
+.date-picker .date-picker-popup > .popup-content > .calendar-grid {
+    -fx-cell-size: 32px;
+}
+
+.date-picker .date-picker-popup > .popup-content > .calendar-grid .day-cell {
+    -fx-font-size: 14px;
+    -fx-alignment: center;
+}
+
+.date-picker .date-picker-popup > .popup-content > .calendar-grid .today {
+    -fx-background-color: #f0f0f0;
+}
+
+.date-picker .date-picker-popup > .popup-content > .calendar-grid .selected {
+    -fx-background-color: #d5d5d5;
+    -fx-text-fill: #ffffff;
+}
+
+.date-picker .date-picker-popup > .popup-content > .calendar-grid .hovered {
+    -fx-background-color: #e9e9e9;
+}
+.button {
+    -fx-background-color: #007bff; /* Set background color */
+    -fx-text-fill: white; /* Set text color */
+    -fx-font-family: "Arial", sans-serif; /* Set font family */
+    -fx-font-size: 14px; /* Set font size */
+    -fx-padding: 8px 16px; /* Set padding */
+    -fx-border-radius: 4px; /* Set border radius */
+    -fx-border-color: #007bff; /* Set border color */
+    -fx-border-width: 1px; /* Set border width */
+}
+
+.button:hover {
+    -fx-background-color: #0056b3; /* Set background color on hover */
+}
+
+.button:pressed {
+    -fx-background-color: #003d80; /* Set background color when pressed */
+    -fx-border-color: #003d80; /* Set border color when pressed */
+}
+.hbox {
+    -fx-background-color: #ffffff;
+    -fx-padding: 15;
+    -fx-spacing: 10;
+}
+.pane {
+    -fx-background-color: linear-gradient(to bottom, #FFFFFF, #5899E2); /* Dégradé vertical de couleur */
+    -fx-border-color: #cccccc; /* Couleur de la bordure */
+    -fx-border-width: 1px; /* Largeur de la bordure */
+    -fx-border-radius: 5px; /* Rayon de la bordure */
+    -fx-padding: 10px; /* Espacement intérieur */
+}
+.progressBar{
+    -fx-pref-width: 300px;
+    -fx-pref-height: 20px;
+
+}
+.progressBar.track{
+
+    -fx-background-radius: 0;
+
+}
+
+.progressBar.bar{
+
+    -fx-background-color : linear-gradient(to left,aquamarine, royalBlue);
+
+}

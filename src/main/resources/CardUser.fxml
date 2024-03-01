@@ -42,7 +42,7 @@
             </Label>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="22.0" GridPane.rowIndex="4">
                <children>
-                  <Button mnemonicParsing="false" style="-fx-opacity: 70%;">
+                  <Button mnemonicParsing="false" onAction="#modifuser" style="-fx-opacity: 70%;">
                      <graphic>
                         <ImageView fitHeight="44.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
                            <image>
