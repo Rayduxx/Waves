@@ -3,25 +3,144 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="768.0" prefWidth="1315.0" stylesheets="@css/styling.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AdminUserController">
+<AnchorPane prefHeight="768.0" prefWidth="1315.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AdminUserController">
    <children>
-      <Pane prefHeight="80.0" prefWidth="1315.0" styleClass="panes">
+      <ImageView fitHeight="768.0" fitWidth="1315.0" opacity="0.58" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@assets/background.png" />
+         </image>
+      </ImageView>
+      <Pane prefHeight="80.0" prefWidth="1315.0" styleClass="pane">
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@assets/waves.png" />
                </image>
             </ImageView>
+            <Label layoutX="1033.0" layoutY="26.0" text="Gestion des utilisateurs">
+               <font>
+                  <Font name="Roboto Regular" size="23.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutY="80.0" prefHeight="689.0" prefWidth="166.0" styleClass="pane">
+         <children>
+            <VBox layoutX="7.0" layoutY="52.0" spacing="11.0">
+               <children>
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="152.0" styleClass="btn" text="Utilisateurs">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-users-60.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Roboto Regular" size="16.0" />
+                     </font>
+                  </Button>
+                  <Separator prefHeight="4.0" prefWidth="100.0" />
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="152.0" styleClass="btn" text="Evenement">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-event-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Roboto Regular" size="16.0" />
+                     </font>
+                  </Button>
+                  <Separator prefHeight="4.0" prefWidth="100.0" />
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="152.0" styleClass="btn" text="Contenus">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-grid-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Roboto Regular" size="16.0" />
+                     </font>
+                  </Button>
+                  <Separator prefHeight="4.0" prefWidth="100.0" />
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="152.0" styleClass="btn" text="Marché">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-marketplace-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Roboto Regular" size="16.0" />
+                     </font>
+                  </Button>
+                  <Separator prefHeight="4.0" prefWidth="100.0" />
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="152.0" styleClass="btn" text="Production">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-music-notation-50.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Roboto Regular" size="16.0" />
+                     </font>
+                  </Button>
+                  <Separator prefHeight="4.0" prefWidth="100.0" />
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="152.0" styleClass="btn" text="Formations">
+                     <graphic>
+                        <ImageView fitHeight="47.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-teach-60.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="Roboto Regular" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </VBox>
+            <Button layoutX="10.0" layoutY="638.0" mnemonicParsing="false" styleClass="btn" text="Deconnection">
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/icons8-logout-50.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Roboto Regular" size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="26.0" layoutY="579.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="118.0" styleClass="btn" text="Menu">
+               <graphic>
+                  <ImageView fitHeight="31.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@assets/icons8-menu-50.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font name="Roboto Regular" size="16.0" />
+               </font>
+            </Button>
          </children></Pane>
-      <Pane layoutY="80.0" prefHeight="689.0" prefWidth="166.0" styleClass="panes" />
       <TabPane fx:id="usertp" layoutX="166.0" layoutY="80.0" prefHeight="689.0" prefWidth="1149.0" tabClosingPolicy="UNAVAILABLE" tabMaxHeight="29.0">
         <tabs>
           <Tab fx:id="gusertab" text="Gestion Utilisateurs">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <GridPane layoutX="21.0" layoutY="27.0" prefHeight="415.0" prefWidth="368.0">
+                        <GridPane layoutX="22.0" layoutY="74.0" prefHeight="415.0" prefWidth="368.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="178.0" />
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="307.0" minWidth="10.0" prefWidth="252.0" />
@@ -55,7 +174,7 @@
                               <Label prefHeight="30.0" prefWidth="164.0" text="N° Telephone :" GridPane.rowIndex="5" />
                            </children>
                         </GridPane>
-                        <Button layoutX="404.0" layoutY="350.0" mnemonicParsing="false" onAction="#pdpup" prefHeight="0.0" prefWidth="24.0">
+                        <Button contentDisplay="GRAPHIC_ONLY" layoutX="405.0" layoutY="397.0" mnemonicParsing="false" onAction="#pdpup" prefHeight="0.0" prefWidth="24.0" styleClass="btn">
                            <graphic>
                               <ImageView fitHeight="50.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -64,27 +183,84 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <HBox alignment="CENTER" layoutX="61.0" layoutY="448.0" prefHeight="46.0" prefWidth="289.0" spacing="19.0">
+                        <HBox alignment="CENTER" layoutX="62.0" layoutY="495.0" prefHeight="46.0" prefWidth="289.0" spacing="19.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#AjouterUser" prefHeight="36.0" prefWidth="118.0" text="Ajouter" />
-                              <Button mnemonicParsing="false" onAction="#ModifierUser" prefHeight="36.0" prefWidth="118.0" text="Modifier" />
+                              <Button mnemonicParsing="false" onAction="#AjouterUser" prefHeight="36.0" prefWidth="118.0" styleClass="btn" text="Ajouter">
+                                 <font>
+                                    <Font name="Roboto Regular" size="16.0" />
+                                 </font></Button>
+                              <Button mnemonicParsing="false" onAction="#ModifierUser" prefHeight="36.0" prefWidth="118.0" styleClass="btn" text="Modifier">
+                                 <font>
+                                    <Font name="Roboto Regular" size="16.0" />
+                                 </font></Button>
                            </children>
                         </HBox>
-                        <ImageView fx:id="imagepdp" fitHeight="200.0" fitWidth="200.0" layoutX="425.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="imagepdp" fitHeight="200.0" fitWidth="200.0" layoutX="426.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true" />
+                        <Label fx:id="uinfolabel" alignment="CENTER" contentDisplay="CENTER" layoutX="37.0" layoutY="32.0" prefHeight="23.0" prefWidth="453.0" styleClass="infolabel">
+                           <font>
+                              <Font name="Roboto Regular" size="18.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
           <Tab fx:id="listusertab" text="Liste des utilisateurs">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="818.0" prefWidth="1149.0">
                      <children>
-                        <ScrollPane prefHeight="646.0" prefWidth="1149.0">
+                        <ScrollPane layoutY="39.0" prefHeight="622.0" prefWidth="1149.0">
                            <content>
                               <GridPane fx:id="userContainer" prefHeight="0.0" prefWidth="0.0">
                               </GridPane>
                            </content>
                         </ScrollPane>
+                        <HBox alignment="CENTER" layoutY="2.0" prefHeight="33.0" prefWidth="253.0" spacing="18.0">
+                           <children>
+                              <Label text="Trier :">
+                                 <font>
+                                    <Font name="Roboto Regular" size="17.0" />
+                                 </font>
+                              </Label>
+                              <Button mnemonicParsing="false" onAction="#TriNom" prefHeight="13.0" prefWidth="72.0" styleClass="btn" text="Nom">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@assets/icons8-sort-60.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font name="Roboto Regular" size="12.0" />
+                                 </font>
+                              </Button>
+                              <Button mnemonicParsing="false" onAction="#TriEmail" prefHeight="13.0" prefWidth="72.0" styleClass="btn" text="Email">
+                                 <graphic>
+                                    <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@assets/icons8-sort-60.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                                 <font>
+                                    <Font name="Roboto Regular" size="12.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <TextField fx:id="usersearch" layoutX="901.0" layoutY="5.0" onAction="#RechercheNom" prefHeight="27.0" prefWidth="234.0" promptText="Recherche" styleClass="recherchefield" />
+                        <Button layoutX="286.0" layoutY="4.0" mnemonicParsing="false" onAction="#refresh" prefHeight="30.0" prefWidth="99.0" styleClass="btn" text="Rafraîchir">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@assets/icons8-refresh-60.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="Roboto Regular" size="12.0" />
+                           </font>
+                        </Button>
                      </children></AnchorPane>
             </content>
           </Tab>

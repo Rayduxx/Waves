@@ -66,6 +66,7 @@ public class ConnectionUserController implements Initializable {
                         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
                         Scene scene = new Scene(root);
                         stage.setScene(scene);
+                        scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
                         stage.setTitle("Waves - Admin Dashboard");
                         stage.show();
                     } catch (IOException e) {

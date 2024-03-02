@@ -1,5 +1,6 @@
 package tn.esprit.controllers;
 
+import atlantafx.base.controls.Card;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -38,8 +39,12 @@ public class CardUserController {
     int uid,unumtel;
     String unom, uprenom, uemail, umdp, urole;
 
-    private String [] colors = {"#FFB5E8", "#FF9CEE", "#FFCCF9", "#FCC2FF", "#F6A6FF", "#B28DFF", "#C5A3FF", "#D5AAFF", "#ECD4FF", "#FBE4FF", "#DCD3FF", "#A79AFF", "#B5B9FF", "#97A2FF",
-            "#AFCBFF", "#AFF8DB", "C4FAF8", "#85E3FF", "#ACE7FF", "#6EB5FF", "#BFFCC6", "#DBFFD6", "#F3FFE3", "#E7FFAC", "#FFFFD1", "#FFC9DE", "#FFABAB", "#FFBEBC", "#FFCBC1", "#FFF5BA"};
+    private String[] colors = {"#CDB4DB", "#FFC8DD", "#FFAFCC", "#BDE0FE", "#A2D2FF",
+            "#F4C2D7", "#FFD4E2", "#FFB7D0", "#A6D9FF", "#8BC8FF",
+            "#E6A9CB", "#FFBFD3", "#FFA7C1", "#9AC2FF", "#74AFFA",
+            "#D8B6D8", "#FFC9D7", "#FFB3C8", "#B0E1FF", "#8DCFFD",
+            "#D3AADB", "#FFBEDF", "#FFA9CC", "#AFD5FF", "#93C5FF"};
+
 
     public void setData(Utilisateur user) {
         String imagePath = user.getImage();
@@ -60,6 +65,7 @@ public class CardUserController {
         cardrole.setText(user.getRole());
         cardnumtel.setText(String.valueOf(user.getNumtel()));
         CardBox.setBackground(Background.fill(Color.web(colors[(int)(Math.random()* colors.length)])));
+        CardBox.setStyle("-fx-border-radius: 5px;-fx-border-color:#808080");
 
         uprenom = user.getPrenom();
         uid = user.getId();

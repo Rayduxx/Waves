@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox fx:id="CardBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="162.0" prefWidth="332.0" spacing="10.0" style="-fx-border-radius: 5 px; -fx-border-color: #808080;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.CardUserController">
+<HBox fx:id="CardBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="162.0" prefWidth="332.0" spacing="10.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.CardUserController">
    <children>
       <ImageView fx:id="cardimage" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" smooth="false" />
       <GridPane prefHeight="160.0" prefWidth="176.0">
