@@ -23,12 +23,12 @@
         <TextField fx:id="Desc" layoutX="106.0" layoutY="158.0" />
         <TextField fx:id="Auth" layoutX="106.0" layoutY="187.0" />
         <TextField fx:id="prix" layoutX="106.0" layoutY="216.0" />
-        <Button fx:id="ModifierItem" layoutX="106.0" layoutY="265.0" mnemonicParsing="false" onAction="#Modify" text="Valider" />
+        <Button fx:id="ModifierItem" layoutX="106.0" layoutY="265.0" mnemonicParsing="false" onAction="#Modify" style="-fx-background-color: #b469ff;" text="Valider" textFill="WHITE" />
         <Label layoutX="106.0" layoutY="39.0" text="Modifier un Item">
             <font>
                 <Font name="System Bold" size="19.0" />
             </font>
         </Label>
-        <Button fx:id="mpButton" layoutX="204.0" layoutY="265.0" mnemonicParsing="false" onAction="#mp" text="Retour" />
+        <Button fx:id="mpButton" layoutX="204.0" layoutY="265.0" mnemonicParsing="false" onAction="#mp" style="-fx-background-color: #b469ff;" text="Retour" textFill="WHITE" />
     </children>
 </AnchorPane>

@@ -25,9 +25,6 @@ public class AjouterItem {
     private TextField Desc;
 
     @FXML
-    private TextField ID;
-
-    @FXML
     private TextField Titre;
 
     @FXML
@@ -38,7 +35,7 @@ public class AjouterItem {
 
     @FXML
     void Add(ActionEvent event) {
-        si.Add(new Item(Integer.parseInt(ID.getText()),Titre.getText(),Desc.getText(),Auth.getText(),Float.parseFloat(prix.getText())));
+        si.Add(new Item(Titre.getText(),Desc.getText(),Auth.getText(),Float.parseFloat(prix.getText())));
     }
 
     @FXML

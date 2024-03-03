@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 import tn.esprit.models.Item;
@@ -18,6 +19,7 @@ import tn.esprit.services.ServiceItem;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class AfficherItems {
 
@@ -56,8 +58,6 @@ public class AfficherItems {
         tableAuth.setCellValueFactory(new PropertyValueFactory<>("Auteur"));
         tablePrix.setCellValueFactory(new PropertyValueFactory<>("Prix"));
 
-        
-
         for (Item item : items) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/CustomTilePane.fxml"));
             try {
@@ -68,18 +68,6 @@ public class AfficherItems {
                 MainTile.setHgap(15);
                 MainTile.setVgap(10);
                 MainTile.setPadding(new Insets(15));
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-
-        for (Item item : items) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/CustomTilePane.fxml"));
-            try {
-                Parent root = loader.load();
-                CTP controller = loader.getController();
-                controller.initData(item);
-                TilePane customTilePane = controller.getCustomTilePane();
                 MainTile.getChildren().add(customTilePane);
             } catch (IOException e) {
                 System.out.println(e.getMessage());
@@ -113,14 +101,8 @@ public class AfficherItems {
             table.setItems(ol);
             table.refresh();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherItems.fxml"));
-            try {
-                Parent root = loader.load();
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) TilePane.getScene().getWindow();
-                stage.setScene(scene);
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
+            MainTile.getChildren().clear();
+            initialize();
         }
     }
 
@@ -140,6 +122,24 @@ public class AfficherItems {
             } catch (IOException e) {
                 System.out.println(e.getMessage());
             }
+        }
+    }
+
+    @FXML
+    void ViewCart(MouseEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherCommande.fxml"));
+        try {
+            Parent root = loader.load();
+            AfficherCommande controller = loader.getController();
+            ServiceItem si = new ServiceItem(); //useless
+            List<Item> userCart = si.getAll(); //à changer avec les items du panier de l'utilisateur
+            controller.initCart(userCart);
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) table.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
         }
     }
 }

@@ -1,6 +1,6 @@
 package tn.esprit.services;
 
-import tn.esprit.IService.Iitem;
+import tn.esprit.interfaces.Iitem;
 import tn.esprit.models.Item;
 import tn.esprit.utils.MyDataBase;
 
@@ -13,15 +13,19 @@ public class ServiceItem implements Iitem<Item> {
 
     @Override
     public void Add(Item item) {
-        String qry = "INSERT INTO `item`(`itemID`, `titre`, `description`, `auteur`, `prix`) VALUES (?,?,?,?,?)";
+        String qry = "INSERT INTO `item`(`titre`, `description`, `auteur`, `prix`) VALUES (?,?,?,?)";
         try {
-            PreparedStatement stm = cnx.prepareStatement(qry);
-            stm.setInt(1, item.getItemID());
-            stm.setString(2, item.getTitre());
-            stm.setString(3, item.getDescription());
-            stm.setString(4, item.getAuteur());
-            stm.setFloat(5, item.getPrix());
+            PreparedStatement stm = cnx.prepareStatement(qry, Statement.RETURN_GENERATED_KEYS);
+            stm.setString(1, item.getTitre());
+            stm.setString(2, item.getDescription());
+            stm.setString(3, item.getAuteur());
+            stm.setFloat(4, item.getPrix());
             stm.executeUpdate();
+
+            ResultSet generatedKeys = stm.getGeneratedKeys();
+            if (generatedKeys.next()) {
+                item.setItemID(generatedKeys.getInt(1));
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

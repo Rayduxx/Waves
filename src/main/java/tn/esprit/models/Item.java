@@ -19,6 +19,13 @@ public class Item {
         this.prix = prix;
     }
 
+    public Item(String titre, String description, String auteur, float prix) {
+        this.titre = titre;
+        this.description = description;
+        this.auteur = auteur;
+        this.prix = prix;
+    }
+
     public int getItemID() {
         return itemID;
     }
