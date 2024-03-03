@@ -1,5 +1,9 @@
 package tn.esprit.controllers;
 
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.rest.chat.v1.service.User;
+import com.twilio.type.PhoneNumber;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.*;
@@ -20,6 +24,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
+import java.util.Random;
 import java.util.UUID;
 
 public class InsriptionContoller {
@@ -42,42 +48,83 @@ public class InsriptionContoller {
 
     private final ServiceUtilisateur UserS = new ServiceUtilisateur();
     private Connection cnx;
+    public static final String ACCOUNT_SID = "AC19cce70cb19c2d9ece20819b3722d89f";
+    public static final String AUTH_TOKEN = "b933ef29635257e886667b46e5c41b30";
+    public static final String TWILIO_PHONE_NUMBER = "+447449915246";
+    public String verificationCode;
 
-    private boolean emailExists(String email) throws SQLException {
-        cnx = MyDataBase.getInstance().getCnx();
-        String query = "SELECT * FROM `user` WHERE email=?";
-        PreparedStatement statement = cnx.prepareStatement(query);
-        statement.setString(1, email);
-        ResultSet resultSet = statement.executeQuery();
-        return resultSet.next();
+    public String generateVerificationCode() {
+        return String.format("%06d", new Random().nextInt(999999));
+    }
+    private void sendVerificationCode(String toPhoneNumber, String code) {
+        Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
+        String fullPhoneNumber = "+216" + toPhoneNumber;
+        Message.creator(
+                new PhoneNumber(fullPhoneNumber),
+                new PhoneNumber(TWILIO_PHONE_NUMBER),
+                "Your verification code is: " + code
+        ).create();
     }
 
     @FXML
     public void inscription(javafx.event.ActionEvent actionEvent) throws SQLException {
-        String qry = "SELECT * FROM `user` WHERE email=? AND password=?";
-        cnx = MyDataBase.getInstance().getCnx();
-
+        int NUMTEL = Integer.parseInt(numtelreg.getText());
         String NOM = nomreg.getText();
         String PRENOM = prenomreg.getText();
         String EMAIL = emailreg.getText();
         String MDP = mdpreg.getText();
-        int NUMTEL = Integer.parseInt(numtelreg.getText());
         String IMAGE = imagereg.getText();
-        if (EMAIL.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@(esprit\\.tn|gmail\\.com)$")) {
-            if (numtelreg.getText().matches("\\d{8}")) {
-                if (!emailExists(EMAIL)) {
-                    UserS.Add(new Utilisateur(0, NOM, PRENOM, EMAIL, MDP, NUMTEL, "User", IMAGE));
-                } else {
-                    reginfo.setText("Email déjà existe");
-                }
-            } else {
+        try {
+            if (!UserS.isValidEmail(emailreg.getText())) {
+                reginfo.setText("Email est invalide");
+            } else if (!(UserS.isValidPhoneNumber(Integer.parseInt(numtelreg.getText())))) {
                 reginfo.setText("N° Telephone est invalide");
+            } else if (UserS.checkUserExists(EMAIL)) {
+                reginfo.setText("Email déjà existe");
+            } else {
+                this.verificationCode = generateVerificationCode();
+                sendVerificationCode(String.valueOf(NUMTEL), this.verificationCode);
+                boolean isCodeVerified = false;
+                while (!isCodeVerified) {
+                    TextInputDialog dialog = new TextInputDialog();
+                    dialog.setTitle("Verification Code");
+                    dialog.setHeaderText("Entrez le code de vérification envoyé à votre téléphone:");
+                    dialog.setContentText("Code:");
+                    Optional<String> result = dialog.showAndWait();
+                    if (result.isPresent()) {
+                        String inputCode = result.get();
+                        if (inputCode.equals(this.verificationCode)) {
+                            isCodeVerified = true;
+                            UserS.Add(new Utilisateur(0, NOM, PRENOM, EMAIL, MDP, NUMTEL, "User", IMAGE));
+                            try {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
+                                Parent root = loader.load();
+                                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                                Scene scene = new Scene(root);
+                                stage.setScene(scene);
+                                stage.setTitle("Waves - Connection");
+                                stage.show();
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                            errorAlert.setHeaderText("Code est incorrect");
+                            errorAlert.setContentText("Le code de vérification que vous avez entré est incorrect. Veuillez réessayer.");
+                            errorAlert.showAndWait();
+                        }
+                    } else {
+                        break;
+                    }
+                }
             }
-        } else {
-            reginfo.setText("Email est invalide");
+        } catch (Exception e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("SQL Exception");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
         }
     }
-
     @FXML
     private void uploadImage(javafx.event.ActionEvent actionEvent) {
         String imagePath = null;

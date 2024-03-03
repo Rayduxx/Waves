@@ -196,6 +196,41 @@ public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
             System.out.println(ex.getMessage());
         }
     }
-
+    public boolean updatePassword(String email, String newPassword) {
+        String req = "UPDATE `user` SET `password` = ? WHERE `email` = ?";
+        try {
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, newPassword); // You should hash the password
+            ps.setString(2, email);
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean checkUserExists(String email) {
+        String req = "SELECT count(1) FROM `user` WHERE `email`=?";
+        boolean exists = false;
+        try {
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, email);
+            ResultSet res = ps.executeQuery();
+            if (res.next()) {
+                exists = res.getInt(1) > 0;
+            }
+        } catch (SQLException e) {
+            System.out.println("Error checking if user exists: " + e.getMessage());
+        }
+        return exists;
+    }
+    public boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*\\.?[a-zA-Z0-9_+&*-]+@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        return email.matches(emailRegex);
+    }
+    public boolean isValidPhoneNumber(int numTel) {
+        String numTelStr = String.valueOf(numTel);
+        return numTelStr.length() == 8;
+    }
 
 }

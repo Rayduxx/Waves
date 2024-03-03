@@ -80,7 +80,7 @@
                   <Font name="Roboto Bold" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="numtelreg" prefHeight="40.0" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <TextField fx:id="numtelreg" prefHeight="40.0" prefWidth="150.0" promptText="+216" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label prefHeight="31.0" prefWidth="178.0" text="Photo de profile :" GridPane.rowIndex="5">
                <font>
                   <Font name="Roboto Bold" size="14.0" />

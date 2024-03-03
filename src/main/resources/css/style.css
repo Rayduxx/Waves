@@ -34,3 +34,13 @@
     -fx-background-radius: 15 px;
     -fx-border-color: #e483ff;
 }
+.MainButton{
+    -fx-background-radius: 15px;
+    -fx-border-width:1px;
+    -fx-border-radius: 15px;
+    -fx-background-color: #e483ff;
+    -fx-border-color: #ddb5ec;
+}
+.MainButton:hover{
+    -fx-border-color: #bd55e0;
+}

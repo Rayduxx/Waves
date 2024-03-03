@@ -38,12 +38,13 @@
             <Image url="@assets/waves.png" />
          </image>
       </ImageView>
-      <Button layoutX="241.0" layoutY="457.0" mnemonicParsing="false" onAction="#connecter" prefHeight="39.0" prefWidth="149.0" style="-fx-background-color: EF2FC1;" text="Se connecter" textFill="WHITE" />
+      <Button layoutX="241.0" layoutY="471.0" mnemonicParsing="false" onAction="#connecter" prefHeight="39.0" prefWidth="149.0" style="-fx-background-color: EF2FC1;" text="Se connecter" textFill="WHITE" />
       <Label layoutX="168.0" layoutY="520.0" prefHeight="39.0" prefWidth="160.0" text="Vous n’avez pas de compte ?" />
       <Button layoutX="329.0" layoutY="528.0" mnemonicParsing="false" onAction="#inscription" prefHeight="23.0" prefWidth="106.0" style="-fx-background-color: #b469ff;" text="Inscrivez-vous" textFill="WHITE">
          <font>
             <Font name="Roboto Regular" size="13.0" />
          </font>
       </Button>
+      <Hyperlink layoutX="168.0" layoutY="420.0" onAction="#changePassword" prefHeight="24.0" prefWidth="134.0" text="Mot de passe oublié ? " />
    </children>
 </AnchorPane>
