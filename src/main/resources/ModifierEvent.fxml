@@ -3,26 +3,18 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="460.0" prefWidth="537.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.modifierEvent">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.modifierEvent">
    <children>
-      <Label layoutX="79.0" layoutY="99.0" text="Nom" />
-      <TextField fx:id="nom" layoutX="151.0" layoutY="93.0" />
-      <Label layoutX="70.0" layoutY="145.0" text="Adresse" />
-      <Label layoutX="80.0" layoutY="190.0" text="Date" />
-      <Label layoutX="68.0" layoutY="235.0" text="Description" />
-      <TextField fx:id="adresse" layoutX="151.0" layoutY="139.0" />
-      <TextField fx:id="date" layoutX="151.0" layoutY="184.0" />
-      <TextField fx:id="desc" layoutX="151.0" layoutY="229.0" />
-      <Button layoutX="174.0" layoutY="285.0" mnemonicParsing="false" onAction="#modifierEvent" text="update" />
-      <ImageView fitHeight="68.0" fitWidth="200.0" layoutX="169.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@assets/waves.png" />
-         </image>
-      </ImageView>
-      <Button layoutX="260.0" layoutY="285.0" mnemonicParsing="false" onAction="#afficherEvent" text="Afficher" />
+      <Label layoutX="79.0" layoutY="83.0" text="Nom" />
+      <TextField fx:id="nom" layoutX="151.0" layoutY="79.0" />
+      <Label layoutX="79.0" layoutY="127.0" text="Adresse" />
+      <Label layoutX="80.0" layoutY="172.0" text="Date" />
+      <Label layoutX="79.0" layoutY="209.0" text="Description" />
+      <TextField fx:id="adresse" layoutX="151.0" layoutY="123.0" />
+      <TextField fx:id="date" layoutX="151.0" layoutY="168.0" />
+      <TextField fx:id="desc" layoutX="151.0" layoutY="205.0" />
+      <Button layoutX="199.0" layoutY="261.0" mnemonicParsing="false" onAction="#modifierEvent" text="update" />
    </children>
 </AnchorPane>

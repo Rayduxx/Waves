@@ -1,5 +1,8 @@
 package tn.esprit.models;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 public class Event {
 
     private int Eid  ;

@@ -1,19 +1,21 @@
 package tn.esprit.models;
 
+import java.util.Date;
+
 public class Reservation {
 
     private int id ;
-    private int   id_utilisateur , id_evenement ;
+    private int   id_utilisateur , Eid ;
     private String  date_reservation ;
     private String statut ;
 
     public Reservation() {
     }
 
-    public Reservation(int id, int id_utilisateur, int id_evenement, String date_reservation, String statut) {
+    public Reservation(int id, int id_utilisateur, int Eid, String date_reservation, String statut) {
         this.id = id;
         this.id_utilisateur = id_utilisateur;
-        this.id_evenement = id_evenement;
+        this.Eid = Eid;
         this.date_reservation = date_reservation;
         this.statut = statut;
     }
@@ -35,11 +37,11 @@ public class Reservation {
     }
 
     public int getId_evenement() {
-        return id_evenement;
+        return Eid;
     }
 
     public void setId_evenement(int id_evenement) {
-        this.id_evenement = id_evenement;
+        this.Eid = id_evenement;
     }
 
     public String getDate_reservation() {
@@ -63,7 +65,7 @@ public class Reservation {
         return "Reservation{" +
                 "id=" + id +
                 ", id_utilisateur=" + id_utilisateur +
-                ", id_evenement=" + id_evenement +
+                ", id_evenement=" + Eid +
                 ", date_reservation=" + date_reservation +
                 ", statut='" + statut + '\'' +
                 '}';

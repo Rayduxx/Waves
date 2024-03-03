@@ -6,7 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import tn.esprit.models.Event;
 import tn.esprit.models.Reservation;
+import tn.esprit.services.ServiceEvent;
 import tn.esprit.services.ServiceReservation;
 
 import java.io.IOException;
@@ -18,30 +20,52 @@ public class ajouterReservation {
     @FXML
     private TextField statut;
 
+    private  int IdUser;
+    private  int Eid;
+    private  int Id;
+
+    public int getIdUser() {
+        return IdUser;
+    }
+
+    public void setIdUser(int idUser) {
+        IdUser = idUser;
+    }
+
+    public int getIdEvent() {
+        return Eid;
+    }
+
+    public void setIdEvent(int Eid) {
+        this.Eid = Eid;
+    }
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int id) {
+        Id = id;
+    }
+
+
+
     private final ServiceReservation ps = new ServiceReservation();
+
+
 
 
     @FXML
     void ajouterReservation(ActionEvent event) {
 
-        if (date == null || date.getText().isEmpty()) {
-            showAlert("Erreur", "Titre manquant", "Veuillez entrer un titre.");
-            return;
-        }
-
-        if (statut == null || statut.getText().isEmpty()) {
-            showAlert("Erreur", "Acteur manquant", "Veuillez entrer un acteur.");
-            return;
-        }
-
-        ps.Add(new Reservation(0,0,0,date.getText(),statut.getText() ));
-
+        int eventId = getIdEvent();
+        ps.Add(new Reservation(0,0,eventId,date.getText(),statut.getText() ));
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("succes");
         alert.setHeaderText("succes");
-        alert.setContentText("Evenement ajouter avec succes");
+        alert.setContentText("Reservation ajouter avec succes");
         alert.showAndWait();
-
+        System.out.println(eventId);
     }
 
     @FXML
@@ -59,19 +83,17 @@ public class ajouterReservation {
 
     @FXML
     void initialize() {
-        assert date != null : "fx:id=\"date\" was not injected: check your FXML file 'AjouterReservation.fxml'.";
+        // assert date != null : "fx:id=\"date\" was not injected: check your FXML file 'AjouterReservation.fxml'.";
 
-        assert statut != null : "fx:id=\"statut\" was not injected: check your FXML file 'AjouterReservation.fxml'.";
+        // assert statut != null : "fx:id=\"statut\" was not injected: check your FXML file 'AjouterReservation.fxml'.";
+
+
+        date.setText("aa");
+        statut.setText(String.valueOf(getIdEvent()));
 
     }
 
-    private void showAlert(String title, String header, String content) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle(title);
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }
+
 
 
 }

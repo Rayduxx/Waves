@@ -59,6 +59,7 @@ public class ServiceEvent implements IEvent<Event> {
             stm.setString(2, event.getAdrE());
             stm.setString(3, event.getDesc());
             stm.setString(4, event.getDate());
+            stm.setInt(5, event.getEid()); // Assurez-vous de définir l'ID de l'événement
 
             stm.executeUpdate();
             System.out.println("Modification effectué");
@@ -69,6 +70,24 @@ public class ServiceEvent implements IEvent<Event> {
         }
     }
 
+    public int findEventId(String eventName, String eventDate) {
+        int eventId = -1; // Initialisez à une valeur impossible ou utilisez un Optional<Integer>
+        try {
+            String qry = "SELECT Eid FROM event WHERE nomE = ? AND date = ?";
+            PreparedStatement stm = cnx.prepareStatement(qry);
+            stm.setString(1, eventName);
+            stm.setString(2, eventDate);
+            ResultSet rs = stm.executeQuery();
+            if (rs.next()) {
+                eventId = rs.getInt("Eid");
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            // Gérer l'exception selon votre logique d'application
+        }
+        return eventId;
+    }
+
     @Override
     public void Delete(Event event) {
         try
@@ -76,6 +95,20 @@ public class ServiceEvent implements IEvent<Event> {
             String qry="DELETE FROM `event` WHERE Eid=?";
             PreparedStatement smt = cnx.prepareStatement(qry);
             smt.setInt(1, event.getEid());
+            smt.executeUpdate();
+            System.out.println("Suppression Effectué");
+        }
+        catch (SQLException ex)
+        {
+            System.out.println(ex.getMessage());
+        }
+    }
+    public void supprimerParId(int id) {
+        try
+        {
+            String qry="DELETE FROM `event` WHERE Eid=?";
+            PreparedStatement smt = cnx.prepareStatement(qry);
+            smt.setInt(1, id);
             smt.executeUpdate();
             System.out.println("Suppression Effectué");
         }

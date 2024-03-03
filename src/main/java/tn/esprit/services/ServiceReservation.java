@@ -2,6 +2,7 @@ package tn.esprit.services;
 
 
 import tn.esprit.interfaces.IReservation;
+import tn.esprit.models.Event;
 import tn.esprit.models.Reservation;
 import tn.esprit.utils.MyDataBase;
 
@@ -16,12 +17,15 @@ public class ServiceReservation implements IReservation<Reservation> {
 
     @Override
     public void Add(Reservation reservation) {
-        String qry = "INSERT INTO `reservation`( `date_reservation`, `statut`) VALUES (?,?)";
+        String qry = "INSERT INTO `reservation`( `date_reservation`, `statut`,`Eid`) VALUES (?,?,?)";
         try {
             PreparedStatement stm = cnx.prepareStatement(qry);
 
             stm.setString(1, reservation.getDate_reservation());
             stm.setString(2, reservation.getStatut());
+            stm.setInt(3,reservation.getId_evenement());
+
+
             stm.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -38,7 +42,7 @@ public class ServiceReservation implements IReservation<Reservation> {
             while (rs.next()) {
                 Reservation p = new Reservation();
                 p.setDate_reservation(rs.getString("date_reservation"));
-               p.setStatut(rs.getString("statut"));
+                p.setStatut(rs.getString("statut"));
 
                 reservations.add(p);
             }

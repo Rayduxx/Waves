@@ -3,9 +3,12 @@ package tn.esprit.controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import tn.esprit.models.Event;
 import tn.esprit.services.ServiceEvent;
 
@@ -36,12 +39,12 @@ public class ajouterEvent {
     void ajouterEvent(ActionEvent event) {
 
         if (Nom == null || Nom.getText().isEmpty()) {
-            showAlert("Erreur", "Titre manquant", "Veuillez entrer un titre.");
+            showAlert("Erreur", "Nom manquant", "Veuillez entrer un nom.");
             return;
         }
 
         if (adresse == null || adresse.getText().isEmpty()) {
-            showAlert("Erreur", "Acteur manquant", "Veuillez entrer un acteur.");
+            showAlert("Erreur", "Adresse manquante", "Veuillez entrer une adresse.");
             return;
         }
 
@@ -60,7 +63,19 @@ public class ajouterEvent {
         alert.setContentText("Evenement ajouter avec succes");
         alert.showAndWait();
 
-        // Si toutes les validations passent, ajoutez le poste
+        // Redirection vers la page d'affichage
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEventAdmin.fxml"));
+        Parent root;
+        try {
+            root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace(); // Gérer l'exception si le chargement de la page échoue
+        }
+
 
     }
 

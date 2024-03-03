@@ -3,14 +3,25 @@ package tn.esprit.controllers;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import tn.esprit.models.Event;
 import tn.esprit.models.Reservation;
+import tn.esprit.services.ServiceEvent;
 import tn.esprit.services.ServiceReservation;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.*;
+import javafx.util.Callback;
+import tn.esprit.models.Event;
+import tn.esprit.services.ServiceEvent;
 
 import java.io.IOException;
+import java.util.List;
+
 import java.util.List;
 
 public class afficherReservation {
@@ -30,13 +41,13 @@ public class afficherReservation {
     void initialize() {
         // Initialise les colonnes de la table
 
-      date.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDate_reservation()));
-      statut.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStatut()));
+        date.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDate_reservation()));
+        statut.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStatut()));
 
 
 
         // Charge les données des événements dans la table
-         afficherReservation();
+        afficherReservation();
     }
     public void initData(String statut) {
         // Utilisez le nom pour configurer la vue, par exemple :
