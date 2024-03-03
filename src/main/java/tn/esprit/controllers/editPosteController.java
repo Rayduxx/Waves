@@ -134,4 +134,21 @@ public class editPosteController implements Initializable {
     }
     @FXML
 
- d
+    public void upload(ActionEvent actionEvent) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choisir une image");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.gif")
+        );
+
+        File selectedFile = fileChooser.showOpenDialog(picE.getScene().getWindow());
+
+        // Vérifier si un fichier a été sélectionné
+        if (selectedFile != null) {
+            // Construire le chemin relatif à partir du répertoire htdocs
+            String relativePath = "http://127.0.0.1/img/" + selectedFile.getName();
+            // Mettre à jour le champ imageTf avec le chemin relatif de l'image sélectionnée
+            imageE.setText(relativePath);
+        }
+    }
+}
