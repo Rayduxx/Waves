@@ -7,7 +7,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
@@ -16,14 +15,12 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.DetailsController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AfficherPosteController">
    <top>
       <HBox prefHeight="62.0" prefWidth="1000.0" styleClass="primary_color" BorderPane.alignment="CENTER">
          <children>
             <ImageView fitHeight="83.0" fitWidth="82.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@pics/htuuOdhUQQCzsNP4CQkGLg_36011083_700.png" />
-               </image>
+
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -58,9 +55,7 @@
                </textFill>
             </Button>
             <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@pics/chercher.png" />
-               </image>
+
                <HBox.margin>
                   <Insets left="-90.0" top="22.0" />
                </HBox.margin>
@@ -71,13 +66,12 @@
                </HBox.margin>
                <children>
                   <ImageView fitHeight="38.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@pics/296792215_4788587824574144_332704826265555777_n-fotor-2024022735147.png" />
-                     </image>
+
                      <VBox.margin>
                         <Insets left="200.0" top="10.0" />
                      </VBox.margin>
                   </ImageView>
+                  <Button fx:id="ret" mnemonicParsing="false" onAction="#retour" prefHeight="26.0" prefWidth="74.0" text="Create " />
                   <Label text="Aziz Salmi" textFill="#fffbfb">
                      <VBox.margin>
                         <Insets left="190.0" top="3.0" />
@@ -207,22 +201,13 @@
          </BorderPane.margin></VBox>
    </left>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-         <children>
+
+
             <ScrollPane prefHeight="437.0" prefWidth="826.0">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="419.0" prefWidth="839.0" styleClass="secondary-color">
-                     <children>
-                        <HBox fx:id="boxes" prefHeight="242.0" prefWidth="256.0">
-                           <children>
-                              <VBox fx:id="vbox" prefHeight="200.0" prefWidth="100.0" />
-                           </children>
-                        </HBox>
-                     </children>
-                  </AnchorPane>
-              </content>
+               <content>
+                  <HBox fx:id="Boxes" prefHeight="602.0" prefWidth="1058.0" />
+               </content>
             </ScrollPane>
-         </children>
-      </VBox>
+
    </center>
 </BorderPane>

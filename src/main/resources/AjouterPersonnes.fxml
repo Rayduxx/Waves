@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="514.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AjouterPosteController">
+<AnchorPane prefHeight="514.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AjouterPosteController">
    <children>
       <TextField fx:id="titreTF" layoutX="207.0" layoutY="52.0" prefHeight="26.0" prefWidth="167.0" promptText="Titre">
          <font>
@@ -23,7 +23,7 @@
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font></TextField>
-      <TextField fx:id="dureeTF" layoutX="208.0" layoutY="244.0" prefHeight="26.0" prefWidth="167.0" promptText="duree">
+      <TextField fx:id="morceauTF" layoutX="208.0" layoutY="244.0" prefHeight="26.0" prefWidth="167.0" promptText="duree">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font></TextField>
@@ -46,6 +46,7 @@
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </Label>
+      <Button fx:id="upload" layoutX="406.0" layoutY="187.0" mnemonicParsing="false" onAction="#handleUpload" text="..." />
    </children>
    <opaqueInsets>
       <Insets />

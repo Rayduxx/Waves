@@ -1,4 +1,4 @@
-package controller;
+package tn.esprit.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,8 +21,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EditPosteController implements Initializable {
-
+public class editPosteController implements Initializable {
     @FXML
     private Button editE;
 
@@ -36,11 +35,10 @@ public class EditPosteController implements Initializable {
     @FXML
     private TextField descriptionE;
 
-    @FXML
-    private TextField dureeE;
+
 
     @FXML
-    private ChoiceBox <String> genreE;
+    private ChoiceBox<String> genreE;
 
     @FXML
     private TextField imageE;
@@ -50,20 +48,20 @@ public class EditPosteController implements Initializable {
 
     public static Poste poste;
 
-    private ServicePoste service  =new ServicePoste();
+    private final ServicePoste service  =new ServicePoste();
 
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
 
-            // Pré-remplissage des champs avec les informations de l'événement à modifier
-            titreE.setText(poste.getTitre());
+        // Pré-remplissage des champs avec les informations de l'événement à modifier
+        titreE.setText(poste.getTitre());
         artisteE.setText(poste.getArtiste());
-        genreE.setValue(poste.getGenre());
-        imageE.setText(poste.getImage());
-        descriptionE.setText(poste.getDescription());
         genreE.getItems().addAll(genre);
         genreE.setOnAction(this::getGenre);
+        imageE.setText(poste.getImage());
+        descriptionE.setText(poste.getDescription());
+
     }
     public void getGenre (ActionEvent event){
         String genre = genreE.getValue();
@@ -76,7 +74,7 @@ public class EditPosteController implements Initializable {
 
 
     @FXML
-    public void modifier(javafx.event.ActionEvent actionEvent) throws IOException {
+    public void modifier(ActionEvent actionEvent)  {
         String titre = titreE.getText();
         String artiste = artisteE.getText();
         String genre = String.valueOf(genreE.getValue());
@@ -114,11 +112,10 @@ public class EditPosteController implements Initializable {
             artisteE.clear();
             genreE.getItems().clear();
             imageE.clear();
-            dureeE.clear();
             descriptionE.clear();
 
             // Rediriger vers la vue des détails
-            Parent tableViewParent = FXMLLoader.load(getClass().getResource("/details.fxml"));
+            Parent tableViewParent = FXMLLoader.load(getClass().getResource("/AfficherPersonne.fxml"));
             Scene tableViewScene = new Scene(tableViewParent);
             Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             window.setScene(tableViewScene);
@@ -135,25 +132,6 @@ public class EditPosteController implements Initializable {
         alert.setContentText(content);
         alert.showAndWait();
     }
-        @FXML
+    @FXML
 
-    public void upload(ActionEvent actionEvent) {
-        FileChooser fileChooser = new FileChooser();
-        fileChooser.setTitle("Choisir une image");
-        fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.gif")
-        );
-
-        File selectedFile = fileChooser.showOpenDialog(picE.getScene().getWindow());
-
-        // Vérifier si un fichier a été sélectionné
-        if (selectedFile != null) {
-            // Construire le chemin relatif à partir du répertoire htdocs
-            String relativePath = "http://127.0.0.1/img/" + selectedFile.getName();
-            // Mettre à jour le champ imageTf avec le chemin relatif de l'image sélectionnée
-            imageE.setText(relativePath);
-    }
-}
-
-
-}
+ d

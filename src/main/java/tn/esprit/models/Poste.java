@@ -2,29 +2,29 @@ package tn.esprit.models;
 
 public class Poste {
 
-    private int id , duree ;
-    private String genre , titre, artiste, description, image;
+    private int id  ;
+    private String genre , titre, artiste, description, image, morceau;
 
     public Poste() {}
 
-    public Poste(int id, String titre, String artiste, String genre, String image, int duree, String description) {
+    public Poste(int id, String titre, String artiste, String genre, String image, String morceau, String description) {
         this.id = id;
         this.titre = titre;
         this.artiste = artiste;
         this.genre = genre;
         this.image = image;
-        this.duree = duree;
+        this.morceau = morceau;
         this.description = description;
 
     }
 
 
-    public Poste( String titre, String artiste, String genre, String image, int duree, String description) {
+    public Poste( String titre, String artiste, String genre, String image, String morceau, String description) {
         this.titre = titre;
         this.artiste = artiste;
         this.genre = genre;
         this.image = image;
-        this.duree = duree;
+        this.morceau = morceau;
         this.description = description;
 
     }
@@ -37,14 +37,13 @@ public class Poste {
         this.id = id;
     }
 
-    public int getDuree() {
-        return duree;
+    public String getMorceau() {
+        return morceau;
     }
 
-    public void setDuree(int duree) {
-        this.duree = duree;
+    public void setMorceau(String morceau) {
+        this.morceau = morceau;
     }
-
 
     public String getGenre() {
         return genre;
@@ -90,12 +89,13 @@ public class Poste {
     public String toString() {
         return "Poste{" +
                 "id=" + id +
-                ", duree=" + duree +
+                ", morceau=" + morceau +
                 ", genre='" + genre + '\'' +
                 ", titre='" + titre + '\'' +
                 ", artiste='" + artiste + '\'' +
-                ", description='" + description + '\'' +
                 ", image='" + image + '\'' +
+                ", description='" + description + '\'' +
+
                 '}';
     }
 }

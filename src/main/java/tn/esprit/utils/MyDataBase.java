@@ -18,10 +18,10 @@ public class MyDataBase {
         try {
             cnx = DriverManager.getConnection(URL,USERNAME,PASSWORD);
 
-            System.out.println("DATABASE: Successful");
+            System.out.println("Connected ...");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            System.out.println("DATABASE: Failed");
+            System.out.println("____not connected____ ");
 
         }
 

@@ -1,6 +1,5 @@
 package tn.esprit.services;
 
-import tn.esprit.IService.IService;
 import tn.esprit.models.Commentaire;
 import tn.esprit.models.Poste;
 import tn.esprit.utils.MyDataBase;
@@ -9,8 +8,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class ServiceCommentaire implements IService<Commentaire> {
+public class ServiceCommentaire {
     private Connection cnx;
 
     public ServiceCommentaire() {
@@ -21,7 +19,7 @@ public class ServiceCommentaire implements IService<Commentaire> {
     String sql = "";
 
     public void addComm(Commentaire commentaire, Poste poste) {
-        sql = "INSERT INTO `commentaire`(idPoste, idComm, comment) VALUES (?,?,?)";
+        sql = "INSERT INTO `commentaire`(id_Poste, idComm, comment) VALUES (?,?,?)";
         try {
 
             PreparedStatement stm = cnx.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -39,15 +37,16 @@ public class ServiceCommentaire implements IService<Commentaire> {
         }
     }
 
-    @Override
+
+
     public ArrayList<Commentaire> getAll() {
         ArrayList<Commentaire> commentaires = new ArrayList();
-        String qry = "SELECT c.*, p.titre FROM commentaire c inner join poste p on c.idPoste = p.idPoste";
+        String qry = "SELECT c.*, p.titre FROM commentaire c inner join poste p on c.id_Poste = p.id_Poste";
         try {
             Statement stm = cnx.createStatement();
             ResultSet rs = stm.executeQuery(qry);
             while (rs.next()) {
-                Commentaire c = new Commentaire();
+                Commentaire c = new Commentaire(new Poste(),22,"lol");
                 c.setIdComm(rs.getInt(2));
                 Poste p = new Poste();
                 p.setId(rs.getInt(1));
@@ -60,27 +59,32 @@ public class ServiceCommentaire implements IService<Commentaire> {
             throw new RuntimeException(e);
         }
         return commentaires;
+
+
     }
 
-
     public void update(Commentaire commentaire) {
-        try {
-            String qry = "UPDATE `commentaire` SET `comment`=? WHERE `idComm`=?";
+        try
+        {
+            String qry="UPDATE `commentaire` SET `comment`=? WHERE `idComm`=?";
             PreparedStatement stm = cnx.prepareStatement(qry);
             stm.setString(1, commentaire.getComment());
             stm.setInt(2, commentaire.getIdComm());
             stm.executeUpdate();
             System.out.println("Modification effectué");
-        } catch (Exception ex) {
+        }
+        catch (Exception ex)
+        {
             System.out.println(ex.getMessage());
         }
     }
 
-    @Override
+
     public void delete(Commentaire commentaire) {
-        try {
+        try
+        {
             if (commentaire != null) {
-                String qry = "DELETE FROM `commentaire` WHERE idComm=?";
+                String qry="DELETE FROM `commentaire` WHERE idComm=?";
                 PreparedStatement smt = cnx.prepareStatement(qry);
                 smt.setInt(1, commentaire.getIdComm());
                 smt.executeUpdate();
@@ -88,24 +92,26 @@ public class ServiceCommentaire implements IService<Commentaire> {
             } else {
                 System.out.println("Suppression Impossible");
             }
-        } catch (SQLException ex) {
+        }
+        catch (SQLException ex)
+        {
             System.out.println(ex.getMessage());
         }
     }
 
-    @Override
     public Commentaire readById(int idComm) {
         String qry = "SELECT *  FROM commentaire WHERE `idComm`=?";
         List<Commentaire> list = new ArrayList<>();
 
         try {
-            PreparedStatement stm = cnx.prepareStatement(qry);
+            PreparedStatement stm =  cnx.prepareStatement(qry);
 
             ResultSet rs = stm.executeQuery(qry);
             if (rs.next()) {
-                Commentaire s = new Commentaire();
+                Commentaire s = new Commentaire(new Poste(),22,"lol");
                 s.setIdComm(rs.getInt(1));
                 s.setComment(rs.getString(3));
+
 
 
                 list.add(s);
@@ -117,13 +123,32 @@ public class ServiceCommentaire implements IService<Commentaire> {
         return null;
     }
 
-    @Override
-    public List<Poste> rechercheParArtiste(String artiste) {
-        return null;
+    public List<Commentaire> getAllCommentairesByPoste(Poste poste) {
+        List<Commentaire> commentaires = new ArrayList<>();
+        if (poste == null) {
+            System.out.println("Le poste spécifié est null.");
+            return commentaires;
+        }
+
+        final String COL_ID_POSTE = "id_Poste";
+        String sql = "SELECT * FROM commentaire WHERE " + COL_ID_POSTE + " = ?";
+
+        try (PreparedStatement stm = cnx.prepareStatement(sql)) {
+            stm.setInt(1, poste.getId());
+            try (ResultSet rs = stm.executeQuery()) {
+                while (rs.next()) {
+                    Commentaire commentaire = new Commentaire();
+                    commentaire.setComment(rs.getString("comment"));
+                    commentaire.setPoste(poste); // Associer le poste au commentaire
+                    commentaires.add(commentaire);
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println("Erreur lors de la récupération des commentaires : " + ex.getMessage());
+        }
+        return commentaires;
     }
 
-    @Override
-    public List<Poste> triPosteByArtiste() {
-        return null;
-    }
 }
+
+
