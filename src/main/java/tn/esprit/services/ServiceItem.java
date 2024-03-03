@@ -88,4 +88,26 @@ public class ServiceItem implements Iitem<Item> {
             System.out.println(ex.getMessage());
         }
     }
+
+    public Item getItemById(int itemId) {
+        Item item = null;
+        String query = "SELECT * FROM `item` WHERE itemID = ?";
+        try {
+            PreparedStatement preparedStatement = cnx.prepareStatement(query);
+            preparedStatement.setInt(1, itemId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                int id = resultSet.getInt("itemID");
+                String titre = resultSet.getString("titre");
+                String description = resultSet.getString("description");
+                String auteur = resultSet.getString("auteur");
+                float prix = resultSet.getFloat("prix");
+                // Créer un nouvel objet Item avec les données récupérées
+                item = new Item(id, titre, description, auteur, prix);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return item;
+    }
 }

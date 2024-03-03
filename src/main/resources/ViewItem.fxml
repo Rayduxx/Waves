@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controllers.ViewItem"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ViewItem">
+   <children>
+      <Label fx:id="TTitre" layoutX="132.0" layoutY="128.0" text="Label" />
+      <Label fx:id="TAuteur" layoutX="132.0" layoutY="146.0" text="Label" />
+      <Label fx:id="TDescription" layoutX="132.0" layoutY="164.0" text="Label" />
+      <Label fx:id="TPrix" layoutX="132.0" layoutY="182.0" text="Label" />
+   </children>
 </AnchorPane>

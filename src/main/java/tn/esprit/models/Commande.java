@@ -1,15 +1,18 @@
 package tn.esprit.models;
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class Commande {
     private int idc;
     private int idUser;
     private int idItem;
     private float total;
-    private Date dateC;
+    private Timestamp dateC;
 
-    public Commande(int idc, int idUser, int idItem, float total, Date dateC) {
-        this.idc = idc;
+
+    public Commande() {
+    }
+    
+    public Commande(int idUser, int idItem, float total, Timestamp dateC) {
         this.idUser = idUser;
         this.idItem = idItem;
         this.total = total;
@@ -48,11 +51,11 @@ public class Commande {
         this.total = total;
     }
 
-    public Date getDateC() {
+    public Timestamp getDateC() {
         return dateC;
     }
 
-    public void setDateC(Date dateC) {
+    public void setDateC(Timestamp dateC) {
         this.dateC = dateC;
     }
 }

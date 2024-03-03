@@ -14,10 +14,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
+import tn.esprit.models.Commande;
 import tn.esprit.models.Item;
-import tn.esprit.services.ServiceItem;
+import tn.esprit.models.Utilisateur;
+import tn.esprit.services.*;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,11 +47,38 @@ public class AfficherItems {
     @FXML
     private TableColumn<Item, String> tableTitle;
 
+    private int selectedItemId;
+
+    private List<Commande> userCart = new ArrayList<>();
+
+    @FXML
+    private void getUserFromDatabase() {
+        int userIdToFind = 31;
+        ServiceUtilisateur su = new ServiceUtilisateur();
+        ArrayList<Utilisateur> users = su.getAll();
+        boolean userFound = false;
+    
+        if (users != null) {
+            for (Utilisateur user : users) {
+                if (user.getId() == userIdToFind) {
+                    userFound = true;
+                    System.out.println("User found: " + user.getNom());
+                    break;
+                }
+            }
+        }
+    
+        if (!userFound) {
+            System.out.println("User with ID " + userIdToFind + " not found");
+        }
+    }
+    
     @FXML
     private void initialize() {
         table.refresh();
         ServiceItem si = new ServiceItem();
         ArrayList<Item> items = si.getAll();
+        getUserFromDatabase();
 
         ObservableList<Item> ol = FXCollections.observableArrayList(items);
         table.setItems(ol);
@@ -131,8 +161,9 @@ public class AfficherItems {
         try {
             Parent root = loader.load();
             AfficherCommande controller = loader.getController();
-            ServiceItem si = new ServiceItem(); //useless
-            List<Item> userCart = si.getAll(); //à changer avec les items du panier de l'utilisateur
+            // Récupérez les commandes de l'utilisateur
+            ServiceCommande serviceCommande = new ServiceCommande();
+            userCart = serviceCommande.getAll(); // Assurez-vous d'implémenter correctement la méthode getAll() dans ServiceCommande
             controller.initCart(userCart);
             Scene scene = new Scene(root);
             Stage stage = (Stage) table.getScene().getWindow();
@@ -140,6 +171,20 @@ public class AfficherItems {
             stage.show();
         } catch (IOException e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    private void createAndFillCommand() {
+        if (selectedItemId != 0) {
+            int userId = 31; // Utilisateur actuellement connecté (ID fixe pour l'instant)
+            float totalPrice = 0.0f; // Définissez le prix total, si nécessaire
+            Timestamp currentDate = new Timestamp(System.currentTimeMillis()); // Obtenez la date actuelle
+
+            // Créez un nouvel objet Commande en utilisant l'ID de l'item sélectionné
+            Commande newCommande = new Commande(userId, selectedItemId, totalPrice, currentDate);
+
+            // Ajoutez la nouvelle commande à la liste des commandes de l'utilisateur
+            userCart.add(newCommande);
         }
     }
 }

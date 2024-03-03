@@ -11,7 +11,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import tn.esprit.models.Commande;
 import tn.esprit.models.Item;
+import tn.esprit.services.ServiceItem;
 
 import java.io.IOException;
 import java.util.List;
@@ -35,25 +37,28 @@ public class AfficherCommande {
 
     float total = 0;
 
-    public void initCart(List<Item> userCart) {
+    public void initCart(List<Commande> userCart) {
         ItemCell.getItems().clear();
         PriceCell.getItems().clear();
 
         ObservableList<String> itemNames = FXCollections.observableArrayList();
         ObservableList<Float> itemPrices = FXCollections.observableArrayList();
+        float total = 0.0f;
 
-        for (Item item : userCart) {
-            itemNames.add(item.getTitre());
-            itemPrices.add(item.getPrix());
-            total += item.getPrix();
+        ServiceItem serviceItem = new ServiceItem();
+        for (Commande commande : userCart) {
+            Item item = serviceItem.getItemById(commande.getIdItem());
+            if (item != null) {
+                itemNames.add(item.getTitre());
+                itemPrices.add(item.getPrix());
+                total += item.getPrix();
+            }
         }
 
         ItemCell.setItems(itemNames);
         PriceCell.setItems(itemPrices);
         PriceTotal.setText(String.valueOf(total) + " DT");
     }
-
-
 
     @FXML
     void retour(ActionEvent event) {
