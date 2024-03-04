@@ -5,22 +5,32 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox fx:id="CardBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="162.0" prefWidth="332.0" spacing="10.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.CardUserController">
+
+<Pane fx:id="Card" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="162.0" prefWidth="332.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.CardUserController">
    <children>
-      <ImageView fx:id="cardimage" fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" smooth="false" />
-      <GridPane prefHeight="160.0" prefWidth="176.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <ImageView fitHeight="168.0" fitWidth="332.0" pickOnBounds="true" smooth="false">
+         <image>
+            <Image url="@assets/cardbg.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="cardimage" fitHeight="100.0" fitWidth="100.0" layoutX="23.0" layoutY="32.0" pickOnBounds="true" smooth="false">
+         <image>
+            <Image url="@assets/uploads/default.png" />
+         </image>
+      </ImageView>
+      <GridPane layoutX="142.0" layoutY="16.0" prefHeight="131.0" prefWidth="176.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+         </columnConstraints>
+         <rowConstraints>
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
          <children>
-            <Label fx:id="cardnameprename" prefHeight="2.0" prefWidth="176.0" text="Name Prename">
+            <Label fx:id="cardnameprename" prefHeight="0.0" prefWidth="176.0" text="Name Prename">
                <font>
                   <Font name="Roboto Bold" size="18.0" />
                </font>
@@ -65,4 +75,4 @@
          </children>
       </GridPane>
    </children>
-</HBox>
+</Pane>

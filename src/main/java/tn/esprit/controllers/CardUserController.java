@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import tn.esprit.models.Utilisateur;
@@ -33,7 +34,7 @@ public class CardUserController {
     @FXML
     private Label cardrole;
     @FXML
-    private HBox CardBox;
+    private Pane Card;
     private final ServiceUtilisateur UserS = new ServiceUtilisateur();
 
     int uid,unumtel;
@@ -64,8 +65,8 @@ public class CardUserController {
         cardemail.setText(user.getEmail());
         cardrole.setText(user.getRole());
         cardnumtel.setText(String.valueOf(user.getNumtel()));
-        CardBox.setBackground(Background.fill(Color.web(colors[(int)(Math.random()* colors.length)])));
-        CardBox.setStyle("-fx-border-radius: 5px;-fx-border-color:#808080");
+        Card.setBackground(Background.fill(Color.web(colors[(int)(Math.random()* colors.length)])));
+        Card.setStyle("-fx-border-radius: 5px;-fx-border-color:#808080");
 
         uprenom = user.getPrenom();
         uid = user.getId();
@@ -76,7 +77,7 @@ public class CardUserController {
         unumtel = user.getNumtel();
     }
 
-    public void suppuser(ActionEvent actionEvent) {
+    public void suppuser(ActionEvent actionEvent) throws IOException {
         UserS.DeleteByID(uid);
     }
 

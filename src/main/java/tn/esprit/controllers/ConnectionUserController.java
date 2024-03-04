@@ -1,6 +1,5 @@
 package tn.esprit.controllers;
 
-import javafx.animation.PauseTransition;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -23,7 +22,6 @@ import java.net.URL;
 import java.util.*;
 
 import javafx.fxml.Initializable;
-import javafx.util.Duration;
 import jdk.jshell.execution.Util;
 import tn.esprit.models.Utilisateur;
 import tn.esprit.services.ServiceUtilisateur;
@@ -148,28 +146,13 @@ public class ConnectionUserController implements Initializable {
                 }
                 if (role.equals("User")) {
                     try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Loadingscene.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Menu.fxml"));
                         Parent root = loader.load();
-                        Stage loadingStage = new Stage();
-                        loadingStage.setScene(new Scene(root));
-                        loadingStage.setTitle("Loading...");
-                        loadingStage.show();
-
-                        PauseTransition delay = new PauseTransition(Duration.seconds(3));
-                        delay.setOnFinished(event -> {
-                            loadingStage.close();
-                            try {
-                                Parent mainRoot = FXMLLoader.load(getClass().getResource("/Menu.fxml"));
-                                Stage mainStage = new Stage();
-                                mainStage.setScene(new Scene(mainRoot));
-                                mainStage.setTitle("Waves - Menu");
-                                mainStage.show();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                        });
-                        delay.play();
-
+                        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                        Scene scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.setTitle("Waves - Menu");
+                        stage.show();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

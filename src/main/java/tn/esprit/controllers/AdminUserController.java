@@ -16,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.InputMethodEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import tn.esprit.models.Utilisateur;
@@ -67,7 +68,7 @@ public class AdminUserController implements Initializable {
     @FXML
     public Tab listusertab;
     @FXML
-    private GridPane userContainer;
+    public GridPane userContainer;
     @FXML
     private ImageView imagepdp;
     @FXML
@@ -108,6 +109,7 @@ public class AdminUserController implements Initializable {
             if (numteltf.getText().matches("\\d{8}")) {
                 if (!emailExists(EMAIL)) {
                     UserS.Add(new Utilisateur(0, NOM, PRENOM, EMAIL, MDP, NUMTEL, ROLE, IMAGE));
+                    uinfolabel.setText("Ajout Effectue");
                 } else {
                     uinfolabel.setText("Email déjà existe");
                 }
@@ -184,7 +186,7 @@ public class AdminUserController implements Initializable {
             for (Utilisateur user : UserS.afficher()) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/CardUser.fxml"));
-                HBox userBox = fxmlLoader.load();
+                Pane userBox = fxmlLoader.load();
                 CardUserController cardC = fxmlLoader.getController();
                 cardC.setData(user);
                 if (column == 3) {
@@ -207,7 +209,7 @@ public class AdminUserController implements Initializable {
             for (Utilisateur user : UserS.TriparNom()) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/CardUser.fxml"));
-                HBox userBox = fxmlLoader.load();
+                Pane userBox = fxmlLoader.load();
                 CardUserController cardC = fxmlLoader.getController();
                 cardC.setData(user);
                 if (column == 3) {
@@ -235,7 +237,7 @@ public class AdminUserController implements Initializable {
             for (Utilisateur user : UserS.TriparEmail()) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/CardUser.fxml"));
-                HBox userBox = fxmlLoader.load();
+                Pane userBox = fxmlLoader.load();
                 CardUserController cardC = fxmlLoader.getController();
                 cardC.setData(user);
                 if (column == 3) {
@@ -260,7 +262,7 @@ public class AdminUserController implements Initializable {
             for (Utilisateur user : UserS.Rechreche(recherche)){
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("/CardUser.fxml"));
-                HBox userBox = fxmlLoader.load();
+                Pane userBox = fxmlLoader.load();
                 CardUserController cardC = fxmlLoader.getController();
                 cardC.setData(user);
                 if (column == 3) {

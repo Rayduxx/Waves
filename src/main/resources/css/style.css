@@ -80,3 +80,6 @@
 .tab-pane > .tab-header-area > .headers-region > .tab:selected >.tab-container >.focus-indicator {
     -fx-opacity: 0;
 }
+.hboxcard{
+    -fx-background-image:url("/assets/cardbg.png"); ;
+}
