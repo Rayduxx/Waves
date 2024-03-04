@@ -21,6 +21,7 @@ import javafx.stage.Stage;
 import tn.esprit.models.Utilisateur;
 import tn.esprit.services.ServiceUtilisateur;
 import tn.esprit.utils.MyDataBase;
+import tn.esprit.utils.SessionManager;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -297,6 +298,7 @@ public class AdminUserController implements Initializable {
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            SessionManager.cleanUserSession();
             stage.setTitle("Waves - Connection");
             stage.show();
         } catch (IOException e) {

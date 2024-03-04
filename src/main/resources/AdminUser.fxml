@@ -209,7 +209,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="818.0" prefWidth="1149.0">
                      <children>
-                        <ScrollPane layoutY="50.0" prefHeight="597.0" prefWidth="1149.0">
+                        <ScrollPane layoutY="50.0" prefHeight="597.0" prefWidth="1149.0" styleClass="scrollpanes">
                            <content>
                               <GridPane fx:id="userContainer" prefHeight="0.0" prefWidth="0.0">
                               </GridPane>
