@@ -10,7 +10,9 @@ import tn.esprit.models.Event;
 import tn.esprit.models.Reservation;
 import tn.esprit.services.ServiceEvent;
 import tn.esprit.services.ServiceReservation;
+import tn.esprit.utils.MailController;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 
 public class ajouterReservation {
@@ -23,6 +25,8 @@ public class ajouterReservation {
     private  int IdUser;
     private  int Eid;
     private  int Id;
+
+    public MailController mail = new MailController() ;
 
     public int getIdUser() {
         return IdUser;
@@ -56,7 +60,7 @@ public class ajouterReservation {
 
 
     @FXML
-    void ajouterReservation(ActionEvent event) {
+    void ajouterReservation(ActionEvent event) throws MessagingException {
 
         int eventId = getIdEvent();
         ps.Add(new Reservation(0,0,eventId,date.getText(),statut.getText() ));
@@ -66,6 +70,7 @@ public class ajouterReservation {
         alert.setContentText("Reservation ajouter avec succes");
         alert.showAndWait();
         System.out.println(eventId);
+        mail.SendMail("abidmohamedselim@gmail.com");
     }
 
     @FXML
