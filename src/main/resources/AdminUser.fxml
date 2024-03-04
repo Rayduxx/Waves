@@ -28,7 +28,7 @@
       </Pane>
       <Pane layoutY="80.0" prefHeight="689.0" prefWidth="166.0" styleClass="pane">
          <children>
-            <VBox layoutX="7.0" layoutY="52.0">
+            <VBox layoutX="7.0" layoutY="52.0" spacing="7.0">
                <children>
                   <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="152.0" styleClass="btn" text="Utilisateurs">
                      <graphic>
@@ -56,7 +56,7 @@
                      </font>
                   </Button>
                   <Separator prefHeight="4.0" prefWidth="100.0" />
-                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="152.0" styleClass="btn" text="Contenus">
+                  <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#toContAdmin" prefHeight="46.0" prefWidth="152.0" styleClass="btn" text="Contenus">
                      <graphic>
                         <ImageView fitHeight="47.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
                            <image>
