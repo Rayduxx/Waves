@@ -77,22 +77,6 @@ public class AfficherPosteController implements Initializable {
             e.printStackTrace();
         }
     }
-
-    public void retour(ActionEvent actionEvent) {
-        try {
-            // Récupérer n'importe quel élément de votre scène pour obtenir la scène actuelle
-            Node sn = (Node) actionEvent.getSource();
-            Scene currentScene = sn.getScene();
-
-            // Charger la nouvelle vue depuis le fichier FXML "AjouterPersonne.fxml"
-            Parent root = FXMLLoader.load(getClass().getResource("/AjouterPoste.fxml"));
-
-            // Remplacer la racine de la scène actuelle par la nouvelle vue
-            currentScene.setRoot(root);
-        } catch (IOException e) {
-            System.err.println("Erreur lors du chargement de la vue AjouterPersonne : " + e.getMessage());
-        }
-    }
     @FXML
     public void Menu(ActionEvent actionEvent) {
         try {
