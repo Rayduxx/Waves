@@ -47,6 +47,11 @@
          </font>
       </Label>
       <Button fx:id="upload" layoutX="406.0" layoutY="187.0" mnemonicParsing="false" onAction="#handleUpload" text="..." />
+      <Button layoutX="191.0" layoutY="433.0" mnemonicParsing="false" onAction="#Retour" text="retour">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
    </children>
    <opaqueInsets>
       <Insets />

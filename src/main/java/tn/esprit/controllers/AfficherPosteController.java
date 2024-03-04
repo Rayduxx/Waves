@@ -68,7 +68,7 @@ public class AfficherPosteController implements Initializable {
     public void setGridPostes(List<Poste> postes) {
         try {
             for (Poste poste : postes) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/card.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/test.fxml"));
                 AnchorPane cardBox = loader.load();
                 CardController cardController = loader.getController();
                 cardController.setData(poste);

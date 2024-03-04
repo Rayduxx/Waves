@@ -60,8 +60,8 @@ public class CardController implements Initializable {
 
    // private final ServicePoste PosteS = new ServicePoste();
   private  ServiceCommentaire sc=new ServiceCommentaire();
-    private String [] colors = {"#FFB5E8", "#FF9CEE", "#FFCCF9", "#FCC2FF", "#F6A6FF", "#B28DFF", "#C5A3FF", "#D5AAFF", "#ECD4FF", "#FBE4FF", "#DCD3FF", "#A79AFF", "#B5B9FF", "#97A2FF",
-            "#AFCBFF", "#AFF8DB", "C4FAF8", "#85E3FF", "#ACE7FF", "#6EB5FF", "#BFFCC6", "#DBFFD6", "#F3FFE3", "#E7FFAC", "#FFFFD1", "#FFC9DE", "#FFABAB", "#FFBEBC", "#FFCBC1", "#FFF5BA"};
+   // private String [] colors = {"#FFB5E8", "#FF9CEE", "#FFCCF9", "#FCC2FF", "#F6A6FF", "#B28DFF", "#C5A3FF", "#D5AAFF", "#ECD4FF", "#FBE4FF", "#DCD3FF", "#A79AFF", "#B5B9FF", "#97A2FF",
+           // "#AFCBFF", "#AFF8DB", "C4FAF8", "#85E3FF", "#ACE7FF", "#6EB5FF", "#BFFCC6", "#DBFFD6", "#F3FFE3", "#E7FFAC", "#FFFFD1", "#FFC9DE", "#FFABAB", "#FFBEBC", "#FFCBC1", "#FFF5BA"};
     public void setData(Poste poste) {
         this.poste=poste;
 
@@ -107,7 +107,7 @@ public class CardController implements Initializable {
 
 
 
-        vbox.setBackground(Background.fill(Color.web(colors[(int)(Math.random()* colors.length)])));
+       // vbox.setBackground(Background.fill(Color.web(colors[(int)(Math.random()* colors.length)])));
     }
 
     public void edit(ActionEvent actionEvent) throws IOException {

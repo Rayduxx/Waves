@@ -1,23 +1,28 @@
- package tn.esprit.controllers;
+package tn.esprit.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Side;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
+import javafx.scene.chart.XYChart;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import tn.esprit.models.Poste;
 import tn.esprit.services.ServicePoste;
-import javafx.scene.control.TextField;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
-
-
+import java.util.Map;
 
 public class adminPosteController {
     @FXML
@@ -48,10 +53,11 @@ public class adminPosteController {
     private TableView<Poste> Ctable;
 
     @FXML
-    private TableColumn<Poste,String> Ctitre;
+    private TableColumn<Poste, String> Ctitre;
 
     @FXML
     private Button nomrech;
+
     @FXML
     private Button Ctrier;
 
@@ -76,9 +82,10 @@ public class adminPosteController {
     @FXML
     private TextField titreT;
 
+    @FXML
+    private BarChart<String, Integer> genreChart;
 
-    private final ServicePoste ps=new ServicePoste();
-
+    private final ServicePoste ps = new ServicePoste();
 
     @FXML
     void initialize() {
@@ -93,52 +100,50 @@ public class adminPosteController {
         Cmorceau.setCellValueFactory(new PropertyValueFactory<>("morceau"));
         Cdescription.setCellValueFactory(new PropertyValueFactory<>("Desscription"));
 
+        // Afficher les statistiques sur les genres
+        afficherStatistiquesGenres(postes);
     }
 
+    private void afficherStatistiquesGenres(List<Poste> postes) {
+        Map<String, Integer> genreCounts = new HashMap<>();
+        for (Poste poste : postes) {
+            String genre = poste.getGenre();
+            genreCounts.put(genre, genreCounts.getOrDefault(genre, 0) + 1);
+        }
 
+        XYChart.Series<String, Integer> series = new XYChart.Series<>();
+        genreCounts.forEach((genre, count) -> series.getData().add(new XYChart.Data<>(genre, count)));
+        genreChart.getData().add(series);
 
-
-
-
-
-
+        // Définir la largeur des barres de statistiques
+        for (XYChart.Data<String, Integer> data : series.getData()) {
+            data.getNode().setStyle(data.getNode().getStyle() + "-fx-bar-width: 5px;");
+            data.getNode().setStyle(data.getNode().getStyle() + "-fx-bar-fill: #B469FF;");
+            genreChart.setBarGap(50);
+            genreChart.setCategoryGap(10);
+            genreChart.setLegendSide(Side.TOP);
+        }
+    }
     @FXML
-    void supprimerLigne(Poste poste) {
-        Ctable.getItems().remove(poste);
-        ps.delete(poste);
-    }
-
-    public void supprimer(javafx.event.ActionEvent actionEvent) {
+    void supprimer(javafx.event.ActionEvent actionEvent) {
         Poste poste = Ctable.getSelectionModel().getSelectedItem();
 
         if (poste != null) {
             supprimerLigne(poste);
-        }
-        else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur");
-            alert.setHeaderText(null);
-            alert.setContentText("Veuillez sélectionner une ligne à supprimer.");
-            alert.showAndWait();
+        } else {
+            afficherAlerteErreur("Veuillez sélectionner une ligne à supprimer.");
         }
     }
 
-
-
-    public void recherche(javafx.event.ActionEvent actionEvent) {
-       //List<Poste> resultats = ps.rechercheParNom(String.valueOf(nomRecherche)); // Appel de la méthode rechercheParNom
-        // ObservableList<Sport> observableResultats = FXCollections.observableList(resultats);
-        // tableView.setItems(observableResultats);
+    private void supprimerLigne(Poste poste) {
+        Ctable.getItems().remove(poste);
+        ps.delete(poste);
     }
 
-    public void trier(javafx.event.ActionEvent actionEvent) {
-    }
-
-    public void modifier(javafx.event.ActionEvent actionEvent) {
-        // Vérifier si un élément est sélectionné dans la TableView
-        Poste posteiSelectionne = Ctable.getSelectionModel().getSelectedItem();
-        if (posteiSelectionne != null) {
-            // Récupérer les valeurs des champs de texte
+    @FXML
+    void modifier(javafx.event.ActionEvent actionEvent) {
+        Poste posteSelectionne = Ctable.getSelectionModel().getSelectedItem();
+        if (posteSelectionne != null) {
             String titre = titreT.getText();
             String artiste = artisteT.getText();
             String genre = genreT.getValue();
@@ -146,26 +151,15 @@ public class adminPosteController {
             String morceau = morceauT.getText();
             String description = descriptionT.getText();
 
+            posteSelectionne.setTitre(titre);
+            posteSelectionne.setArtiste(artiste);
+            posteSelectionne.setGenre(genre);
+            posteSelectionne.setImage(image);
+            posteSelectionne.setDescription(description);
 
-
-            // Mettre à jour les informations du tournoi sélectionné
-            posteiSelectionne.setTitre(titre);
-            posteiSelectionne.setArtiste(artiste);
-            posteiSelectionne.setGenre(genre);
-            posteiSelectionne.setImage(image);
-            posteiSelectionne.setDescription(description);
-            posteiSelectionne.setDescription(description);
-
-
-
-            // Mettre à jour la TableView avec les modifications
             Ctable.refresh();
 
-            // Vous pouvez également appeler votre méthode de mise à jour dans le service ici
-            ServicePoste ss = new ServicePoste();
-            ss.update(posteiSelectionne);
-
-            // Réinitialiser les champs de texte après la modification
+            ps.update(posteSelectionne);
 
             titreT.clear();
             artisteT.clear();
@@ -173,29 +167,46 @@ public class adminPosteController {
             imageT.clear();
             morceauT.clear();
             descriptionT.clear();
-
-
         } else {
-            // Afficher un message d'erreur si aucun élément n'est sélectionné
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur");
-            alert.setHeaderText(null);
-            alert.setContentText("Veuillez sélectionner un élément à modifier.");
-            alert.showAndWait();
+            afficherAlerteErreur("Veuillez sélectionner un élément à modifier.");
         }
     }
 
-    public void selection(javafx.scene.input.MouseEvent mouseEvent) {
+    private void afficherAlerteErreur(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+    @FXML
+    void selection(javafx.scene.input.MouseEvent mouseEvent) {
         Poste selectedPoste = Ctable.getSelectionModel().getSelectedItem();
         if (selectedPoste != null) {
-
             titreT.setText(selectedPoste.getTitre());
             artisteT.setText(selectedPoste.getArtiste());
             genreT.setValue(selectedPoste.getGenre());
             imageT.setText(selectedPoste.getImage());
             morceauT.setText(selectedPoste.getMorceau());
             descriptionT.setText(selectedPoste.getDescription());
+        }
     }
-}}
 
+    public void trier(ActionEvent actionEvent) {
+    }
 
+    public void recherche(ActionEvent actionEvent) {
+    }
+
+    public void retour(ActionEvent actionEvent) throws IOException {
+        loadScene("/welcome.fxml",actionEvent);
+    }
+    private void loadScene(String scenePath,ActionEvent actionEvent) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource(scenePath));
+        Scene tableViewScene = new Scene(tableViewParent);
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(tableViewScene);
+        window.show();
+    }
+}

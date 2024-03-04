@@ -8,6 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -117,5 +118,17 @@ public class AjouterPosteController implements Initializable {
             // Mettre à jour le champ imageTf avec le chemin relatif de l'image sélectionnée
             imageTF.setText(relativePath);
         }
+    }
+
+    public void Retour(ActionEvent actionEvent) throws IOException {
+        loadScene("/welcome.fxml",actionEvent);
+
+    }
+    private void loadScene(String scenePath,ActionEvent actionEvent) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource(scenePath));
+        Scene tableViewScene = new Scene(tableViewParent);
+        Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        window.setScene(tableViewScene);
+        window.show();
     }
 }

@@ -14,3 +14,6 @@
     -fx-border-color: #FFF;
     -fx-border-radius:50 ;
 }
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
