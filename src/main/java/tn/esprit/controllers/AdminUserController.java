@@ -7,6 +7,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -70,6 +73,7 @@ public class AdminUserController implements Initializable {
     private Label uinfolabel;
     @FXML
     private TextField usersearch;
+
     ObservableList<String> RoleList = FXCollections.observableArrayList("User", "Admin");
     private final ServiceUtilisateur UserS = new ServiceUtilisateur();
     private Connection cnx;
@@ -127,6 +131,7 @@ public class AdminUserController implements Initializable {
         if (EMAIL.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@(esprit\\.tn|gmail\\.com)$")) {
             if (numteltf.getText().matches("\\d{8}")) {
                 UserS.Update(new Utilisateur(ID, NOM, PRENOM, EMAIL, MDP, NUMTEL, ROLE, IMAGE));
+                uinfolabel.setText("Modification Effectue");
             } else {
                 uinfolabel.setText("N° Telephone est invalide");
             }
@@ -192,6 +197,7 @@ public class AdminUserController implements Initializable {
             e.printStackTrace();
         }
     }
+
     @FXML
     public void TriNom(ActionEvent actionEvent){
         int column = 0;
@@ -214,10 +220,12 @@ public class AdminUserController implements Initializable {
             e.printStackTrace();
         }
     }
+
     @FXML
     public void refresh(ActionEvent actionEvent){
         load();
     }
+
     @FXML
     public void TriEmail(ActionEvent actionEvent){
         int column = 0;
@@ -240,6 +248,7 @@ public class AdminUserController implements Initializable {
             e.printStackTrace();
         }
     }
+
     @FXML
     public void RechercheNom(ActionEvent actionEvent) {
         int column = 0;
@@ -260,6 +269,36 @@ public class AdminUserController implements Initializable {
                 userContainer.add(userBox, column++, row);
                 GridPane.setMargin(userBox, new Insets(10));
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void Menu1(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Menu.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Waves - Menu");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void Deconnection(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Waves - Connection");
+            stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }

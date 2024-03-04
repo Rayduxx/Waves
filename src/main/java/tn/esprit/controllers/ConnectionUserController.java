@@ -8,19 +8,25 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.sql.*;
+
 import javafx.scene.*;
 import javafx.scene.control.TextInputDialog;
 import javafx.stage.*;
+
 import java.net.URL;
 import java.util.*;
+
 import javafx.fxml.Initializable;
+import jdk.jshell.execution.Util;
 import tn.esprit.models.Utilisateur;
 import tn.esprit.services.ServiceUtilisateur;
 import tn.esprit.utils.MyDataBase;
+import tn.esprit.utils.SessionManager;
 
 import javax.naming.spi.StateFactory;
 import java.io.IOException;
@@ -34,17 +40,15 @@ public class ConnectionUserController implements Initializable {
     private TextField email_login;
     @FXML
     private TextField password_login;
-    @FXML
-    private Button connecter;
 
     private final ServiceUtilisateur UserS = new ServiceUtilisateur();
     private Connection cnx;
 
-    public Utilisateur connecteruser = new Utilisateur();
-
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
     }
+
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
@@ -52,6 +56,7 @@ public class ConnectionUserController implements Initializable {
         alert.setContentText(content);
         alert.showAndWait();
     }
+
     private String generateOTP() {
         int length = 6;
         String characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -62,6 +67,7 @@ public class ConnectionUserController implements Initializable {
         }
         return sb.toString();
     }
+
     private void sendEmailWithOTP(String toEmail, String otp) {
         final String username = "waves.esprit@gmail.com";
         final String password = "tgao tbqg wudl aluo";
@@ -89,18 +95,22 @@ public class ConnectionUserController implements Initializable {
             e.printStackTrace();
         }
     }
+
     @FXML
     public void connecter(ActionEvent actionEvent) throws IOException {
-        String qry = "SELECT * FROM `user` WHERE email=? AND password=?";
+        String qry = "SELECT * FROM `user` WHERE `email`=? AND `password`=?";
         cnx = MyDataBase.getInstance().getCnx();
         try {
             PreparedStatement stm = cnx.prepareStatement(qry);
             stm.setString(1, email_login.getText());
             stm.setString(2, password_login.getText());
             ResultSet rs = stm.executeQuery();
-            Utilisateur user;
+            Utilisateur CurUser;
 
             if (rs.next()) {
+                CurUser = new Utilisateur(rs.getInt("id"), rs.getString("nom"), rs.getString("prenom"), rs.getString("email"), rs.getString("password"), rs.getInt("numtel"), rs.getString("role"), rs.getString("image"));
+                Utilisateur.setCurrent_User(CurUser);
+                SessionManager.getInstace(rs.getInt("id"), rs.getString("nom"), rs.getString("prenom"), rs.getInt("numtel"), rs.getString("email"), rs.getString("role"), rs.getString("image"));
                 String role = rs.getString("role");
                 if (role.equals("Admin")) {
                     try {
@@ -111,6 +121,7 @@ public class ConnectionUserController implements Initializable {
                         loadingStage.setScene(new Scene(loadingRoot));
                         loadingStage.setTitle("Loading...");
                         loadingStage.show();
+
                         Task<Parent> task = new Task<>() {
                             @Override
                             protected Parent call() throws Exception {

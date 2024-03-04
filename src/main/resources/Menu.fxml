@@ -104,5 +104,29 @@
             </Button>
          </children>
       </GridPane>
+      <Button layoutX="14.0" layoutY="721.0" mnemonicParsing="false" onAction="#Deconnection" styleClass="btn" text="Deconnection">
+         <graphic>
+            <ImageView fitHeight="31.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/icons8-logout-50.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Roboto Regular" size="16.0" />
+         </font>
+      </Button>
+      <Button fx:id="AdminP" layoutX="1152.0" layoutY="14.0" mnemonicParsing="false" onAction="#PanelAdmin" styleClass="btn" text="Panel Admin">
+         <graphic>
+            <ImageView fitHeight="31.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@assets/icons8-dashboard-48.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="Roboto Regular" size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

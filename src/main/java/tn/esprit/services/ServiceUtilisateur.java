@@ -165,7 +165,6 @@ public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
             stm.setInt(5, user.getNumtel());
             stm.setInt(6, user.getId());
             stm.executeUpdate();
-            System.out.println("Modification effectué");
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
         }
@@ -178,7 +177,6 @@ public class ServiceUtilisateur implements IUtilisateur<Utilisateur> {
             PreparedStatement smt = cnx.prepareStatement(qry);
             smt.setInt(1, user.getId());
             smt.executeUpdate();
-            System.out.println("Suppression Effectué");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }

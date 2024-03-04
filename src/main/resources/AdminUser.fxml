@@ -28,7 +28,7 @@
       </Pane>
       <Pane layoutY="80.0" prefHeight="689.0" prefWidth="166.0" styleClass="pane">
          <children>
-            <VBox layoutX="7.0" layoutY="52.0" spacing="11.0">
+            <VBox layoutX="7.0" layoutY="52.0">
                <children>
                   <Button alignment="BASELINE_LEFT" graphicTextGap="10.0" mnemonicParsing="false" prefHeight="46.0" prefWidth="152.0" styleClass="btn" text="Utilisateurs">
                      <graphic>
@@ -109,7 +109,7 @@
                   </Button>
                </children>
             </VBox>
-            <Button layoutX="10.0" layoutY="638.0" mnemonicParsing="false" styleClass="btn" text="Deconnection">
+            <Button layoutX="10.0" layoutY="638.0" mnemonicParsing="false" onAction="#Deconnection" styleClass="btn" text="Deconnection">
                <graphic>
                   <ImageView fitHeight="31.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -121,7 +121,7 @@
                   <Font name="Roboto Regular" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="26.0" layoutY="579.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="118.0" styleClass="btn" text="Menu">
+            <Button layoutX="26.0" layoutY="579.0" mnemonicParsing="false" onAction="#Menu1" prefHeight="33.0" prefWidth="118.0" styleClass="btn" text="Menu">
                <graphic>
                   <ImageView fitHeight="31.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -209,20 +209,20 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="818.0" prefWidth="1149.0">
                      <children>
-                        <ScrollPane layoutY="39.0" prefHeight="622.0" prefWidth="1149.0">
+                        <ScrollPane layoutY="50.0" prefHeight="597.0" prefWidth="1149.0">
                            <content>
                               <GridPane fx:id="userContainer" prefHeight="0.0" prefWidth="0.0">
                               </GridPane>
                            </content>
                         </ScrollPane>
-                        <HBox alignment="CENTER" layoutY="2.0" prefHeight="33.0" prefWidth="253.0" spacing="18.0">
+                        <HBox alignment="CENTER" layoutY="2.0" prefHeight="38.0" prefWidth="312.0" spacing="18.0">
                            <children>
                               <Label text="Trier :">
                                  <font>
                                     <Font name="Roboto Regular" size="17.0" />
                                  </font>
                               </Label>
-                              <Button mnemonicParsing="false" onAction="#TriNom" prefHeight="13.0" prefWidth="72.0" styleClass="btn" text="Nom">
+                              <Button mnemonicParsing="false" onAction="#TriNom" prefHeight="0.0" prefWidth="95.0" styleClass="btn" text="Nom">
                                  <graphic>
                                     <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -234,7 +234,7 @@
                                     <Font name="Roboto Regular" size="12.0" />
                                  </font>
                               </Button>
-                              <Button mnemonicParsing="false" onAction="#TriEmail" prefHeight="13.0" prefWidth="72.0" styleClass="btn" text="Email">
+                              <Button mnemonicParsing="false" onAction="#TriEmail" prefHeight="38.0" prefWidth="92.0" styleClass="btn" text="Email">
                                  <graphic>
                                     <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -248,8 +248,8 @@
                               </Button>
                            </children>
                         </HBox>
-                        <TextField fx:id="usersearch" layoutX="901.0" layoutY="5.0" onAction="#RechercheNom" prefHeight="27.0" prefWidth="234.0" promptText="Recherche" styleClass="recherchefield" />
-                        <Button layoutX="286.0" layoutY="4.0" mnemonicParsing="false" onAction="#refresh" prefHeight="30.0" prefWidth="99.0" styleClass="btn" text="Rafraîchir">
+                        <TextField fx:id="usersearch" layoutX="901.0" layoutY="4.0" onAction="#RechercheNom" prefHeight="27.0" prefWidth="234.0" promptText="Recherche" styleClass="recherchefield" />
+                        <Button layoutX="483.0" layoutY="4.0" mnemonicParsing="false" onAction="#refresh" prefHeight="0.0" prefWidth="118.0" styleClass="btn" text="Rafraîchir">
                            <graphic>
                               <ImageView fitHeight="24.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

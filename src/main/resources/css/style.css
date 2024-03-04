@@ -44,3 +44,7 @@
 .MainButton:hover{
     -fx-border-color: #bd55e0;
 }
+.scrollpanes{
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}

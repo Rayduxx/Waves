@@ -4,6 +4,7 @@ public class Utilisateur {
 
     private int id , numtel ;
     private String nom , prenom, email, password, role, image;
+    public static Utilisateur Current_User;
 
     public Utilisateur() {}
 
@@ -41,6 +42,9 @@ public class Utilisateur {
 
     public String getImage() {return image;}
     public void setImage(String image) {this.image = image;}
+
+    public static Utilisateur getCurrent_User() {return Current_User;}
+    public static void setCurrent_User(Utilisateur Current_User) {Utilisateur.Current_User = Current_User;}
 
     @Override
     public String toString() {
