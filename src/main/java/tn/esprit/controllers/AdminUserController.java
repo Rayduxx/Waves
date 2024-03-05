@@ -291,7 +291,6 @@ public class AdminUserController implements Initializable {
             e.printStackTrace();
         }
     }
-
     @FXML
     public void Deconnection(ActionEvent actionEvent) {
         try {
@@ -322,4 +321,20 @@ public class AdminUserController implements Initializable {
             e.printStackTrace();
         }
     }
+    @FXML
+    public void toGesEvent(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEventAdmin.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            SessionManager.cleanUserSession();
+            stage.setTitle("Waves - Admin Dashboard");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

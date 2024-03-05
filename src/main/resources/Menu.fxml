@@ -42,7 +42,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="0.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="150.0" styleClass="MainButton" text="Evenements" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1">
+            <Button alignment="CENTER" contentDisplay="TOP" graphicTextGap="0.0" mnemonicParsing="false" onAction="#EvenetInterface" prefHeight="150.0" prefWidth="150.0" styleClass="MainButton" text="Evenements" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="1">
                <font>
                   <Font name="Roboto Regular" size="21.0" />
                </font>
