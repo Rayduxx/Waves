@@ -52,6 +52,28 @@ public class ServiceCommande implements ICommande<Commande> {
         return commandes;
     }
 
+    public ArrayList<Commande> getCommandesUtilisateur(int userId) {
+        ArrayList<Commande> commandes = new ArrayList<>();
+        String query = "SELECT * FROM commande WHERE idUser = ?";
+        try {
+            PreparedStatement preparedStatement = cnx.prepareStatement(query);
+            preparedStatement.setInt(1, userId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Commande commande = new Commande();
+                commande.setIdUser(resultSet.getInt("idUser"));
+                commande.setIdItem(resultSet.getInt("idItem"));
+                commande.setTotal(resultSet.getFloat("total"));
+                commande.setDateC(resultSet.getTimestamp("dateC"));
+                commandes.add(commande);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return commandes;
+    }
+
+
     @Override
     public void UpdateC(Commande commande) {
         String query = "UPDATE commande SET idUser=?, idItem=?, total=?, dateC=? WHERE idc=?";
@@ -81,5 +103,4 @@ public class ServiceCommande implements ICommande<Commande> {
             e.printStackTrace();
         }
     }
-
 }

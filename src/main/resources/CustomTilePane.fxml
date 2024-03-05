@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="200.0" prefWidth="180.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CTP">
+<AnchorPane prefHeight="200.0" prefWidth="192.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CTP">
     <children>
-    <TilePane fx:id="customTilePane" alignment="CENTER" layoutX="3.0" layoutY="9.0" opacity="0.85" orientation="VERTICAL" prefHeight="182.0" prefWidth="175.0" style="-fx-background-radius: 18; -fx-background-color: #b469ff;">
+    <TilePane fx:id="customTilePane" alignment="CENTER" layoutX="8.0" layoutY="9.0" opacity="0.85" orientation="VERTICAL" prefHeight="182.0" prefWidth="175.0" style="-fx-background-radius: 18; -fx-background-color: #b469ff;">
         <effect>
             <DropShadow height="75.0" offsetY="10.0" radius="37.0" width="75.0" />
         </effect>
@@ -29,6 +29,7 @@
                <font>
                   <Font name="System Italic" size="12.0" />
                </font></Label>
+            <Button fx:id="playButton" mnemonicParsing="false" onAction="#playPreviewAudio" opacity="0.7" prefHeight="26.0" prefWidth="67.0" style="-fx-background-color: black; -fx-background-radius: 18;" text="▶" textFill="WHITE" />
             <Button fx:id="CartAdd" mnemonicParsing="false" onAction="#addToCart" opacity="0.67" style="-fx-background-color: black; -fx-background-radius: 18;" text="+" textFill="WHITE" TilePane.alignment="BOTTOM_CENTER">
                <font>
                   <Font name="System Bold" size="13.0" />

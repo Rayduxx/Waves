@@ -14,6 +14,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
+import org.apache.hc.core5.http.ParseException;
+import se.michaelthelin.spotify.SpotifyApi;
+import se.michaelthelin.spotify.exceptions.SpotifyWebApiException;
+import se.michaelthelin.spotify.model_objects.specification.Track;
+import se.michaelthelin.spotify.requests.data.search.simplified.SearchTracksRequest;
 import tn.esprit.models.Commande;
 import tn.esprit.models.Item;
 import tn.esprit.models.Utilisateur;
@@ -57,7 +62,7 @@ public class AfficherItems {
         ServiceUtilisateur su = new ServiceUtilisateur();
         ArrayList<Utilisateur> users = su.getAll();
         boolean userFound = false;
-    
+
         if (users != null) {
             for (Utilisateur user : users) {
                 if (user.getId() == userIdToFind) {
@@ -67,12 +72,12 @@ public class AfficherItems {
                 }
             }
         }
-    
+
         if (!userFound) {
             System.out.println("User with ID " + userIdToFind + " not found");
         }
     }
-    
+
     @FXML
     private void initialize() {
         table.refresh();
@@ -87,6 +92,32 @@ public class AfficherItems {
         tableDesc.setCellValueFactory(new PropertyValueFactory<>("Description"));
         tableAuth.setCellValueFactory(new PropertyValueFactory<>("Auteur"));
         tablePrix.setCellValueFactory(new PropertyValueFactory<>("Prix"));
+
+        SpotifyApi spotifyApi = new SpotifyApi.Builder()
+                .setClientId("a245d294c1cc4ff89fe2bec140c9be7c")
+                .setClientSecret("9f7fc970846c4a51a17265779c5e2754")
+                .build();
+
+        for (Item item : items) {
+            // Recherchez la piste audio en fonction du titre et de l'auteur
+            String title = item.getTitre();
+            String artist = item.getAuteur();
+
+            SearchTracksRequest searchTracksRequest = spotifyApi.searchTracks("track:" + title + " artist:" + artist).build();
+
+            try {
+                final Track[] tracksArray = searchTracksRequest.execute().getItems();
+                List<Track> tracksList = new ArrayList<>();
+                for (Track track : tracksArray) {
+                    tracksList.add(track);
+                }
+                for (Track track : tracksList) {
+                    String previewUrl = track.getPreviewUrl();
+                }
+            }  catch (IOException | SpotifyWebApiException | ParseException e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+        }
 
         for (Item item : items) {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/CustomTilePane.fxml"));
@@ -161,9 +192,8 @@ public class AfficherItems {
         try {
             Parent root = loader.load();
             AfficherCommande controller = loader.getController();
-            // Récupérez les commandes de l'utilisateur
             ServiceCommande serviceCommande = new ServiceCommande();
-            userCart = serviceCommande.getAll(); // Assurez-vous d'implémenter correctement la méthode getAll() dans ServiceCommande
+            userCart = serviceCommande.getCommandesUtilisateur(31);
             controller.initCart(userCart);
             Scene scene = new Scene(root);
             Stage stage = (Stage) table.getScene().getWindow();

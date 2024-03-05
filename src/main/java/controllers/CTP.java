@@ -14,7 +14,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import tn.esprit.services.ServiceCommande;
-
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import java.io.IOException;
 import java.sql.Timestamp;
 
@@ -36,7 +37,13 @@ public class CTP {
     private Button CartAdd;
 
     @FXML
+    private Button playButton;
+
+    @FXML
     private TilePane customTilePane;
+
+    private String previewUrl;
+
 
     public void setTitre(String titre) {
         Tile_Titre.setText(titre);
@@ -95,6 +102,22 @@ public class CTP {
         serviceCommande.AddC(newCommande);
 
         System.out.println("Article ajouté au panier avec succès !");
+    }
+
+    public void loadPreviewAudio(String previewUrl) {
+        this.previewUrl = previewUrl;
+    }
+
+
+    @FXML
+    void playPreviewAudio(ActionEvent event) {
+        if (previewUrl != null && !previewUrl.isEmpty()) {
+            Media media = new Media(previewUrl);
+            MediaPlayer mediaPlayer = new MediaPlayer(media);
+            mediaPlayer.play();
+        } else {
+            System.out.println("Aucun aperçu audio disponible pour cet article !");
+        }
     }
 
     public TilePane getCustomTilePane() {
