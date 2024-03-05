@@ -1,16 +1,13 @@
 package controllers;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
@@ -38,19 +35,10 @@ public class AfficherItems {
     private TilePane TilePane;
 
     @FXML
-    private TableView<Item> table;
+    private ImageView cartButton;
 
     @FXML
-    private TableColumn<Item, String> tableAuth;
-
-    @FXML
-    private TableColumn<Item, String> tableDesc;
-
-    @FXML
-    private TableColumn<Item, String> tablePrix;
-
-    @FXML
-    private TableColumn<Item, String> tableTitle;
+    private Button addButton;
 
     private int selectedItemId;
 
@@ -80,30 +68,18 @@ public class AfficherItems {
 
     @FXML
     private void initialize() {
-        table.refresh();
         ServiceItem si = new ServiceItem();
         ArrayList<Item> items = si.getAll();
         getUserFromDatabase();
 
-        ObservableList<Item> ol = FXCollections.observableArrayList(items);
-        table.setItems(ol);
-
-        tableTitle.setCellValueFactory(new PropertyValueFactory<>("Titre"));
-        tableDesc.setCellValueFactory(new PropertyValueFactory<>("Description"));
-        tableAuth.setCellValueFactory(new PropertyValueFactory<>("Auteur"));
-        tablePrix.setCellValueFactory(new PropertyValueFactory<>("Prix"));
-
-        SpotifyApi spotifyApi = new SpotifyApi.Builder()
-                .setClientId("a245d294c1cc4ff89fe2bec140c9be7c")
-                .setClientSecret("9f7fc970846c4a51a17265779c5e2754")
-                .build();
+        SpotifyApi spotifyApi = new SpotifyApi.Builder().setClientId("a245d294c1cc4ff89fe2bec140c9be7c").setClientSecret("9f7fc970846c4a51a17265779c5e2754").build();
 
         for (Item item : items) {
-            // Recherchez la piste audio en fonction du titre et de l'auteur
             String title = item.getTitre();
             String artist = item.getAuteur();
 
             SearchTracksRequest searchTracksRequest = spotifyApi.searchTracks("track:" + title + " artist:" + artist).build();
+            System.out.println("Track " + title + " by " + artist);
 
             try {
                 final Track[] tracksArray = searchTracksRequest.execute().getItems();
@@ -141,48 +117,14 @@ public class AfficherItems {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterItem.fxml"));
         try {
             Parent root = loader.load();
+            AjouterItem controller = loader.getController();
+            controller.setIntValue(0);
             Scene scene = new Scene(root);
-            Stage stage = (Stage) table.getScene().getWindow();
+            Stage stage = (Stage) addButton.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
             System.out.println(e.getMessage());
-        }
-    }
-
-    @FXML
-    void deleteItem(ActionEvent event) {
-        Item selectedItem = table.getSelectionModel().getSelectedItem();
-        ServiceItem si = new ServiceItem();
-        if(selectedItem != null) {
-            si.Delete(selectedItem);
-            table.getItems().remove(selectedItem);
-            ArrayList<Item> items = si.getAll();
-            ObservableList<Item> ol = FXCollections.observableArrayList(items);
-            table.setItems(ol);
-            table.refresh();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherItems.fxml"));
-            MainTile.getChildren().clear();
-            initialize();
-        }
-    }
-
-    @FXML
-    void modifyItem(ActionEvent event) {
-        Item selectedItem = table.getSelectionModel().getSelectedItem();
-        if(selectedItem != null) {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ModifierItem.fxml"));
-            try {
-                Parent root = loader.load();
-                ModifierItem controller = loader.getController();
-                controller.initData(selectedItem);
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) table.getScene().getWindow();
-                stage.setScene(scene);
-
-            } catch (IOException e) {
-                System.out.println(e.getMessage());
-            }
         }
     }
 
@@ -196,7 +138,7 @@ public class AfficherItems {
             userCart = serviceCommande.getCommandesUtilisateur(31);
             controller.initCart(userCart);
             Scene scene = new Scene(root);
-            Stage stage = (Stage) table.getScene().getWindow();
+            Stage stage = (Stage) cartButton.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
@@ -206,14 +148,10 @@ public class AfficherItems {
 
     private void createAndFillCommand() {
         if (selectedItemId != 0) {
-            int userId = 31; // Utilisateur actuellement connecté (ID fixe pour l'instant)
-            float totalPrice = 0.0f; // Définissez le prix total, si nécessaire
-            Timestamp currentDate = new Timestamp(System.currentTimeMillis()); // Obtenez la date actuelle
-
-            // Créez un nouvel objet Commande en utilisant l'ID de l'item sélectionné
+            int userId = 31;
+            float totalPrice = 0.0f;
+            Timestamp currentDate = new Timestamp(System.currentTimeMillis());
             Commande newCommande = new Commande(userId, selectedItemId, totalPrice, currentDate);
-
-            // Ajoutez la nouvelle commande à la liste des commandes de l'utilisateur
             userCart.add(newCommande);
         }
     }

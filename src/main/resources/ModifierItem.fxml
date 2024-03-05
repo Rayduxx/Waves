@@ -30,5 +30,9 @@
             </font>
         </Label>
         <Button fx:id="mpButton" layoutX="204.0" layoutY="265.0" mnemonicParsing="false" onAction="#mp" style="-fx-background-color: #b469ff;" text="Retour" textFill="WHITE" />
+        <Label fx:id="titreErrorLabel" layoutX="268.0" layoutY="135.0" text="*champ obligatoire" textFill="RED" visible="false"/>
+        <Label fx:id="authErrorLabel" layoutX="268.0" layoutY="192.0" text="*champ obligatoire" textFill="RED" visible="false"/>
+        <Label fx:id="descErrorLabel" layoutX="268.0" layoutY="164.0" text="*champ obligatoire" textFill="RED" visible="false"/>
+        <Label fx:id="prixErrorLabel" layoutX="268.0" layoutY="222.0" text="*champ obligatoire" textFill="RED" visible="false"/>
     </children>
 </AnchorPane>
