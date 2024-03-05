@@ -134,7 +134,7 @@ public class CardController implements Initializable {
 
             // Charger la nouvelle vue
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherPersonne.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/PosteInterface.fxml"));
                 Parent tableViewParent = loader.load();
                 Scene tableViewScene = new Scene(tableViewParent);
                 Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -201,7 +201,7 @@ public class CardController implements Initializable {
 
             // Charger la nouvelle vue
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherPersonne.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/PosteInterface.fxml"));
                 Parent tableViewParent = loader.load();
                 Scene tableViewScene = new Scene(tableViewParent);
                 Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

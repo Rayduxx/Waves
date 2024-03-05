@@ -7,6 +7,7 @@ import tn.esprit.utils.MyDataBase;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ServiceCommentaire {
     private Connection cnx;
@@ -148,6 +149,12 @@ public class ServiceCommentaire {
         }
         return commentaires;
     }
+
+
+
+  /*  public List<Poste> triPostetBytitre() {
+        return getAll().stream().sorted((o1, o2) -> o1.getPoste().getId().compareTo(o2.getPoste().getId())).collect(Collectors.toList());
+    }*/
 
 }
 

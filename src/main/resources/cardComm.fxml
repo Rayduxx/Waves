@@ -7,20 +7,24 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="167.0" prefWidth="349.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.CardCommController">
+<AnchorPane prefHeight="320.0" prefWidth="306.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.CardCommController">
    <children>
       <ImageView fitHeight="136.0" fitWidth="312.0" layoutX="-4.0" layoutY="1.0">
          <image>
-            <Image url="@pics/Purple Modern Watercolor Flowers Thank You Instagram Story.png" />
+            <Image url="@pics/purple.png" />
          </image>
       </ImageView>
-      <VBox layoutX="2.0" layoutY="1.0" prefHeight="136.0" prefWidth="312.0">
+      <VBox layoutX="2.0" layoutY="1.0" prefHeight="279.0" prefWidth="302.0">
          <children>
             <Label fx:id="com" prefHeight="18.0" prefWidth="130.0" text="Label">
                <VBox.margin>
                   <Insets left="80.0" top="30.0" />
                </VBox.margin>
+               <font>
+                  <Font size="16.0" />
+               </font>
             </Label>
             <Button mnemonicParsing="false" onAction="#supp" prefHeight="26.0" prefWidth="74.0" styleClass="transparent" stylesheets="@style.css" />
             <Button mnemonicParsing="false" onAction="#upd" prefHeight="26.0" prefWidth="74.0" styleClass="transparent" stylesheets="@style.css">

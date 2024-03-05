@@ -11,21 +11,21 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="508.0" prefWidth="292.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.CardController">
+<AnchorPane prefHeight="505.0" prefWidth="236.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.CardController">
    <children>
-      <ImageView fitHeight="509.0" fitWidth="379.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="505.0" fitWidth="298.0" layoutX="-17.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@pics/card.png" />
+            <Image url="@pics/Purple%20Modern%20Watercolor%20Flowers%20Thank%20You%20Instagram%20Story%20(1).png" />
          </image>
       </ImageView>
-      <VBox fx:id="vbox" layoutY="14.0" prefHeight="509.0" prefWidth="279.0">
+      <VBox fx:id="vbox" layoutX="-21.0" layoutY="-4.0" prefHeight="505.0" prefWidth="296.0">
          <children>
-            <Label fx:id="titreL" alignment="CENTER" prefHeight="18.0" prefWidth="167.0" text="Label" textAlignment="JUSTIFY" textOverrun="CLIP">
+            <Label fx:id="titreL" alignment="CENTER" prefHeight="18.0" prefWidth="167.0" stylesheets="@css/style.css" text="Label" textAlignment="JUSTIFY" textOverrun="CLIP">
                <font>
                   <Font name="AGaramondPro-Bold" size="14.0" />
                </font>
                <VBox.margin>
-                  <Insets left="50.0" top="10.0" />
+                  <Insets left="50.0" top="30.0" />
                </VBox.margin>
             </Label>
             <ImageView fx:id="imageL" fitHeight="110.0" fitWidth="161.0" pickOnBounds="true" preserveRatio="true">
@@ -46,7 +46,7 @@
                   <Font name="AGaramondPro-Bold" size="14.0" />
                </font>
                <VBox.margin>
-                  <Insets left="60.0" top="10.0" />
+                  <Insets left="60.0" top="5.0" />
                </VBox.margin>
             </Label>
             <Label fx:id="descriptionL" alignment="CENTER" prefHeight="18.0" prefWidth="167.0" text="Label" textAlignment="JUSTIFY" textOverrun="CLIP">
@@ -57,35 +57,22 @@
                   <Insets left="60.0" top="5.0" />
                </VBox.margin>
             </Label>
-            <Button fx:id="modifier" mnemonicParsing="false" onAction="#edit" prefHeight="26.0" prefWidth="58.0" styleClass="transparent" stylesheets="@style.css">
+            <TextField fx:id="AJ" prefHeight="26.0" prefWidth="165.0" styleClass="text-field" stylesheets="@css/style.css">
                <VBox.margin>
-                  <Insets left="180.0" top="10.0" />
-               </VBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#supprime" prefHeight="26.0" prefWidth="58.0" styleClass="transparent" stylesheets="@style.css">
-               <VBox.margin>
-                  <Insets left="40.0" top="-25.0" />
-               </VBox.margin>
-            </Button>
-            <TextField fx:id="AJ" prefHeight="14.0" prefWidth="206.0">
-               <VBox.margin>
-                  <Insets left="50.0" right="30.0" top="20.0" />
+                  <Insets left="50.0" right="30.0" top="90.0" />
                </VBox.margin>
             </TextField>
-            <ScrollPane prefHeight="92.0" prefWidth="143.0">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <VBox fx:id="Box" layoutX="3.0" layoutY="6.0" prefHeight="78.0" prefWidth="198.0" />
-                     </children>
-                  </AnchorPane>
-              </content>
+            <ScrollPane prefHeight="116.0" prefWidth="226.0" styleClass="scrollpanes" stylesheets="@css/style.css">
                <VBox.margin>
-                  <Insets left="40.0" top="20.0" />
+                  <Insets left="40.0" right="30.0" top="20.0" />
                </VBox.margin>
+               <content>
+                  <VBox fx:id="Box" prefHeight="243.0" prefWidth="218.0" />
+               </content>
             </ScrollPane>
          </children>
       </VBox>
-      <Button layoutX="255.0" layoutY="327.0" mnemonicParsing="false" onAction="#AjouterCom" prefHeight="26.0" prefWidth="26.0" text="Button" />
+      <Button layoutX="240.0" layoutY="355.0" mnemonicParsing="false" onAction="#AjouterCom" prefHeight="26.0" prefWidth="26.0" text="Button" />
+      <Button fx:id="modifier" layoutX="-6.0" layoutY="-2.0" mnemonicParsing="false" onAction="#edit" prefHeight="26.0" prefWidth="58.0" stylesheets="@css/style.css" text="edit" />
    </children>
 </AnchorPane>

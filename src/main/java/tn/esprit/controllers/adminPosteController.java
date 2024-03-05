@@ -1,5 +1,18 @@
 package tn.esprit.controllers;
 
+import com.itextpdf.io.image.ImageData;
+import com.itextpdf.io.image.ImageDataFactory;
+import com.itextpdf.kernel.font.PdfFont;
+import com.itextpdf.kernel.font.PdfFontFactory;
+import com.itextpdf.kernel.geom.PageSize;
+import com.itextpdf.kernel.pdf.PdfArray;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfName;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.property.HorizontalAlignment;
+import com.itextpdf.layout.property.TextAlignment;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,17 +28,25 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import tn.esprit.models.Poste;
 import tn.esprit.services.ServicePoste;
 import tn.esprit.utils.SessionManager;
+import com.itextpdf.layout.Document;
 
+import com.itextpdf.kernel.pdf.PdfDocument;
+
+
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class adminPosteController {
+    ServicePoste servicePoste=new ServicePoste();
     @FXML
     private TableColumn<Poste, String> Cartiste;
 
@@ -195,10 +216,27 @@ public class adminPosteController {
     }
 
     public void trier(ActionEvent actionEvent) {
+        List<Poste> postes = ps.triPostetBytitre();
+        ObservableList<Poste> observableList = FXCollections.observableList(postes);
+        Ctable.setItems(observableList);
+
+        Ctitre.setCellValueFactory(new PropertyValueFactory<>("titre"));
+        Cartiste.setCellValueFactory(new PropertyValueFactory<>("artiste"));
+        Cgenre.setCellValueFactory(new PropertyValueFactory<>("genre"));
+        Cimage.setCellValueFactory(new PropertyValueFactory<>("image"));
+        Cmorceau.setCellValueFactory(new PropertyValueFactory<>("morceau"));
+        Cdescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+
+
+    }
+    @FXML
+    public void recherche(ActionEvent actionEvent) {
+        String nomRecherche = recherche.getText(); // Obtenir le nom à rechercher depuis le champ de texte
+        List<Poste> resultats = ps.recherchePoste(String.valueOf(nomRecherche)); // Appel de la méthode rechercheParNom
+        ObservableList<Poste> observableResultats = FXCollections.observableList(resultats);
+        Ctable.setItems(observableResultats);
     }
 
-    public void recherche(ActionEvent actionEvent) {
-    }
 
     private void loadScene(String scenePath,ActionEvent actionEvent) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource(scenePath));
@@ -262,6 +300,78 @@ public class adminPosteController {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+
+    public void PDF(ActionEvent actionEvent) {
+        // Créer un sélecteur de fichiers pour enregistrer le PDF
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF Files", "*.pdf"));
+        File selectedFile = fileChooser.showSaveDialog(new Stage());
+
+        // Vérifier si un fichier a été sélectionné
+        if (selectedFile != null) {
+            try {
+                // Initialisez le writer PDF
+                PdfWriter writer = new PdfWriter(selectedFile.getAbsolutePath());
+                PdfDocument pdf = new PdfDocument(writer);
+                Document document = new Document(pdf, PageSize.A4);
+
+
+
+                // Créer une page de fond rouge
+                pdf.addNewPage().getPdfObject().put(PdfName.BackgroundColor, new PdfArray(new float[]{1, 0, 0}));
+
+                // Ajouter un titre au document
+                PdfFont font = PdfFontFactory.createFont();
+                document.add(new Paragraph("LISTE DES POSTES").setFont(font).setFontSize(16).setTextAlignment(TextAlignment.CENTER));
+
+                // Créer une table pour afficher les postes
+                Table table = new Table(4);
+                table.setWidth(400);
+                table.setHorizontalAlignment(HorizontalAlignment.CENTER);
+                table.setMarginTop(50);
+
+                // Ajouter les en-têtes de colonnes
+                table.addHeaderCell("Titre");
+                table.addHeaderCell("Artiste");
+                table.addHeaderCell("Genre");
+                table.addHeaderCell("Description");
+
+
+                // Récupérer les postes depuis la base de données
+                ServicePoste servicePoste = new ServicePoste();
+                List<Poste> postes = servicePoste.getAll();
+
+                // Ajouter les données des postes à la table
+                for (Poste poste : postes) {
+                    table.addCell(poste.getTitre());
+                    table.addCell(poste.getArtiste());
+                    table.addCell(poste.getGenre());
+                    table.addCell(poste.getDescription());
+                }
+
+                // Ajouter la table au document
+                document.add(table);
+
+                // Fermer le document
+                document.close();
+
+                // Afficher un message de succès
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setTitle("Succès");
+                alert.setHeaderText(null);
+                alert.setContentText("Le PDF a été généré avec succès !");
+                alert.showAndWait();
+            } catch (IOException e) {
+                // En cas d'erreur, afficher une alerte
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur");
+                alert.setHeaderText(null);
+                alert.setContentText("Une erreur s'est produite lors de la génération du PDF : " + e.getMessage());
+                alert.showAndWait();
+            }
         }
     }
 }

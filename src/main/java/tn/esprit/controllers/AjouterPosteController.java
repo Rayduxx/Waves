@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
@@ -91,15 +92,55 @@ public class AjouterPosteController implements Initializable {
         genreTF.getItems().addAll(genre);
         genreTF.setOnAction(this::getGenre);
     }
-    public void ajouter(ActionEvent actionEvent) throws MessagingException {
-        ps.add(new Poste (titreTF.getText(), acteurTF.getText(), genreTF.getValue(), imageTF.getText(), morceauTF.getText(), descriptionTF.getText()));
-        mail.SendMail("ahmeddhouioui29@gmail.com");
+    public void ajouter(ActionEvent actionEvent) throws MessagingException, IOException {
+        if (titreTF.getText().isEmpty() || acteurTF.getText().isEmpty() || genreTF.getValue().isEmpty() || imageTF.getText().isEmpty() || descriptionTF.getText().isEmpty()) {
+            showAlert("Erreur", "Champs manquants", "Veuillez remplir tous les champs.");
+            return;
+        }
 
+        // Convertir la durée en un entier
+
+        if (descriptionTF.getText().length() < 10) {
+            showAlert("Erreur", "Description trop courte", "La description doit comporter au moins 10 caractères.");
+            return;
+        }
+
+        // Add the Poste
+        ps.add(new Poste (titreTF.getText(), acteurTF.getText(), genreTF.getValue(), imageTF.getText(), morceauTF.getText(), descriptionTF.getText()));
+
+        // Send email
+        mail.SendMail("azizsalmi330@gmail.com");
+
+        // Show success alert
+        showSuccessAlert("Succès", "Poste ajouté", "Le poste a été ajouté avec succès !");
+
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/PosteInterface.fxml"));
+            titreTF.getScene().setRoot(root);
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
+    }
+
+
+    private void showSuccessAlert(String title, String headerText, String contentText) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        alert.showAndWait();
+    }
+    private void showAlert(String title, String header, String content) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 
     public void Afficher(ActionEvent actionEvent) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/AfficherPersonne.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/PosteInterface.fxml"));
             titreTF.getScene().setRoot(root);
         } catch (IOException e) {
             System.err.println(e.getMessage());
@@ -126,10 +167,10 @@ public class AjouterPosteController implements Initializable {
     }
 
     public void Retour(ActionEvent actionEvent) throws IOException {
-        loadScene("/PosteInterface.fxml",actionEvent);
+        loadScene("/Menu.fxml",actionEvent);
 
     }
-    private void loadScene(String scenePath,ActionEvent actionEvent) throws IOException {
+    public void loadScene(String scenePath,ActionEvent actionEvent) throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource(scenePath));
         Scene tableViewScene = new Scene(tableViewParent);
         Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();

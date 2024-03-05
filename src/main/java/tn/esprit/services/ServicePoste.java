@@ -126,4 +126,8 @@ public class ServicePoste implements IService<Poste> {
                         e.getDescription().toLowerCase().contains(recherche.toLowerCase()))
                 .collect(Collectors.toList());
     }
+
+    public List<Poste> triPostetBytitre() {
+        return getAll().stream().sorted((o1, o2) -> o1.getTitre().compareTo(o2.getTitre())).collect(Collectors.toList());
+    }
 }

@@ -1,28 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1315.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AfficherPosteController">
    <center>
 
 
             <ScrollPane prefHeight="437.0" prefWidth="826.0">
-               <content>
-                  <HBox fx:id="Boxes" prefHeight="602.0" prefWidth="1312.0">
-               <children>
-                  <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-      
-                     <HBox.margin>
-                        <Insets left="-90.0" top="22.0" />
-                     </HBox.margin>
-                  </ImageView>
-               </children></HBox>
-               </content>
+         <content>
+            <GridPane fx:id="posteContainer" prefHeight="0.0" prefWidth="0.0">
+              
+            </GridPane>
+         </content>
             </ScrollPane>
 
    </center>
@@ -56,7 +57,7 @@
                   <Font size="13.0" />
                </font>
             </TextField>
-            <Button fx:id="Crecherche" ellipsisString="upgrade" layoutX="1092.0" layoutY="27.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="26.0" styleClass="btn" stylesheets="@style.css" text="search">
+            <Button fx:id="Crecherche" ellipsisString="upgrade" layoutX="1092.0" layoutY="27.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="26.0" styleClass="btn" stylesheets="@/css/style.css" text="search">
                <textFill>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>
@@ -74,7 +75,7 @@
                   </LinearGradient>
                </textFill>
             </Button>
-            <Button ellipsisString="upgrade" layoutX="282.0" layoutY="27.0" mnemonicParsing="false" onAction="#ajouterposte" prefHeight="27.0" prefWidth="95.0" styleClass="btn" stylesheets="@style.css" text="Ajouter">
+            <Button ellipsisString="upgrade" layoutX="282.0" layoutY="27.0" mnemonicParsing="false" onAction="#ajouterposte" prefHeight="27.0" prefWidth="95.0" styleClass="btn" stylesheets="@/css/style.css" text="Ajouter">
                <textFill>
                   <LinearGradient endX="1.0" endY="1.0">
                      <stops>

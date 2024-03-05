@@ -58,9 +58,9 @@
                <VBox.margin>
                   <Insets left="110.0" />
                </VBox.margin></Button>
-            <ScrollPane prefHeight="175.0" prefWidth="282.0">
+            <ScrollPane prefHeight="158.0" prefWidth="302.0">
                <content>
-                  <VBox fx:id="Box" prefHeight="115.0" prefWidth="282.0" />
+                  <VBox fx:id="Box" prefHeight="151.0" prefWidth="358.0" />
                </content>
             </ScrollPane>
 
