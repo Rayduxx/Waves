@@ -86,7 +86,6 @@ public class AdminUserController implements Initializable {
         rolecb.setValue("User");
         rolecb.setItems(RoleList);
     }
-
     private boolean emailExists(String email) throws SQLException {
         cnx = MyDataBase.getInstance().getCnx();
         String query = "SELECT * FROM `user` WHERE email=?";
@@ -95,7 +94,6 @@ public class AdminUserController implements Initializable {
         ResultSet resultSet = statement.executeQuery();
         return resultSet.next();
     }
-
     @FXML
     public void AjouterUser(ActionEvent actionEvent) throws SQLException {
         String NOM = nomtf.getText();
@@ -120,7 +118,6 @@ public class AdminUserController implements Initializable {
             uinfolabel.setText("Email est invalide");
         }
     }
-
     @FXML
     public void ModifierUser(ActionEvent actionEvent) {
         int ID = Integer.parseInt(idtf.getText());
@@ -142,7 +139,6 @@ public class AdminUserController implements Initializable {
             uinfolabel.setText("Email est invalide");
         }
     }
-
     @FXML
     public void pdpup(ActionEvent actionEvent) {
         String imagePath = null;
@@ -291,7 +287,6 @@ public class AdminUserController implements Initializable {
             e.printStackTrace();
         }
     }
-
     @FXML
     public void Deconnection(ActionEvent actionEvent) {
         try {
@@ -322,4 +317,49 @@ public class AdminUserController implements Initializable {
             e.printStackTrace();
         }
     }
+    @FXML
+    public void toProdAdmin(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ProdAdmin.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            SessionManager.cleanUserSession();
+            stage.setTitle("Waves - Admin Dashboard");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    public void toMarAdmin(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherItemsAdmin.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Waves - Admin Dashboard");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    public void toGesEvent(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEventAdmin.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            SessionManager.cleanUserSession();
+            stage.setTitle("Waves - Admin Dashboard");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
