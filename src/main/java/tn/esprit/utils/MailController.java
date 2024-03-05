@@ -1,4 +1,4 @@
-package tn.esprit.utils;
+package tn.esprit.utlis;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -27,8 +27,11 @@ public class MailController {
         MimeMessage message = new MimeMessage(session);
         message.setFrom(new InternetAddress("ahmeddhouioui29@gmail.com"));
         message.addRecipient(Message.RecipientType.TO, new InternetAddress(st));
-        message.setSubject("Réservation");
-        message.setText("Reservation");
+        message.setSubject("Confirmation Réservation");
+        message.setText("On vous informe que votre reservation est accèpté. " +
+                "Bienvenue dans notre évenement." +
+                "On vous souhaite une bonne soirée. ");
+
 
 
         Transport.send(message);

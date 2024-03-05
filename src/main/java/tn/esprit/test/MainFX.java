@@ -5,11 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 
-public class MainFX extends Application {
 
+
+public class MainFX  extends Application {
     public static void main(String[] args) {
         launch(args);
     }
@@ -20,12 +20,12 @@ public class MainFX extends Application {
         try {
             Parent root = loader.load();
             Scene scene =new Scene(root);
-            primaryStage.setTitle("Waves - Evenement");
+            primaryStage.setTitle("gestion Event");
             primaryStage.setScene(scene);
             primaryStage.show();
 
         } catch (IOException e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
 
     }

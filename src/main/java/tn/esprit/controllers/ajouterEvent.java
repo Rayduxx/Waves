@@ -8,11 +8,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import tn.esprit.models.Event;
 import tn.esprit.services.ServiceEvent;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Paths;
 
 public class ajouterEvent {
 
@@ -28,7 +32,28 @@ public class ajouterEvent {
     @FXML
     private TextField desc;
 
+    private String cheminImage ;
 
+    @FXML
+    public void importerImage() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choisir une photo de profil");
+
+        // Filtrer uniquement les fichiers d'images
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.gif")
+        );
+
+        // Afficher la boîte de dialogue pour sélectionner un fichier
+        File selectedFile = fileChooser.showOpenDialog(new Stage());
+
+        // Vérifier si un fichier a été sélectionné
+        if (selectedFile != null) {
+            cheminImage = selectedFile.getAbsolutePath(); // Récupérer le chemin de l'image sélectionnée
+
+
+        }
+    }
 
 
 
@@ -55,7 +80,7 @@ public class ajouterEvent {
             showAlert("Erreur", "Description trop courte", "La description doit comporter au moins 10 caractères.");
             return;
         }
-        ps.Add(new Event(0,Nom.getText(),adresse.getText(),date.getText(),desc.getText() ));
+        ps.Add(new Event(0,Nom.getText(),adresse.getText(),date.getText(),desc.getText(),cheminImage ));
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("succes");
@@ -81,12 +106,14 @@ public class ajouterEvent {
 
 
 
+
+
     @FXML
     void afficherEvent(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEvent.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEventAdmin.fxml"));
             Parent root = loader.load();
-            afficherEvent controller = loader.getController();
+            DetailsAdmin controller = loader.getController();
             controller.initData(Nom.getText());
             adresse.getScene().setRoot(root);
         } catch (IOException e) {

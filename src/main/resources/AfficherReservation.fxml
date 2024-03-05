@@ -5,15 +5,19 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.afficherReservation">
+<AnchorPane prefHeight="458.0" prefWidth="581.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.afficherReservation">
     <children>
-        <TableView fx:id="eventTable" layoutX="212.0" layoutY="32.0" prefHeight="319.0" prefWidth="175.0">
+        <TableView fx:id="eventTable" layoutX="53.0" layoutY="43.0" prefHeight="339.0" prefWidth="475.0">
             <columns>
                 <TableColumn fx:id="date" text="Date" />
-                <TableColumn fx:id="statut" text="Statut" />
+                <TableColumn fx:id="statut" prefWidth="92.66667938232422" text="Statut" />
+                <TableColumn fx:id="nom" prefWidth="92.66664123535156" text="Nom" />
+                <TableColumn fx:id="prenom" prefWidth="89.3333740234375" text="Prénom" />
+                <TableColumn fx:id="email" prefWidth="120.0" text="Email" />
+
             </columns>
         </TableView>
-        <Button layoutX="272.0" layoutY="360.0" mnemonicParsing="false" onAction="#ajouterReservation" text="Ajouter" />
-
+        <Button layoutX="263.0" layoutY="392.0" mnemonicParsing="false" onAction="#ajouterReservation" text="Ajouter" />
+        <Button fx:id="exportButton" layoutY="1.0" onAction="#handleExportButton" text="Export to PDF" />
     </children>
 </AnchorPane>

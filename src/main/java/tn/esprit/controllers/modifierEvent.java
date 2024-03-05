@@ -8,10 +8,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import tn.esprit.models.Event;
 import tn.esprit.services.ServiceEvent;
 
+import java.io.File;
 import java.io.IOException;
 
 public class modifierEvent  {
@@ -28,11 +30,28 @@ public class modifierEvent  {
     @FXML
     private TextField nom;
 
+    @FXML
+    private TextField image;
+
+    private String cheminImage ;
+
+
     private int iD;
     private String NOM;
     private String Date;
     private String ADR;
     private String DESC;
+
+    private String IMAGE;
+
+    public String getIMAGE() {
+        return IMAGE;
+    }
+
+    public void setIMAGE(String IMAGE) {
+        this.IMAGE = IMAGE;
+        image.setText(IMAGE);
+    }
 
     public String getNOM() {
         return NOM;
@@ -86,14 +105,33 @@ public class modifierEvent  {
 
     //}
 
+    @FXML
+    void importerImage(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choisir une photo de profil");
 
+        // Filtrer uniquement les fichiers d'images
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Images", "*.png", "*.jpg", "*.gif")
+        );
+
+        // Afficher la boîte de dialogue pour sélectionner un fichier
+        File selectedFile = fileChooser.showOpenDialog(new Stage());
+
+        // Vérifier si un fichier a été sélectionné
+        if (selectedFile != null) {
+            cheminImage = selectedFile.getAbsolutePath(); // Récupérer le chemin de l'image sélectionnée
+
+
+        }
+    }
 
 
     // Dans votre méthode modifierEvent
     @FXML
     void modifierEvent(ActionEvent event) {
 
-        ps.Update(new Event(getID(), nom.getText() ,adresse.getText(), getDate(), desc.getText()));
+        ps.Update(new Event(getID(), nom.getText() ,adresse.getText(), getDate(), desc.getText(),cheminImage));
 
         // Affichez un message de succès
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -123,6 +161,7 @@ public class modifierEvent  {
         date.setText(Date);
         adresse.setText(ADR);
         desc.setText(DESC);
+        image.setText(IMAGE);
     }
 
     // Méthode pour afficher une boîte de dialogue d'alerte

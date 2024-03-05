@@ -15,6 +15,9 @@
       <TextField fx:id="adresse" layoutX="151.0" layoutY="123.0" />
       <TextField fx:id="date" layoutX="151.0" layoutY="168.0" />
       <TextField fx:id="desc" layoutX="151.0" layoutY="205.0" />
-      <Button layoutX="199.0" layoutY="261.0" mnemonicParsing="false" onAction="#modifierEvent" text="update" />
+      <Button layoutX="199.0" layoutY="285.0" mnemonicParsing="false" onAction="#modifierEvent" text="update" />
+      <Label layoutX="78.0" layoutY="252.0" text="Image" />
+      <TextField fx:id="image" layoutX="151.0" layoutY="248.0" />
+      <Button layoutX="315.0" layoutY="248.0" mnemonicParsing="false" onAction="#importerImage" prefHeight="25.0" prefWidth="28.0" text="..." />
    </children>
 </AnchorPane>

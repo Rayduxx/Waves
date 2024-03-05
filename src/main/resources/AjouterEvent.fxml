@@ -16,14 +16,16 @@
       <Label layoutX="67.0" layoutY="199.0" text="Date" />
       <TextField fx:id="adresse" layoutX="148.0" layoutY="150.0" />
       <TextField fx:id="date" layoutX="148.0" layoutY="195.0" />
-      <Button layoutX="195.0" layoutY="292.0" mnemonicParsing="false" onAction="#ajouterEvent" text="Ajouter" />
-      <Button layoutX="317.0" layoutY="293.0" mnemonicParsing="false" onAction="#afficherEvent" text="Afficher" />
+      <Button layoutX="148.0" layoutY="327.0" mnemonicParsing="false" onAction="#ajouterEvent" text="Ajouter" />
+      <Button layoutX="239.0" layoutY="327.0" mnemonicParsing="false" onAction="#afficherEvent" text="Afficher" />
       <Label layoutX="63.0" layoutY="244.0" text="Description" />
       <TextField fx:id="desc" layoutX="148.0" layoutY="240.0" />
+      <Label layoutX="63.0" layoutY="278.0" text="image" />
       <ImageView fitHeight="72.0" fitWidth="200.0" layoutX="104.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@assets/waves.png" />
          </image>
       </ImageView>
+      <Button layoutX="166.0" layoutY="274.0" mnemonicParsing="false" onAction="#importerImage" text="Ajouter une photo" />
    </children>
 </AnchorPane>

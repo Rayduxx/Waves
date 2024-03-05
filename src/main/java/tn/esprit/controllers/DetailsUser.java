@@ -46,4 +46,7 @@ public class DetailsUser {
             }
         }
     }
+
+    public void initData(String text) {
+    }
 }

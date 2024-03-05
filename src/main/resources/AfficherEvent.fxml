@@ -4,35 +4,29 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="448.0" prefWidth="574.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.afficherEvent">
+<AnchorPane prefHeight="411.0" prefWidth="533.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.afficherEvent">
    <children>
-      <TableView fx:id="eventTable" layoutX="87.0" layoutY="62.0" prefHeight="285.0" prefWidth="401.0">
+      <TableView fx:id="eventTable" layoutX="65.0" layoutY="63.0" prefHeight="285.0" prefWidth="402.0">
          <columns>
             <TableColumn fx:id="nomColumn" text="Nom" />
             <TableColumn fx:id="adresseColumn" text="Adresse" />
             <TableColumn fx:id="dateColumn" text="Date" />
             <TableColumn fx:id="descColumn" text="Description" />
             <TableColumn fx:id="EditColumn" text="Edit" />
-            
+
+
          </columns>
       </TableView>
-      <Button layoutX="124.0" layoutY="362.0" mnemonicParsing="false" onAction="#ajouterEvent" text="Ajouter" />
-      <Button layoutX="309.0" layoutY="362.0" mnemonicParsing="false" onAction="#ajouterReservation" text="Ajouter Reservation" />
-      <Label layoutX="193.0" layoutY="14.0" text="Liste des évenements" textFill="#20387b" underline="true">
+      <Button layoutX="159.0" layoutY="362.0" mnemonicParsing="false" onAction="#ajouterEvent" text="Ajouter" />
+      <Button layoutX="292.0" layoutY="362.0" mnemonicParsing="false" onAction="#ajouterReservation" text="Ajouter Reservation" />
+      <Label layoutX="172.0" layoutY="14.0" text="Liste des évenements" textFill="#20387b" underline="true">
          <font>
             <Font size="20.0" />
          </font>
       </Label>
-      <ImageView fitHeight="74.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@assets/waveslogo.png" />
-         </image>
-      </ImageView>
 
    </children>
 </AnchorPane>

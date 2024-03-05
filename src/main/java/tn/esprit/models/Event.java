@@ -6,19 +6,19 @@ import java.util.Date;
 public class Event {
 
     private int Eid  ;
-    private String nomE , adrE, desc, date;
+    private String nomE , adrE, desc, date,image;
 
 
     public Event() {
     }
 
-    public Event(int eid, String nomE, String adrE, String desc, String date) {
+    public Event(int eid, String nomE, String adrE, String desc, String date,String image) {
         this.Eid = eid;
         this.nomE = nomE;
         this.adrE = adrE;
         this.desc = desc;
         this.date = date;
-
+        this.image = image;
     }
 
     public int getEid() {
@@ -59,6 +59,14 @@ public class Event {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     @Override

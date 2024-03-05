@@ -13,13 +13,14 @@ public class ServiceEvent implements IEvent<Event> {
 
     @Override
     public void Add(Event event) {
-        String qry = "INSERT INTO `event`( `nomE`, `adrE`,`desc`, `date`) VALUES (?,?,?,?)";
+        String qry = "INSERT INTO `event`( `nomE`, `adrE`,`desc`, `date` , `image`) VALUES (?,?,?,?,?)";
         try {
             PreparedStatement stm = cnx.prepareStatement(qry);
             stm.setString(1, event.getNomE());
             stm.setString(2, event.getAdrE());
             stm.setString(3, event.getDesc());
             stm.setString(4, event.getDate());
+            stm.setString(5, event.getImage());
             stm.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -40,6 +41,8 @@ public class ServiceEvent implements IEvent<Event> {
                 p.setAdrE(rs.getString("adrE"));
                 p.setDesc(rs.getString("desc"));
                 p.setDate(rs.getString("date"));
+                p.setImage(rs.getString("image"));
+
 
                 events.add(p);
             }
@@ -49,17 +52,34 @@ public class ServiceEvent implements IEvent<Event> {
         return events;
     }
 
+    public String getNomById(int id) {
+        String nom = null;
+        String qry = "SELECT nomE FROM event WHERE Eid = ?";
+        try {
+            PreparedStatement pst = cnx.prepareStatement(qry);
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                nom = rs.getString("nomE");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return nom;
+    }
+
     @Override
     public void Update(Event event) {
         try
         {
-            String qry="UPDATE `event` SET `nomE`=?,`adrE`=?,`desc`=?,`date`=? WHERE `Eid`=?";
+            String qry="UPDATE `event` SET `nomE`=?,`adrE`=?,`desc`=?,`date`=?,`image`=? WHERE `Eid`=?";
             PreparedStatement stm = cnx.prepareStatement(qry);
             stm.setString(1, event.getNomE());
             stm.setString(2, event.getAdrE());
             stm.setString(3, event.getDesc());
             stm.setString(4, event.getDate());
-            stm.setInt(5, event.getEid()); // Assurez-vous de définir l'ID de l'événement
+            stm.setString(5, event.getImage());
+            stm.setInt(6, event.getEid()); // Assurez-vous de définir l'ID de l'événement
 
             stm.executeUpdate();
             System.out.println("Modification effectué");

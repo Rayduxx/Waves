@@ -20,7 +20,7 @@ public class DetailsAdmin {
 
     private final ServiceEvent serviceEvent = new ServiceEvent();
 
-   // Utilisez un GridPane pour organiser les cartes
+    // Utilisez un GridPane pour organiser les cartes
 
     @FXML
     void initialize() {
@@ -61,4 +61,6 @@ public class DetailsAdmin {
         }
     }
 
+    public void initData(String text) {
+    }
 }
