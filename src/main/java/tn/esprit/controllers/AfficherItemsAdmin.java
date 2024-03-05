@@ -162,7 +162,7 @@ public class AfficherItemsAdmin {
     @FXML
     public void toMarAdmin(ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherItemAdmin.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherItemsAdmin.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
@@ -174,9 +174,39 @@ public class AfficherItemsAdmin {
         }
     }
     @FXML
-    public void toGesEvent(ActionEvent actionEvent) {
+    public void toEventAdmin(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEventAdmin.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            SessionManager.cleanUserSession();
+            stage.setTitle("Waves - Admin Dashboard");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    public void toFormAdmin(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherAdmin.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            SessionManager.cleanUserSession();
+            stage.setTitle("Waves - Admin Dashboard");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    public void toUserAdmin(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminUser.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);

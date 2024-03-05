@@ -81,6 +81,10 @@ public class ProdAdminController implements Initializable {
             uinfolabel.setText("Titre doit pas etre avec des chiffres");
         }
     }
+    @FXML
+    public void refresh(ActionEvent actionEvent) {
+        load();
+    }
 
     public void load() {
         int column = 0;
@@ -172,43 +176,38 @@ public class ProdAdminController implements Initializable {
         }
     }
     @FXML
-    public void refresh(ActionEvent actionEvent){
-        load();
+    public void Menu1(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Menu.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Waves - Menu");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    public void Deconnection(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            SessionManager.cleanUserSession();
+            stage.setTitle("Waves - Connection");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     @FXML
     public void toContAdmin(ActionEvent actionEvent) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/adminPoste.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            SessionManager.cleanUserSession();
-            stage.setTitle("Waves - Admin Dashboard");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    @FXML
-    public void toUserAdmin(ActionEvent actionEvent) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminUser.fxml"));
-            Parent root = loader.load();
-            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            SessionManager.cleanUserSession();
-            stage.setTitle("Waves - Admin Dashboard");
-            stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-    @FXML
-    public void toEventAdmin(ActionEvent actionEvent) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/DetailsAdmin.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
@@ -236,29 +235,59 @@ public class ProdAdminController implements Initializable {
         }
     }
     @FXML
-    public void Menu1(ActionEvent actionEvent) {
+    public void toMarAdmin(ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Menu.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherItemsAdmin.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.setTitle("Waves - Menu");
+            stage.setTitle("Waves - Admin Dashboard");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
     @FXML
-    public void Deconnection(ActionEvent actionEvent) {
+    public void toEventAdmin(ActionEvent actionEvent) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEventAdmin.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
             SessionManager.cleanUserSession();
-            stage.setTitle("Waves - Connection");
+            stage.setTitle("Waves - Admin Dashboard");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    public void toFormAdmin(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherAdmin.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            SessionManager.cleanUserSession();
+            stage.setTitle("Waves - Admin Dashboard");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    public void toUserAdmin(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminUser.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            SessionManager.cleanUserSession();
+            stage.setTitle("Waves - Admin Dashboard");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
