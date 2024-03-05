@@ -81,6 +81,20 @@ public class MenuController implements Initializable {
             e.printStackTrace();
         }
     }
+    @FXML
+    public void ProdMenu(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Create.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Waves - Production");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     public void PanelAdmin(ActionEvent actionEvent) {
