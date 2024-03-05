@@ -51,7 +51,7 @@ public class ProdContoller {
         }
     }
 
-    public static Stage primaryStage;
+    private static Stage primaryStage;
 
     @FXML
     public void ProdP(ActionEvent actionEvent) throws Exception {
@@ -63,6 +63,7 @@ public class ProdContoller {
         mainController.setLightTheme();
         Scene scene = new Scene(root);
         primaryStage.setTitle("Waves Studio");
+
         primaryStage.setScene(scene);
         primaryStage.setMinWidth(root.minWidth(-1));
         primaryStage.setMinHeight(root.minHeight(-1) + 50);

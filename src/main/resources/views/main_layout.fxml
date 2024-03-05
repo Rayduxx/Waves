@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Text?>
-<BorderPane id="main" fx:id="main_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="900.0" prefHeight="850.0" prefWidth="1360.0" styleClass="dark" stylesheets="@/css/style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.141" fx:controller="tn.esprit.controllers.MainController">
+<?import javafx.scene.text.*?>
+
+<BorderPane id="main" fx:id="main_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="900.0" prefHeight="768.0" prefWidth="1315.0" styleClass="light" stylesheets="@../css/styleStudio.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.MainController">
    <bottom>
       <HBox fx:id="state_bar" alignment="CENTER_LEFT" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="24.0" prefWidth="600.0" styleClass="state-bar" BorderPane.alignment="CENTER">
          <children>
@@ -35,6 +36,7 @@
    <top>
       <ButtonBar id="top_button_bar" prefHeight="32.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <buttons>
+            <Label text="BPM :" translateX="446.0" />
           <TextField fx:id="sequencer_tempo" maxWidth="5.0" ButtonBar.buttonData="RIGHT" />
           <Slider id="slider_master_volume" fx:id="master_volume_slider" maxWidth="400.0" minWidth="100.0" prefWidth="200.0" ButtonBar.buttonData="RIGHT" />
             <MenuBar id="menu_bar" fx:id="menu_bar" ButtonBar.buttonData="LEFT">
