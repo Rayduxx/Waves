@@ -4,10 +4,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import tn.esprit.interfaces.IProduction;
 import tn.esprit.models.Production;
+import tn.esprit.models.Utilisateur;
 import tn.esprit.utils.MyDataBase;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ServiceProduction implements IProduction<Production> {
     private Connection cnx;
@@ -29,28 +31,6 @@ public class ServiceProduction implements IProduction<Production> {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
-    }
-
-    @Override
-    public ObservableList<Production> afficher() {
-        ObservableList<Production> prod = FXCollections.observableArrayList();
-        String sql = "SELECT `id`, `nom`, `genre`, `description`, `moodtag` FROM `production`";
-        try {
-            Statement ste = cnx.createStatement();
-            ResultSet rs = ste.executeQuery(sql);
-            while (rs.next()) {
-                Production production = new Production();
-                production.setId(rs.getInt("id"));
-                production.setNom(rs.getString("nom"));
-                production.setGenre(rs.getString("genre"));
-                production.setDesc(rs.getString("description"));
-                production.setTags(rs.getString("moodtag"));
-                prod.add(production);
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return prod;
     }
 
     @Override
@@ -79,7 +59,7 @@ public class ServiceProduction implements IProduction<Production> {
     @Override
     public void Update(Production prod) {
         try {
-            String qry = "UPDATE `production` SET `nom`=?,`genre`=?,`description`=?,`moodtag`=? WHERE `id`=?";
+            String qry = "UPDATE `production` SET `titre`=?,`genre`=?,`description`=?,`moodtag`=? WHERE `id`=?";
             PreparedStatement stm = cnx.prepareStatement(qry);
             stm.setString(1, prod.getNom());
             stm.setString(2, prod.getGenre());
@@ -117,5 +97,90 @@ public class ServiceProduction implements IProduction<Production> {
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+    @Override
+    public List<Production> afficher() {
+        List<Production> prods = new ArrayList<>();
+        String sql = "SELECT * FROM `production`";
+        try {
+            Statement ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(sql);
+            while (rs.next()) {
+                Production prod = new Production();
+                prod.setId(rs.getInt("id"));
+                prod.setNom(rs.getString("nom"));
+                prod.setDesc(rs.getString("description"));
+                prod.setTags(rs.getString("moodtag"));
+                prod.setGenre(rs.getString("genre"));
+                prods.add(prod);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return prods;
+    }
+    @Override
+    public List<Production> TriparTitre() {
+        List<Production> prods = new ArrayList<>();
+        String sql = "SELECT * FROM `production` ORDER BY `nom`";
+        try {
+            Statement ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(sql);
+            while (rs.next()) {
+                Production prod = new Production();
+                prod.setId(rs.getInt("id"));
+                prod.setNom(rs.getString("nom"));
+                prod.setDesc(rs.getString("description"));
+                prod.setTags(rs.getString("moodtag"));
+                prod.setGenre(rs.getString("genre"));
+                prods.add(prod);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return prods;
+    }
+
+    @Override
+    public List<Production> TriparGenre() {
+        List<Production> prods = new ArrayList<>();
+        String sql = "SELECT * FROM `production` ORDER BY `genre`";
+        try {
+            Statement ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(sql);
+            while (rs.next()) {
+                Production prod = new Production();
+                prod.setId(rs.getInt("id"));
+                prod.setNom(rs.getString("nom"));
+                prod.setDesc(rs.getString("description"));
+                prod.setTags(rs.getString("moodtag"));
+                prod.setGenre(rs.getString("genre"));
+                prods.add(prod);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return prods;
+    }
+    @Override
+    public List<Production> Rechreche(String recherche) {
+        List<Production> prods = new ArrayList<>();
+        String sql = "SELECT * FROM `production` WHERE `nom` LIKE '%" + recherche + "%' OR `moodtag` LIKE '%" + recherche + "%' OR `genre`LIKE '%" + recherche + "%'";
+        try {
+            Statement ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(sql);
+            while (rs.next()) {
+                Production prod = new Production();
+                prod.setId(rs.getInt("id"));
+                prod.setNom(rs.getString("nom"));
+                prod.setDesc(rs.getString("description"));
+                prod.setTags(rs.getString("moodtag"));
+                prod.setGenre(rs.getString("genre"));
+                prods.add(prod);
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return prods;
     }
 }
