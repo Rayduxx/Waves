@@ -55,12 +55,13 @@ public class afficherReservation {
     private TableColumn<Reservation, String> statut;
 
     private final ServiceReservation serviceReservation = new ServiceReservation();
+
+
     private final ServiceEvent sr = new ServiceEvent();
+
     @FXML
     void initialize() {
         // Initialise les colonnes de la table
-
-
         date.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getDate_reservation()));
         statut.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getStatut()));
         nom.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getNom()));

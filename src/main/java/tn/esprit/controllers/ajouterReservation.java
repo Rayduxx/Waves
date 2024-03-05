@@ -1,5 +1,9 @@
 package tn.esprit.controllers;
 
+import com.stripe.Stripe;
+import com.stripe.exception.StripeException;
+import com.stripe.model.PaymentIntent;
+import com.stripe.param.PaymentIntentCreateParams;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,6 +20,8 @@ import tn.esprit.utils.PdfController;
 import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.Optional;
+
+import static java.lang.Float.parseFloat;
 
 public class ajouterReservation {
     @FXML
@@ -41,6 +47,9 @@ public class ajouterReservation {
 
     @FXML
     private Button AJ;
+
+    @FXML
+    private Button payer;
 
     private  int IdUser;
     private  int Eid;
@@ -105,12 +114,46 @@ public class ajouterReservation {
         alert.showAndWait();
         System.out.println(eventId);
 
+
         exportPDFButton.setVisible(true);
+        payer.setVisible(true);
         AJ.setVisible(false);
 
         mail.SendMail(email.getText());
     }
 
+    public void processPayment() {
+
+        try {
+            Alert confirmationAlert = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmationAlert.setTitle("Paiment");
+            confirmationAlert.setHeaderText("Confirmation de paiment");
+            confirmationAlert.setContentText("Voulez-vous payer avec cette carte");
+            confirmationAlert.showAndWait();
+
+// Set your secret key here
+            Stripe.apiKey = "sk_test_51Or0FWIG2J3RtgQuCc7dZ4rAAiapfB42HPWC43wraAo8UKiE52xyjb3DtTFwZ7UJcYBGjKiKtRjw3Hl9LUmTyvvh00aeSs2Lw0";
+
+// Create a PaymentIntent with other payment details
+            PaymentIntentCreateParams params = PaymentIntentCreateParams.builder()
+                    .setAmount((long) parseFloat("100000")) // Amount in cents (e.g., $10.00)
+                    .setCurrency("usd")
+                    .build();
+
+            PaymentIntent intent = PaymentIntent.create(params);
+
+
+
+
+
+
+// If the payment was successful, display a success message
+            System.out.println("Payment successful. PaymentIntent ID: " + intent.getId());
+        } catch (StripeException e) {
+// If there was an error processing the payment, display the error message
+            System.out.println("Payment failed. Error: " + e.getMessage());
+        }
+    }
 
 
 
