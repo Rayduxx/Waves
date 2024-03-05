@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 05, 2024 at 01:26 PM
+-- Generation Time: Mar 05, 2024 at 07:03 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.1.17
 
@@ -24,6 +24,30 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `commande`
+--
+
+CREATE TABLE `commande` (
+  `idc` int(11) NOT NULL,
+  `idUser` int(11) NOT NULL,
+  `idItem` int(11) NOT NULL,
+  `total` float NOT NULL,
+  `dateC` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `commande`
+--
+
+INSERT INTO `commande` (`idc`, `idUser`, `idItem`, `total`, `dateC`) VALUES
+(58, 31, 2, 0, '2024-03-04 13:48:35'),
+(59, 31, 2, 0, '2024-03-04 13:48:35'),
+(60, 31, 2, 0, '2024-03-04 13:48:35'),
+(61, 31, 3, 0, '2024-03-05 14:07:23');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `commentaire`
 --
 
@@ -33,6 +57,28 @@ CREATE TABLE `commentaire` (
   `id` int(11) DEFAULT NULL,
   `comment` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cours`
+--
+
+CREATE TABLE `cours` (
+  `id_cours` int(11) NOT NULL,
+  `titre_cours` varchar(255) NOT NULL,
+  `duree_cours` varchar(255) NOT NULL,
+  `id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cours`
+--
+
+INSERT INTO `cours` (`id_cours`, `titre_cours`, `duree_cours`, `id`) VALUES
+(2, 'iyed', '2 heures', 43),
+(3, 'iyed', '3heures', 43),
+(5, 'aaaaaaaaaaaaaa', '1heure', 43);
 
 -- --------------------------------------------------------
 
@@ -57,6 +103,54 @@ INSERT INTO `event` (`Eid`, `nomE`, `adrE`, `desc`, `date`, `image`) VALUES
 (6, 'WOOOW', 'Tunisssss', '24/02/2025', 'POPp', ''),
 (7, 'Euphoric', 'Tozeuuuuur', '28/02/2024', 'AFRO', ''),
 (23, 'AAAAAAAAA', 'centre urbain nord', 'DEMAIN MATIN', '20/20/20/20', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `formation`
+--
+
+CREATE TABLE `formation` (
+  `id` int(255) NOT NULL,
+  `titre` varchar(255) NOT NULL,
+  `description` varchar(255) NOT NULL,
+  `affiche` varchar(255) NOT NULL,
+  `video` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `formation`
+--
+
+INSERT INTO `formation` (`id`, `titre`, `description`, `affiche`, `video`) VALUES
+(43, 'mixage', 'Le mixage consiste à faire ressortir le meilleur d\'un enregistrement', 'http://127.0.0.1/img/4020137.jpg', 'lien'),
+(46, 'soundengiiring', 'iyediyediyed', 'http://127.0.0.1/img/344477330_762103062322978_8140703151360853827_n.png', 'zzzzzzzzzzzz');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `item`
+--
+
+CREATE TABLE `item` (
+  `itemID` int(11) NOT NULL,
+  `titre` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `auteur` varchar(255) NOT NULL,
+  `prix` float NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `item`
+--
+
+INSERT INTO `item` (`itemID`, `titre`, `description`, `auteur`, `prix`) VALUES
+(1, 'Night after night', 'edit', 'Fideles', 25),
+(2, 'Invisible (Remix)', 'Piano Cover', 'NTO', 26),
+(3, 'Gamma', 'new release', 'NTO', 35),
+(5, 'In Between', 'live at Munich audio', 'Jan Blomqvist', 10),
+(1013, 'Strobe', 'new release', 'DeadMau5', 20),
+(1014, 'Ghosts N Stuff', 'topline stem', 'DeadMau5', 5);
 
 -- --------------------------------------------------------
 
@@ -178,6 +272,14 @@ INSERT INTO `user` (`id`, `nom`, `prenom`, `email`, `password`, `numtel`, `role`
 --
 
 --
+-- Indexes for table `commande`
+--
+ALTER TABLE `commande`
+  ADD PRIMARY KEY (`idc`),
+  ADD KEY `fk_user` (`idUser`),
+  ADD KEY `fk_item` (`idItem`);
+
+--
 -- Indexes for table `commentaire`
 --
 ALTER TABLE `commentaire`
@@ -186,10 +288,29 @@ ALTER TABLE `commentaire`
   ADD KEY `FK_Poste` (`id_Poste`);
 
 --
+-- Indexes for table `cours`
+--
+ALTER TABLE `cours`
+  ADD PRIMARY KEY (`id_cours`),
+  ADD KEY `fk_cours` (`id`);
+
+--
 -- Indexes for table `event`
 --
 ALTER TABLE `event`
   ADD PRIMARY KEY (`Eid`);
+
+--
+-- Indexes for table `formation`
+--
+ALTER TABLE `formation`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `item`
+--
+ALTER TABLE `item`
+  ADD PRIMARY KEY (`itemID`);
 
 --
 -- Indexes for table `poste`
@@ -222,16 +343,40 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `commande`
+--
+ALTER TABLE `commande`
+  MODIFY `idc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+
+--
 -- AUTO_INCREMENT for table `commentaire`
 --
 ALTER TABLE `commentaire`
   MODIFY `idComm` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `cours`
+--
+ALTER TABLE `cours`
+  MODIFY `id_cours` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
   MODIFY `Eid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- AUTO_INCREMENT for table `formation`
+--
+ALTER TABLE `formation`
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+
+--
+-- AUTO_INCREMENT for table `item`
+--
+ALTER TABLE `item`
+  MODIFY `itemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1015;
 
 --
 -- AUTO_INCREMENT for table `poste`
@@ -267,6 +412,12 @@ ALTER TABLE `user`
 ALTER TABLE `commentaire`
   ADD CONSTRAINT `FK_Poste` FOREIGN KEY (`id_Poste`) REFERENCES `poste` (`id_Poste`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `FK_User` FOREIGN KEY (`id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `cours`
+--
+ALTER TABLE `cours`
+  ADD CONSTRAINT `fk_cours` FOREIGN KEY (`id`) REFERENCES `formation` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
