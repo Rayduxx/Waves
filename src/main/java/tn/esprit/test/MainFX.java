@@ -16,8 +16,8 @@ public class MainFX  extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-     //   FXMLLoader loader=new FXMLLoader(getClass().getResource("/AfficherEventAdmin.fxml"));
-        FXMLLoader loader=new FXMLLoader(getClass().getResource("/AfficherEventUser.fxml"));
+       FXMLLoader loader=new FXMLLoader(getClass().getResource("/AfficherEventAdmin.fxml"));
+     //  FXMLLoader loader=new FXMLLoader(getClass().getResource("/AfficherEventUser.fxml"));
 
         try {
             Parent root = loader.load();

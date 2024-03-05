@@ -6,22 +6,35 @@ import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import tn.esprit.models.Event;
 import tn.esprit.services.ServiceEvent;
-
+import javafx.scene.control.TextField;
+import java.awt.*;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 public class DetailsUser {
     @FXML
     private GridPane eventGrid;   // Utilisez un GridPane pour organiser les cartes
 
+
+
     private final ServiceEvent serviceEvent = new ServiceEvent();
 
     // Utilisez un GridPane pour organiser les cartes
+
+
+
 
     @FXML
     void initialize() {
         // Charger les données des événements depuis le service
         List<Event> events = serviceEvent.getAll();
+        events.sort(Comparator.comparing(Event::getNomE));
+
 
         int column = 0;
         int row = 0;
@@ -46,6 +59,9 @@ public class DetailsUser {
             }
         }
     }
+
+
+
 
     public void initData(String text) {
     }

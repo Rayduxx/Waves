@@ -4,9 +4,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.DetailsAdmin">
-    <GridPane fx:id="eventGrid" hgap="10" vgap="10" />
-    <Button layoutX="337.0" layoutY="349.0" mnemonicParsing="false" onAction="#ajouterEvent" text="Ajouter un event" />
-    <Button fx:id="AR" layoutX="466.0" layoutY="349.0" mnemonicParsing="false" onAction="#afficherReservation" text="Afficher reservation" />
+<AnchorPane prefHeight="537.0" prefWidth="621.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.DetailsAdmin">
+    <GridPane fx:id="eventGrid" hgap="10" prefWidth="54.0" vgap="10" />
+    <Button layoutX="258.0" layoutY="485.0" mnemonicParsing="false" onAction="#ajouterEvent" text="Ajouter un event" />
+    <Button fx:id="AR" layoutX="447.0" layoutY="485.0" mnemonicParsing="false" onAction="#afficherReservation" text="Afficher reservation" />
+   <Button layoutX="54.0" layoutY="485.0" mnemonicParsing="false" onAction="#afficherStat" text="Afficher les statistiques" />
 
 </AnchorPane>

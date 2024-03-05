@@ -54,7 +54,18 @@ public class DetailsAdmin {
     @FXML
     void afficherReservation(ActionEvent event ){
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterReservation.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherReservation.fxml"));
+            Parent root = loader.load();
+            eventGrid.getScene().setRoot(root); // Utilisez n'importe quel nœud de votre interface actuelle
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    void afficherStat(ActionEvent event){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/Statistique.fxml"));
             Parent root = loader.load();
             eventGrid.getScene().setRoot(root); // Utilisez n'importe quel nœud de votre interface actuelle
         } catch (IOException e) {

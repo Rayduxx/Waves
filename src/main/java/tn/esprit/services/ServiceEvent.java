@@ -6,6 +6,9 @@ import tn.esprit.utils.MyDataBase;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ServiceEvent implements IEvent<Event> {
     private Connection cnx;
@@ -137,4 +140,16 @@ public class ServiceEvent implements IEvent<Event> {
             System.out.println(ex.getMessage());
         }
     }
-}
+    public Map<String, Integer> getOccurrencesParEvent() throws SQLException {
+        String sql = "Select count(r.id) AS nbreservation,e.nomE as nomevent  from reservation r JOIN event e ON r.Eid= e.Eid GROUP BY e.nomE ";
+
+        Statement st=cnx.createStatement();
+        ResultSet rs=st.executeQuery(sql);
+        Map<String,Integer> nmbruser=new HashMap<>();
+        while(rs.next()){
+            nmbruser.put(rs.getString("nomevent"),rs.getInt("nbreservation"));
+        }
+        return nmbruser;
+    }
+    }
+

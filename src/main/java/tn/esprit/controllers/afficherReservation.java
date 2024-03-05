@@ -98,6 +98,18 @@ public class afficherReservation {
     }
 
     @FXML
+    void afficherEventAdmin(ActionEvent event){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AfficherEventAdmin.fxml"));
+            Parent root = loader.load();
+            eventTable.getScene().setRoot(root); // Utilisez n'importe quel nœud de votre interface actuelle
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    @FXML
     private Button exportButton;
 
     @FXML
