@@ -50,13 +50,14 @@ public class ProdContoller {
             ProdS.Add(new Production(0, NOM, GENRE, DESC, TAG));
         }
     }
-    private static Stage primaryStage;
+
+    public static Stage primaryStage;
 
     @FXML
-    public void ProdP(ActionEvent actionEvent) throws IOException {
-        setPrimaryStage(primaryStage);
+    public void ProdP(ActionEvent actionEvent) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/main_layout.fxml"));
         Parent root = fxmlLoader.load();
+        Stage primaryStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         Rectangle2D bounds = Screen.getPrimary().getBounds();
         MainController mainController = fxmlLoader.getController();
         mainController.setLightTheme();
@@ -76,10 +77,8 @@ public class ProdContoller {
         });
         scene.setOnKeyPressed(ke -> mainController.setKeyPressed(ke.getCode()) );
     }
-    public static Stage getPrimaryStage(){return ProdContoller.primaryStage;}
-    private void setPrimaryStage(Stage p){
-        primaryStage = p;
-    }
+    public static Stage getPrimaryStage(){return primaryStage;}
+    private void setPrimaryStage(Stage p){primaryStage = p;}
 
     @FXML
     public void Menu(ActionEvent actionEvent) {

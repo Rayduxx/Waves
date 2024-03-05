@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="1.7976931348623157E308" prefHeight="180.0" prefWidth="360.0" styleClass="background" stylesheets="@/css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="murphystudio.controllers.AboutController">
+<BorderPane maxHeight="1.7976931348623157E308" prefHeight="180.0" prefWidth="360.0" styleClass="background" stylesheets="@/css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.AboutController">
    <top>
       <VBox alignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefWidth="360.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>

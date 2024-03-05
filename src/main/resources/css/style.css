@@ -15,7 +15,7 @@
     -fx-background-color: #e483ff;
 }
 .text-field {
-    -fx-border-width:5 px ;
+    -fx-border-width: 0.1em;
     -fx-border-color: rgba(224, 117, 255, 0.6);
 }
 .text-field:focused, .text-field:hover {
@@ -31,7 +31,7 @@
 .infolabel{
     -fx-border-width: 0.5px;
     -fx-border-radius: 15px;
-    -fx-background-radius: 15 px;
+    -fx-background-radius: 15px;
     -fx-border-color: #e483ff;
 }
 .MainButton{

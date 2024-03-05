@@ -6,7 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<AnchorPane fx:id="chordSorterPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="171.0" minWidth="400.0" prefHeight="358.0" prefWidth="842.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="murphystudio.controllers.ChordSorterController">
+<AnchorPane fx:id="chordSorterPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="171.0" minWidth="400.0" prefHeight="358.0" prefWidth="842.0" stylesheets="@../css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.ChordSorterController">
    <children>
       <HBox fx:id="tileContainer" alignment="CENTER" layoutY="-5.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="191.0" prefWidth="839.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="3.0" AnchorPane.topAnchor="-5.0">
          <children>

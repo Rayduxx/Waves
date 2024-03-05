@@ -19,14 +19,10 @@ public class Main extends Application {
         setPrimaryStage(primaryStage);
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/main_layout.fxml"));
         Parent root = fxmlLoader.load();
-
         Rectangle2D bounds = Screen.getPrimary().getBounds();
-
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/waveslogo.png")));
-
         MainController mainController = fxmlLoader.getController();
         mainController.setLightTheme();
-
         Scene scene = new Scene(root);
         primaryStage.setTitle("Waves Studio");
         primaryStage.setScene(scene);
@@ -37,8 +33,6 @@ public class Main extends Application {
         primaryStage.setX((bounds.getWidth() - primaryStage.getWidth()) / 2);
         primaryStage.setY((bounds.getHeight() - primaryStage.getHeight()) / 4);
         primaryStage.show();
-
-
         primaryStage.setOnCloseRequest(windowEvent ->    {
             mainController.exit();
             System.exit(0);
