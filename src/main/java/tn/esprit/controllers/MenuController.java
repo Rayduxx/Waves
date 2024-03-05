@@ -75,7 +75,7 @@ public class MenuController implements Initializable {
             Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.setTitle("Waves - Postes");
+            stage.setTitle("Waves - Evenement");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
