@@ -16,6 +16,8 @@ import javafx.stage.Stage;
 import tn.esprit.services.ServiceCommande;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import tn.esprit.utils.SessionManager;
+
 import java.io.IOException;
 import java.sql.Timestamp;
 
@@ -44,7 +46,6 @@ public class CTP {
 
     private String previewUrl;
 
-
     public void setTitre(String titre) {
         Tile_Titre.setText(titre);
     }
@@ -65,6 +66,7 @@ public class CTP {
         CartAdd.setId(String.valueOf(id));
     }
 
+    int itemCount = 0;
     public void initData(Item item) {
         setTitre(item.getTitre());
         setDescription(item.getDescription());
@@ -90,20 +92,20 @@ public class CTP {
     private void addToCart(ActionEvent event) {
         Button buttonClicked = (Button) event.getSource();
         int itemId = Integer.parseInt(buttonClicked.getId());
-
-        int userId = 31;
-
+        int userId = SessionManager.getId_user();
         float totalPrice = 0.0f;
         Timestamp currentDate = new Timestamp(System.currentTimeMillis());
-
         Commande newCommande = new Commande(userId, itemId, totalPrice, currentDate);
-
         ServiceCommande serviceCommande = new ServiceCommande();
         serviceCommande.AddC(newCommande);
-
         System.out.println("Article ajouté au panier avec succès !");
+        itemCount++;
+        System.out.println(itemCount);
     }
 
+    public int getItemCount() {
+        return itemCount;
+    }
     public void loadPreviewAudio(String previewUrl) {
         this.previewUrl = previewUrl;
     }

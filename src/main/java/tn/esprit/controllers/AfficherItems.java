@@ -21,6 +21,7 @@ import tn.esprit.models.Commande;
 import tn.esprit.models.Item;
 import tn.esprit.models.Utilisateur;
 import tn.esprit.services.*;
+import tn.esprit.utils.SessionManager;
 
 import java.io.IOException;
 import java.sql.Timestamp;
@@ -42,12 +43,14 @@ public class AfficherItems {
     private Button addButton;
 
     private int selectedItemId;
+    int userIdToFind;
 
     private List<Commande> userCart = new ArrayList<>();
 
     @FXML
-    private void getUserFromDatabase() {
-        int userIdToFind = 31;
+    private int getUserFromDatabase() {
+        userIdToFind = SessionManager.getId_user();
+        System.out.println(userIdToFind);
         ServiceUtilisateur su = new ServiceUtilisateur();
         ArrayList<Utilisateur> users = su.getAll();
         boolean userFound = false;
@@ -61,10 +64,10 @@ public class AfficherItems {
                 }
             }
         }
-
         if (!userFound) {
             System.out.println("User with ID " + userIdToFind + " not found");
         }
+        return userIdToFind;
     }
     @FXML
     public void Menu(ActionEvent actionEvent) {
@@ -93,7 +96,7 @@ public class AfficherItems {
             String artist = item.getAuteur();
 
             SearchTracksRequest searchTracksRequest = spotifyApi.searchTracks("track:" + title + " artist:" + artist).build();
-            System.out.println("Track " + title + " by " + artist);
+            //System.out.println("Track " + title + " by " + artist);
 
             try {
                 final Track[] tracksArray = searchTracksRequest.execute().getItems();
@@ -105,7 +108,7 @@ public class AfficherItems {
                     String previewUrl = track.getPreviewUrl();
                 }
             }  catch (IOException | SpotifyWebApiException | ParseException e) {
-                System.out.println("Error: " + e.getMessage());
+                //System.out.println("Error: " + e.getMessage());
             }
         }
 
@@ -149,7 +152,11 @@ public class AfficherItems {
             Parent root = loader.load();
             AfficherCommande controller = loader.getController();
             ServiceCommande serviceCommande = new ServiceCommande();
-            userCart = serviceCommande.getCommandesUtilisateur(31);
+            userCart = serviceCommande.getCommandesUtilisateur(getUserFromDatabase());
+            createAndFillCommand();
+            for(Commande commande : userCart){
+                System.out.println(commande.getIdc());
+            }
             controller.initCart(userCart);
             Scene scene = new Scene(root);
             Stage stage = (Stage) cartButton.getScene().getWindow();
@@ -161,12 +168,11 @@ public class AfficherItems {
     }
 
     private void createAndFillCommand() {
-        if (selectedItemId != 0) {
-            int userId = 31;
-            float totalPrice = 0.0f;
-            Timestamp currentDate = new Timestamp(System.currentTimeMillis());
-            Commande newCommande = new Commande(userId, selectedItemId, totalPrice, currentDate);
-            userCart.add(newCommande);
-        }
+        System.out.println("selected items " + selectedItemId);
+        int userId = userIdToFind;
+        float totalPrice = 0.0f;
+        Timestamp currentDate = new Timestamp(System.currentTimeMillis());
+        Commande newCommande = new Commande(userId, selectedItemId, totalPrice, currentDate);
+        userCart.add(newCommande);
     }
 }

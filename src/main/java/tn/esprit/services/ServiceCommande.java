@@ -61,6 +61,7 @@ public class ServiceCommande implements ICommande<Commande> {
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 Commande commande = new Commande();
+                commande.setIdc(resultSet.getInt("idc"));
                 commande.setIdUser(resultSet.getInt("idUser"));
                 commande.setIdItem(resultSet.getInt("idItem"));
                 commande.setTotal(resultSet.getFloat("total"));
