@@ -1,41 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="320.0" prefWidth="306.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.CardCommController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="348.0" style="-fx-border-color: #b3b3b3;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.CardCommController">
    <children>
-      <ImageView fitHeight="136.0" fitWidth="312.0" layoutX="-4.0" layoutY="1.0">
-         <image>
-            <Image url="@pics/purple.png" />
-         </image>
-      </ImageView>
-      <VBox layoutX="2.0" layoutY="1.0" prefHeight="279.0" prefWidth="302.0">
+      <VBox prefHeight="60.0" prefWidth="348.0" style="-fx-background-color: #e483ff57;">
          <children>
-            <Label fx:id="com" prefHeight="18.0" prefWidth="130.0" text="Label">
-               <VBox.margin>
-                  <Insets left="80.0" top="30.0" />
-               </VBox.margin>
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
-            <Button mnemonicParsing="false" onAction="#supp" prefHeight="26.0" prefWidth="74.0" styleClass="transparent" stylesheets="@style.css" />
-            <Button mnemonicParsing="false" onAction="#upd" prefHeight="26.0" prefWidth="74.0" styleClass="transparent" stylesheets="@style.css">
-               <VBox.margin>
-                  <Insets left="190.0" top="20.0" />
-               </VBox.margin>
-            </Button>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="com" alignment="TOP_LEFT" prefHeight="60.0" prefWidth="377.0" text="Label">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <padding>
+                        <Insets left="3.0" top="3.0" />
+                     </padding>
+                     <font>
+                        <Font name="Roboto Regular" size="13.0" />
+                     </font>
+                  </Label>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="7.0">
+                     <children>
+                        <Button fx:id="modbtn" mnemonicParsing="false" onAction="#supp" prefHeight="25.0" prefWidth="35.0">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@assets/icons8-delete-60.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="suppbtn" mnemonicParsing="false" onAction="#upd" prefHeight="25.0" prefWidth="34.0">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="114.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@assets/icons8-edit-64.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
          </children>
       </VBox>
    </children>
-   <padding>
-      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-   </padding>
 </AnchorPane>

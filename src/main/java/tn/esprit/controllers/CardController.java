@@ -1,5 +1,6 @@
 package tn.esprit.controllers;
 
+import com.sun.mail.imap.protocol.ID;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +20,7 @@ import tn.esprit.models.Commentaire;
 import tn.esprit.models.Poste;
 import tn.esprit.services.ServiceCommentaire;
 import tn.esprit.services.ServicePoste;
+import tn.esprit.utils.SessionManager;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,23 +32,19 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 
 
-
 public class CardController implements Initializable {
     @FXML
     private Label artisteL;
-
+    @FXML
+    private AnchorPane anchp;
     @FXML
     private Label descriptionL;
-
     @FXML
     private Label genreL;
-
     @FXML
     private ImageView imageL;
-
     @FXML
     private Label titreL;
-
     @FXML
     private VBox vbox;
     @FXML
@@ -55,66 +53,56 @@ public class CardController implements Initializable {
     private Button upload;
     @FXML
     private TextField AJ;
-
     private Poste poste;
 
-   // private final ServicePoste PosteS = new ServicePoste();
-  private  ServiceCommentaire sc=new ServiceCommentaire();
-   // private String [] colors = {"#FFB5E8", "#FF9CEE", "#FFCCF9", "#FCC2FF", "#F6A6FF", "#B28DFF", "#C5A3FF", "#D5AAFF", "#ECD4FF", "#FBE4FF", "#DCD3FF", "#A79AFF", "#B5B9FF", "#97A2FF",
-           // "#AFCBFF", "#AFF8DB", "C4FAF8", "#85E3FF", "#ACE7FF", "#6EB5FF", "#BFFCC6", "#DBFFD6", "#F3FFE3", "#E7FFAC", "#FFFFD1", "#FFC9DE", "#FFABAB", "#FFBEBC", "#FFCBC1", "#FFF5BA"};
-    public void setData(Poste poste) {
-        this.poste=poste;
+    // private final ServicePoste PosteS = new ServicePoste();
+    private ServiceCommentaire sc = new ServiceCommentaire();
+    private String[] colors = {"#CDB4DB", "#FFC8DD", "#FFAFCC", "#BDE0FE", "#A2D2FF",
+            "#F4C2D7", "#FFD4E2", "#FFB7D0", "#A6D9FF", "#8BC8FF",
+            "#E6A9CB", "#FFBFD3", "#FFA7C1", "#9AC2FF", "#74AFFA",
+            "#D8B6D8", "#FFC9D7", "#FFB3C8", "#B0E1FF", "#8DCFFD",
+            "#D3AADB", "#FFBEDF", "#FFA9CC", "#AFD5FF", "#93C5FF"};
 
-       // String imagePath = poste.getImage();
-       /* if (imagePath != null) {
-            try {
-                File file = new File(imagePath);
-                FileInputStream inputStream = new FileInputStream(file);
-                Image image = new Image(inputStream);
-                imageL.setImage(image);
-            } catch (FileNotFoundException e) {
-                System.err.println("Image file not found: " + imagePath);
-            }
-        } else {
-            System.err.println("Image path is null for post: " + poste);
-        }*/
+    public void setData(Poste poste) {
+        this.poste = poste;
+        anchp.setBackground(Background.fill(Color.web(colors[(int) (Math.random() * colors.length)])));
         titreL.setText(poste.getTitre());
         artisteL.setText(poste.getArtiste());
         genreL.setText(poste.getGenre());
         descriptionL.setText(poste.getDescription());
-        Image image =new Image(poste.getImage());
+        Image image = new Image(poste.getImage());
         imageL.setImage(image);
         List<Commentaire> commentaires = sc.getAllCommentairesByPoste(poste);
         for (Commentaire commentaire : commentaires) {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation((getClass().getResource("/cardComm.fxml")));
-
                 AnchorPane commentCard = loader.load();
-                CardCommController commentCardController = loader.getController();
-                commentCardController.setData(commentaire);
-
+                CardCommController CCC = loader.getController();
+                CCC.setData(commentaire);
+                Commentaire cmt = new Commentaire();
+                System.out.println(cmt.getIdComm()+" "+SessionManager.getId_user());
+                ServiceCommentaire CommS = new ServiceCommentaire();
+                if(CommS.VerifComUser(cmt.getIdComm(), SessionManager.getId_user())){
+                    CCC.modbtn.setVisible(true);
+                    CCC.suppbtn.setVisible(true);
+                }
+                if(!CommS.VerifComUser(cmt.getIdComm(), SessionManager.getId_user())){
+                    CCC.modbtn.setVisible(false);
+                    CCC.suppbtn.setVisible(false);
+                }
                 Box.getChildren().add(commentCard);
             } catch (IOException e) {
                 System.out.println("Erreur lors du chargement des cartes de commentaire : " + e.getMessage());
             }
         }
-
-
-
-
-
-
-
-
-       // vbox.setBackground(Background.fill(Color.web(colors[(int)(Math.random()* colors.length)])));
     }
 
     public void edit(ActionEvent actionEvent) throws IOException {
         {
-            editPosteController.poste=poste;
+            editPosteController.poste = poste;
             Parent root = FXMLLoader.load(getClass().getResource("/editPoste.fxml"));
-            Scene tableScene =new Scene(root);
+            Scene tableScene = new Scene(root);
             Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
             window.setScene(tableScene);
             window.show();
@@ -123,16 +111,13 @@ public class CardController implements Initializable {
 
     public void AjouterCom(ActionEvent actionEvent) {
         String commentaireText = AJ.getText().trim();
+        int IDuser = SessionManager.getId_user();
         if (!commentaireText.isEmpty()) {
             Commentaire commentaire = new Commentaire();
             commentaire.setComment(commentaireText);
-            commentaire.setPoste(poste); // Assurez-vous d'avoir une référence au poste approprié
-
-            // Ajouter le commentaire à la base de données
+            commentaire.setPoste(poste);
             ServiceCommentaire serviceCommentaire = new ServiceCommentaire();
-            serviceCommentaire.addComm(commentaire,poste);
-
-            // Charger la nouvelle vue
+            serviceCommentaire.addComm2(commentaire, poste,IDuser);
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/PosteInterface.fxml"));
                 Parent tableViewParent = loader.load();
@@ -143,12 +128,7 @@ public class CardController implements Initializable {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            // Mise à jour de l'affichage des postes
-            // Cela peut être un appel à une méthode dans le contrôleur parent pour rafraîchir l'affichage des postes
-            // Par exemple, si votre contrôleur parent est un contrôleur de liste de postes, appelez une méthode de ce contrôleur pour rafraîchir la liste des postes
         } else {
-            // Affichez une alerte si le champ de commentaire est vide
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Champ vide");
             alert.setHeaderText(null);
@@ -162,44 +142,17 @@ public class CardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        /*List<Commentaire> commentaires = sc.getAllCommentairesByPoste(poste);
-        try {
-            for (int i = 0; i < commentaires.size(); i++) {
-                FXMLLoader loader = new FXMLLoader();
-                loader.setLocation((getClass().getResource("/cardComm.fxml")));
-
-                AnchorPane cardBox = loader.load();
-                CardCommController cardController = loader.getController();
-                cardController.setData(commentaires.get(i),poste);
-
-                Box.getChildren().add(cardBox);
-
-
-            }
-        } catch (IOException e) {
-            System.out.println("error");
-
-    }*/
-
-
     }
+
     @FXML
     public void supprime(ActionEvent actionEvent) {
         ServicePoste service = new ServicePoste();
-
-        // Confirmation de la suppression
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
         alert.setHeaderText("Voulez-vous vraiment supprimer ce Sport ?");
-
-        Optional<ButtonType> result = alert.showAndWait(); // Attendre la réponse de l'utilisateur
-
-        // Si l'utilisateur a confirmé la suppression
+        Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            // Supprimer le sport
             service.delete(poste);
-
-            // Charger la nouvelle vue
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/PosteInterface.fxml"));
                 Parent tableViewParent = loader.load();

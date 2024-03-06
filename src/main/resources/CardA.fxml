@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.geometry.Rectangle2D?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="200.0" prefWidth="130.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.CardControllerA">
+<AnchorPane prefHeight="200.0" prefWidth="130.0" style="-fx-border-color: #310047;" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.CardControllerA">
    <children>
       <VBox fx:id="vbox" alignment="CENTER" maxHeight="-Infinity" prefHeight="200.0" prefWidth="130.0" styleClass="secondary-color">
          <children>
@@ -53,12 +49,26 @@
             </Label>
             <HBox alignment="CENTER" spacing="5.0">
                <children>
-                  <Button fx:id="supprimer" mnemonicParsing="false" onAction="#supprimer" prefHeight="20.0" prefWidth="70.0" text="Supprimer" textAlignment="CENTER">
+                  <Button fx:id="supprimer" mnemonicParsing="false" onAction="#supprimer" prefHeight="27.0" prefWidth="44.0" styleClass="btn" textAlignment="CENTER">
                      <font>
                         <Font name="System Bold" size="10.0" />
                      </font>
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-delete-60.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
-                  <Button fx:id="edit" mnemonicParsing="false" onAction="#modifier" prefHeight="20.0" prefWidth="70.0" text="Edit" />
+                  <Button fx:id="edit" mnemonicParsing="false" onAction="#modifier" prefHeight="27.0" prefWidth="44.0" styleClass="btn">
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@assets/icons8-edit-64.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
                </children>
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" />

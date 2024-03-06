@@ -1,11 +1,16 @@
 package tn.esprit.models;
 
 public class Commentaire {
-    private int  idComm  ;
+    private int  idComm,idUser;
     private String comment;
-
     private Poste poste;
 
+    public Commentaire( Poste poste, int idComm, String comment,int idUser) {
+        this.idComm = idComm;
+        this.comment = comment;
+        this.poste=poste;
+        this.idUser=idUser;
+    }
     public Commentaire( Poste poste, int idComm, String comment) {
         this.idComm = idComm;
         this.comment = comment;
@@ -13,6 +18,13 @@ public class Commentaire {
     }
 
     public Commentaire() {
+    }
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
     public int getIdComm() {

@@ -2,7 +2,9 @@ package tn.esprit.services;
 
 import tn.esprit.models.Commentaire;
 import tn.esprit.models.Poste;
+import tn.esprit.models.Utilisateur;
 import tn.esprit.utils.MyDataBase;
+import tn.esprit.utils.SessionManager;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -27,6 +29,25 @@ public class ServiceCommentaire {
             stm.setInt(1, poste.getId());
             stm.setInt(2, commentaire.getIdComm());
             stm.setString(3, commentaire.getComment());
+            stm.executeUpdate();
+            ResultSet rs = stm.getGeneratedKeys();
+            if (rs.next()) {
+                commentaire.setIdComm(rs.getInt(1));
+            }
+            System.out.println("commentaire ajouteé");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+    public void addComm2(Commentaire commentaire, Poste poste, int idUser) {
+        sql = "INSERT INTO `commentaire`(id_Poste, idComm, comment,idUser) VALUES (?,?,?,?)";
+        try {
+
+            PreparedStatement stm = cnx.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            stm.setInt(1, poste.getId());
+            stm.setInt(2, commentaire.getIdComm());
+            stm.setString(3, commentaire.getComment());
+            stm.setInt(4, idUser);
             stm.executeUpdate();
             ResultSet rs = stm.getGeneratedKeys();
             if (rs.next()) {
@@ -63,6 +84,24 @@ public class ServiceCommentaire {
 
 
     }
+    public boolean VerifComUser(int IDcom, int IDuser) {
+        String qry = "SELECT * FROM commentaire WHERE idComm = ? AND idUser = ?";
+        try {
+            PreparedStatement pstmt = cnx.prepareStatement(qry);
+            pstmt.setInt(1, IDcom);
+            pstmt.setInt(2, IDuser);
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+    }
+
 
     public void update(Commentaire commentaire) {
         try
