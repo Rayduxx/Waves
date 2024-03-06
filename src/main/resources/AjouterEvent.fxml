@@ -12,8 +12,8 @@
             <Image url="@assets/background.png" />
          </image>
       </ImageView>
-      <Button layoutX="658.0" layoutY="513.0" mnemonicParsing="false" onAction="#ajouterEvent" prefHeight="27.0" prefWidth="115.0" styleClass="btn" text="Ajouter" />
-      <Button layoutX="405.0" layoutY="513.0" mnemonicParsing="false" onAction="#afficherEvent" styleClass="btn" text="Afficher" />
+      <Button layoutX="658.0" layoutY="533.0" mnemonicParsing="false" onAction="#ajouterEvent" prefHeight="27.0" prefWidth="115.0" styleClass="btn" text="Ajouter" />
+      <Button layoutX="405.0" layoutY="533.0" mnemonicParsing="false" onAction="#afficherEvent" styleClass="btn" text="Afficher" />
       <ImageView fitHeight="72.0" fitWidth="200.0" layoutX="567.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@assets/waves.png" />
@@ -29,6 +29,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <TextField fx:id="Nom" GridPane.columnIndex="1" />
@@ -39,6 +40,8 @@
             <TextField fx:id="date" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <TextField fx:id="desc" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <Label text="Description" GridPane.rowIndex="3" />
+             <Label text="image" GridPane.rowIndex="4" />
+             <Button mnemonicParsing="false" onAction="#importerImage" text="Ajouter une photo" GridPane.columnIndex="1" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="552.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
@@ -46,5 +49,6 @@
             <Image url="@assets/waveslogo.gif" />
          </image>
       </ImageView>
+
    </children>
 </AnchorPane>

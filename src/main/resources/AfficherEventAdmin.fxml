@@ -7,7 +7,10 @@
 
 <AnchorPane prefHeight="768.0" prefWidth="1315.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controllers.DetailsAdmin">
     <GridPane fx:id="eventGrid" hgap="10" layoutX="175.0" layoutY="91.0" vgap="10" />
-   <Button layoutX="630.0" layoutY="720.0" mnemonicParsing="false" onAction="#ajouterEvent" styleClass="btn" text="Ajouter" />
+   <Button layoutX="630.0" layoutY="720.0" mnemonicParsing="false" onAction="#ajouterEvent" styleClass="btn" text="Ajouter un evenement" />
+   <Button fx:id="AR" layoutX="489.0" layoutY="721.0" mnemonicParsing="false" onAction="#afficherReservation" styleClass="btn" text="Afficher reservation" />
+   <Button layoutX="788.0" layoutY="721.0" mnemonicParsing="false" onAction="#afficherStat" styleClass="btn" text="Afficher les statistiques" />
+
    <Pane layoutY="2.0" prefHeight="80.0" prefWidth="1315.0" styleClass="pane">
       <children>
          <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="17.0" pickOnBounds="true" preserveRatio="true">

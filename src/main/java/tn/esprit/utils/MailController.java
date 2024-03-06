@@ -45,4 +45,32 @@ public class MailController {
 
         Transport.send(message);
     }
+
+    public void SendMailEvent(String st) throws MessagingException {
+        Properties properties = new Properties();
+        properties.put("mail.smtp.host", "smtp.gmail.com");
+        properties.put("mail.smtp.port", "587");
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        Authenticator authenticator = new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("waves.esprit@gmail.com", "tgao tbqg wudl aluo");//szwv ifts mrbf fzoa
+            }
+        };
+        Session session = Session.getInstance(properties, authenticator);
+        MimeMessage message = new MimeMessage(session);
+        message.setFrom(new InternetAddress("waves.esprit@gmail.com"));
+        message.addRecipient(Message.RecipientType.TO, new InternetAddress(st));
+        message.setSubject("Réservation");
+        message.setText("Reservation");
+        message.setSubject("Confirmation Réservation");
+        message.setText("On vous informe que votre reservation est accèpté. " +
+                "Bienvenue dans notre évenement." +
+                "On vous souhaite une bonne soirée. ");
+
+
+
+        Transport.send(message);
+    }
 }

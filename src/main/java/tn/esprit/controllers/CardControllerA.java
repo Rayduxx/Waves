@@ -10,12 +10,14 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import tn.esprit.models.Event;
 import tn.esprit.services.ServiceEvent;
 
 import java.io.IOException;
+import java.nio.file.Paths;
 
 public class CardControllerA {
 
@@ -49,7 +51,9 @@ public class CardControllerA {
         adr.setText(event.getAdrE());
         date.setText(event.getDate());
         desc.setText(event.getDesc());
-        // Initialisez les autres champs de la carte avec les données de l'événement
+        String formattedImagePath = Paths.get(event.getImage()).toUri().toString();
+        Image image = new Image(formattedImagePath);
+        imageL.setImage(image);
     }
 
     @FXML
