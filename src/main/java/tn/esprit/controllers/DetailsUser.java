@@ -12,6 +12,7 @@ import tn.esprit.models.Event;
 import tn.esprit.services.ServiceEvent;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.List;
 
 public class DetailsUser {
@@ -25,6 +26,7 @@ public class DetailsUser {
     @FXML
     void initialize() {
         List<Event> events = serviceEvent.getAll();
+        events.sort(Comparator.comparing(Event::getNomE));
         int column = 0;
         int row = 0;
         for (Event event : events) {
@@ -43,6 +45,8 @@ public class DetailsUser {
                 e.printStackTrace();
             }
         }
+    }
+    public void initData(String text) {
     }
     @FXML
     public void Menu(ActionEvent actionEvent) {

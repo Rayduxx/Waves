@@ -6,6 +6,8 @@ import tn.esprit.utils.MyDataBase;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ServiceEvent implements IEvent<Event> {
     private Connection cnx;
@@ -13,19 +15,34 @@ public class ServiceEvent implements IEvent<Event> {
 
     @Override
     public void Add(Event event) {
-        String qry = "INSERT INTO `event`( `nomE`, `adrE`,`desc`, `date`) VALUES (?,?,?,?)";
+        String qry = "INSERT INTO `event`( `nomE`, `adrE`,`desc`, `date` , `image`) VALUES (?,?,?,?,?)";
         try {
             PreparedStatement stm = cnx.prepareStatement(qry);
             stm.setString(1, event.getNomE());
             stm.setString(2, event.getAdrE());
             stm.setString(3, event.getDesc());
             stm.setString(4, event.getDate());
+            stm.setString(5, event.getImage());
             stm.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
-
+    public String getNomById(int id) {
+        String nom = null;
+        String qry = "SELECT nomE FROM event WHERE Eid = ?";
+        try {
+            PreparedStatement pst = cnx.prepareStatement(qry);
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+            if (rs.next()) {
+                nom = rs.getString("nomE");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return nom;
+    }
     @Override
     public ArrayList<Event> getAll() {
         ArrayList<Event> events = new ArrayList();
@@ -40,6 +57,7 @@ public class ServiceEvent implements IEvent<Event> {
                 p.setAdrE(rs.getString("adrE"));
                 p.setDesc(rs.getString("desc"));
                 p.setDate(rs.getString("date"));
+                p.setImage(rs.getString("image"));
 
                 events.add(p);
             }
@@ -53,13 +71,14 @@ public class ServiceEvent implements IEvent<Event> {
     public void Update(Event event) {
         try
         {
-            String qry="UPDATE `event` SET `nomE`=?,`adrE`=?,`desc`=?,`date`=? WHERE `Eid`=?";
+            String qry="UPDATE `event` SET `nomE`=?,`adrE`=?,`desc`=?,`date`=?,`image`=? WHERE `Eid`=?";
             PreparedStatement stm = cnx.prepareStatement(qry);
             stm.setString(1, event.getNomE());
             stm.setString(2, event.getAdrE());
             stm.setString(3, event.getDesc());
             stm.setString(4, event.getDate());
-            stm.setInt(5, event.getEid()); // Assurez-vous de définir l'ID de l'événement
+            stm.setString(5, event.getImage());
+            stm.setInt(6, event.getEid());  // Assurez-vous de définir l'ID de l'événement
 
             stm.executeUpdate();
             System.out.println("Modification effectué");
@@ -69,7 +88,16 @@ public class ServiceEvent implements IEvent<Event> {
             System.out.println(ex.getMessage());
         }
     }
-
+    public Map<String, Integer> getOccurrencesParEvent() throws SQLException {
+        String sql = "Select count(r.id) AS nbreservation,e.nomE as nomevent  from reservation r JOIN event e ON r.Eid= e.Eid GROUP BY e.nomE ";
+        Statement st=cnx.createStatement();
+        ResultSet rs=st.executeQuery(sql);
+        Map<String,Integer> nmbruser=new HashMap<>();
+        while(rs.next()){
+            nmbruser.put(rs.getString("nomevent"),rs.getInt("nbreservation"));
+        }
+        return nmbruser;
+    }
     public int findEventId(String eventName, String eventDate) {
         int eventId = -1; // Initialisez à une valeur impossible ou utilisez un Optional<Integer>
         try {

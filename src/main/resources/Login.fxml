@@ -10,6 +10,25 @@
       <TextField fx:id="email_login" layoutX="168.0" layoutY="277.0" prefHeight="45.0" prefWidth="295.0" promptText="Email" text="moussa.ala@esprit.tn" />
       <Pane layoutX="679.0" prefHeight="768.0" prefWidth="636.0" style="-fx-background-color: #e2c3fa;">
          <children>
+            <VBox prefHeight="777.0" prefWidth="655.0">
+               <children>
+                  <ImageView fitHeight="313.0" fitWidth="655.0" pickOnBounds="true" smooth="false">
+                     <image>
+                        <Image url="@assets/cardbg.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="313.0" fitWidth="655.0" pickOnBounds="true" smooth="false">
+                     <image>
+                        <Image url="@assets/cardbg.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="313.0" fitWidth="655.0" pickOnBounds="true" smooth="false">
+                     <image>
+                        <Image url="@assets/cardbg.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
             <ImageView fitHeight="510.0" fitWidth="499.0" layoutX="69.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@assets/waveslogo.png" />

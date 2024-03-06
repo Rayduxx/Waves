@@ -14,13 +14,16 @@
       </ImageView>
         <TableView fx:id="eventTable" layoutX="242.0" layoutY="151.0" prefHeight="319.0" prefWidth="783.0">
             <columns>
-                <TableColumn fx:id="date" prefWidth="378.0" text="Date" />
-                <TableColumn fx:id="statut" minWidth="0.0" prefWidth="404.0" text="Statut" />
+                <TableColumn fx:id="date" prefWidth="144.0" text="Date" />
+                <TableColumn fx:id="statut" prefWidth="127.0" text="Statut" />
+                <TableColumn fx:id="nom" prefWidth="150.0" text="Nom" />
+                <TableColumn fx:id="prenom" prefWidth="130.0" text="Prénom" />
+                <TableColumn fx:id="email" prefWidth="231.0" text="Email" />
             </columns>
         </TableView>
-        <Button layoutX="386.0" layoutY="483.0" mnemonicParsing="false" onAction="#ajouterReservation" styleClass="btn" text="Ajouter" />
       <Button layoutX="290.0" layoutY="483.0" mnemonicParsing="false" onAction="#retour" styleClass="btn" text="Retour" />
-      <Label layoutX="515.0" layoutY="84.0" text="Liste des reservations">
+        <Button fx:id="exportButton" layoutX="936.0" layoutY="484.0" onAction="#handleExportButton" styleClass="btn" text="Export to PDF" />
+        <Label layoutX="515.0" layoutY="84.0" text="Liste des reservations">
          <font>
             <Font name="Roboto Regular" size="24.0" />
          </font>

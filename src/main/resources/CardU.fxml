@@ -4,7 +4,6 @@
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -30,9 +29,6 @@
                     <viewport>
                         <Rectangle2D />
                     </viewport>
-                    <image>
-                        <Image url="@assets/affiche.jpg" />
-                    </image>
                 </ImageView>
                 <Label fx:id="adr" text="Label">
                     <VBox.margin>
