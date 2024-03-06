@@ -1,4 +1,7 @@
 package tn.esprit.controllers;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import tn.esprit.models.Formation;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

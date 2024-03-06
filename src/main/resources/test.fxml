@@ -55,8 +55,6 @@
                </padding>
             </Label>
             <Separator minHeight="11.0" prefHeight="54.0" prefWidth="350.0" />
-            <Button fx:id="modifier" mnemonicParsing="false" onAction="#edit" prefHeight="25.0" prefWidth="114.0" styleClass="btn" stylesheets="@css/style.css" text="Modifier" />
-            <Separator minHeight="11.0" prefHeight="54.0" prefWidth="350.0" />
             <HBox alignment="CENTER" prefHeight="27.0" prefWidth="291.0" spacing="4.0">
                <children>
                   <TextField fx:id="AJ" prefHeight="27.0" prefWidth="303.0" />

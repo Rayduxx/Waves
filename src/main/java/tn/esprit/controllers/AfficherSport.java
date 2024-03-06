@@ -67,8 +67,6 @@ public class AfficherSport implements Initializable {
                 List<Formation> postes1 = sp.getAll(); // Récupérez toutes les données initiales
                 setGridFormations(postes1); // Affichez à nouveau toutes les données initiales
             }});
-
-
     }
 
 
@@ -178,6 +176,20 @@ public class AfficherSport implements Initializable {
                 alert.showAndWait();
             }
 
+        }
+    }
+    @FXML
+    public void ajouterform(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AjouterFormation.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setTitle("Waves - Admin Dashboard");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

@@ -65,10 +65,6 @@ public class ServicePoste implements IService<Poste> {
               p.setImage(rs.getString(5));
               p.setMorceau(rs.getString(6));
               p.setDescription(rs.getString(7));
-
-
-
-
               postes.add(p);
           }
 

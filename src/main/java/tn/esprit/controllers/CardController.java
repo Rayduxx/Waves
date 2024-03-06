@@ -80,17 +80,6 @@ public class CardController implements Initializable {
                 AnchorPane commentCard = loader.load();
                 CardCommController CCC = loader.getController();
                 CCC.setData(commentaire);
-                Commentaire cmt = new Commentaire();
-                System.out.println(cmt.getIdComm()+" "+SessionManager.getId_user());
-                ServiceCommentaire CommS = new ServiceCommentaire();
-                if(CommS.VerifComUser(cmt.getIdComm(), SessionManager.getId_user())){
-                    CCC.modbtn.setVisible(true);
-                    CCC.suppbtn.setVisible(true);
-                }
-                if(!CommS.VerifComUser(cmt.getIdComm(), SessionManager.getId_user())){
-                    CCC.modbtn.setVisible(false);
-                    CCC.suppbtn.setVisible(false);
-                }
                 Box.getChildren().add(commentCard);
             } catch (IOException e) {
                 System.out.println("Erreur lors du chargement des cartes de commentaire : " + e.getMessage());
@@ -98,16 +87,6 @@ public class CardController implements Initializable {
         }
     }
 
-    public void edit(ActionEvent actionEvent) throws IOException {
-        {
-            editPosteController.poste = poste;
-            Parent root = FXMLLoader.load(getClass().getResource("/editPoste.fxml"));
-            Scene tableScene = new Scene(root);
-            Stage window = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-            window.setScene(tableScene);
-            window.show();
-        }
-    }
 
     public void AjouterCom(ActionEvent actionEvent) {
         String commentaireText = AJ.getText().trim();

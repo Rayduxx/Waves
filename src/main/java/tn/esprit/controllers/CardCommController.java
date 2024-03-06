@@ -32,10 +32,8 @@ public class CardCommController implements Initializable {
     @FXML
     private Label com;
     Commentaire commentaire;
-        ServiceCommentaire CommS = new ServiceCommentaire();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
 
     }
     public void setData(Commentaire commentaire)
@@ -43,6 +41,7 @@ public class CardCommController implements Initializable {
 
         this.commentaire=commentaire;
         com.setText(commentaire.getComment());
+
     }
 
 

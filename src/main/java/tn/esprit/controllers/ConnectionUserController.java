@@ -1,5 +1,6 @@
 package tn.esprit.controllers;
 
+import javafx.animation.PauseTransition;
 import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,6 +23,7 @@ import java.net.URL;
 import java.util.*;
 
 import javafx.fxml.Initializable;
+import javafx.util.Duration;
 import jdk.jshell.execution.Util;
 import tn.esprit.models.Utilisateur;
 import tn.esprit.services.ServiceUtilisateur;
@@ -117,42 +119,69 @@ public class ConnectionUserController implements Initializable {
                         FXMLLoader loadingLoader = new FXMLLoader(getClass().getResource("/loadingscene.fxml"));
                         Parent loadingRoot = loadingLoader.load();
                         Stage loadingStage = new Stage();
-                        //loadingStage.initModality(Modality.APPLICATION_MODAL);
+                        // loadingStage.initModality(Modality.APPLICATION_MODAL);
                         loadingStage.setScene(new Scene(loadingRoot));
                         loadingStage.setTitle("Loading...");
                         loadingStage.show();
 
-                        Task<Parent> task = new Task<>() {
-                            @Override
-                            protected Parent call() throws Exception {
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminUser.fxml"));
-                                return loader.load();
-                            }
-                        };
-                        task.setOnSucceeded(event -> {
-                            loadingStage.close();
-                            Parent root = task.getValue();
-                            Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                            Scene scene = new Scene(root);
-                            scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
-                            stage.setScene(scene);
-                            stage.setTitle("Waves - Admin Dashboard");
-                            stage.show();
+                        PauseTransition delay = new PauseTransition(Duration.seconds(2));
+                        delay.setOnFinished(event -> {
+                            Task<Parent> task = new Task<>() {
+                                @Override
+                                protected Parent call() throws Exception {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/AdminUser.fxml"));
+                                    return loader.load();
+                                }
+                            };
+                            task.setOnSucceeded(event2 -> {
+                                loadingStage.close();
+                                Parent root = task.getValue();
+                                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                                Scene scene = new Scene(root);
+                                scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
+                                stage.setScene(scene);
+                                stage.setTitle("Waves - Admin Dashboard");
+                                stage.show();
+                            });
+                            new Thread(task).start();
                         });
-                        new Thread(task).start();
+                        delay.play();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
                 if (role.equals("User")) {
                     try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Menu.fxml"));
-                        Parent root = loader.load();
-                        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                        Scene scene = new Scene(root);
-                        stage.setScene(scene);
-                        stage.setTitle("Waves - Menu");
-                        stage.show();
+                        FXMLLoader loadingLoader = new FXMLLoader(getClass().getResource("/loadingscene.fxml"));
+                        Parent loadingRoot = loadingLoader.load();
+                        Stage loadingStage = new Stage();
+                        // loadingStage.initModality(Modality.APPLICATION_MODAL);
+                        loadingStage.setScene(new Scene(loadingRoot));
+                        loadingStage.setTitle("Loading...");
+                        loadingStage.show();
+
+                        PauseTransition delay = new PauseTransition(Duration.seconds(2));
+                        delay.setOnFinished(event -> {
+                            Task<Parent> task = new Task<>() {
+                                @Override
+                                protected Parent call() throws Exception {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/Menu.fxml"));
+                                    return loader.load();
+                                }
+                            };
+                            task.setOnSucceeded(event2 -> {
+                                loadingStage.close();
+                                Parent root = task.getValue();
+                                Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                                Scene scene = new Scene(root);
+                                scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
+                                stage.setScene(scene);
+                                stage.setTitle("Waves - Admin Dashboard");
+                                stage.show();
+                            });
+                            new Thread(task).start();
+                        });
+                        delay.play();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

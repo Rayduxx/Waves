@@ -1,15 +1,13 @@
 package tn.esprit.services;
 
+import tn.esprit.controllers.CardCommController;
 import tn.esprit.models.Commentaire;
 import tn.esprit.models.Poste;
-import tn.esprit.models.Utilisateur;
 import tn.esprit.utils.MyDataBase;
-import tn.esprit.utils.SessionManager;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ServiceCommentaire {
     private Connection cnx;
@@ -60,7 +58,27 @@ public class ServiceCommentaire {
     }
 
 
-
+    public ArrayList<Commentaire> getIcom(int idComm) {
+        ArrayList<Commentaire> commentaires = new ArrayList();
+        String qry = "SELECT c.*, p.titre FROM commentaire c inner join poste p on c.id_Poste = p.id_Poste";
+        try {
+            Statement stm = cnx.createStatement();
+            ResultSet rs = stm.executeQuery(qry);
+            while (rs.next()) {
+                Commentaire c = new Commentaire(new Poste(),22,"lol");
+                c.setIdComm(rs.getInt(2));
+                Poste p = new Poste();
+                p.setId(rs.getInt(1));
+                p.setTitre(rs.getString("titre"));
+                c.setPoste(p);
+                c.setComment(rs.getString(3));
+                commentaires.add(c);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return commentaires;
+    }
     public ArrayList<Commentaire> getAll() {
         ArrayList<Commentaire> commentaires = new ArrayList();
         String qry = "SELECT c.*, p.titre FROM commentaire c inner join poste p on c.id_Poste = p.id_Poste";
@@ -81,10 +99,8 @@ public class ServiceCommentaire {
             throw new RuntimeException(e);
         }
         return commentaires;
-
-
     }
-    public boolean VerifComUser(int IDcom, int IDuser) {
+    public void VerifComUser(int IDcom, int IDuser) {
         String qry = "SELECT * FROM commentaire WHERE idComm = ? AND idUser = ?";
         try {
             PreparedStatement pstmt = cnx.prepareStatement(qry);
@@ -92,13 +108,12 @@ public class ServiceCommentaire {
             pstmt.setInt(2, IDuser);
             ResultSet rs = pstmt.executeQuery();
             if (rs.next()) {
-                return true;
-            } else {
-                return false;
+                CardCommController CCC = new CardCommController();
+                CCC.suppbtn.setVisible(true);
+                CCC.modbtn.setVisible(true);
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
-            return false;
         }
     }
 

@@ -61,6 +61,7 @@ public class ProdAdminController implements Initializable {
         if (radenergie.isPickOnBounds()){TAG="Energie";}
         if (TITRE.matches("^[_A-Za-z-\\+ ]+$") && GENRE.matches("^[_A-Za-z-\\+ ]+$")){
             ProdS.Add(new Production(0, TITRE, GENRE, DESC, TAG));
+            uinfolabel.setText("Ajout d'un projet avec success");
         }else{
             uinfolabel.setText("Titre doit pas etre avec des chiffres");
         }
